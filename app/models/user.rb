@@ -6,4 +6,7 @@ class User < ActiveRecord::Base
 	has_many :collections, foreign_key: :teacher_id #w 
 	has_many :skills, through: :collections #w
 	has_many :messages #w
+
+
+	has_secure_password
 end

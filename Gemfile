@@ -15,6 +15,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 
 group :development, :test do
   gem 'byebug'
+  gem 'better_errors'
   gem 'rspec'
   gem 'rspec-rails'
   gem 'capybara'
