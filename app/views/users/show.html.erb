@@ -1,0 +1,66 @@
+<main>
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-3">
+			<div id="profile-pic-box">
+				<img src="<%= @user.avatar %>" alt="profile-picture">
+			</div>
+		</div>
+		<div class="col-md-6">
+			<header>
+				<h1><%= @user.full_name %></h1>
+				<p><%= @user.city_state %></p>
+			</header>
+			<!-- TABS -->
+			<nav>
+				<ul class="nav nav-tabs" role="tablist">
+					<!-- SKILLS TAB -->
+			    <li role="presentation" class="active">
+			    	<a href="#skills" aria-controls="skills" role="tab" data-toggle="tab">Skills</a>
+		    	</li>
+		    	<!-- ABOUT ME TAB -->
+			    <li role="presentation">
+		    	<a href="#about-me" aria-controls="About-me" role="tab" data-toggle="tab">About me</a></li>
+		    	<!-- REVIEWS TAB -->
+			    <li role="presentation">
+			    	<a href="#reviews" aria-controls="reviews" role="tab" data-toggle="tab">Reviews</a>
+		    	</li>
+	  		</ul>
+			</nav>
+
+			<!-- TABS CONTENT -->
+		  <div class="tab-content">
+		    <!-- SKILLS TAB CONTENT -->
+		    <div role="tabpanel" class="tab-pane fade in active" id="skills">
+					<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+			    	<% @user.collections.each do |user_skill| %>
+					  <div class="panel panel-default">
+					    <div class="panel-heading" role="tab" id="user_skill<%= user_skill.id %>">
+								<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse_user_skill<%= user_skill.id %>" aria-expanded="true" aria-controls="collapse_user_skill<%= user_skill.id %>">
+					    		<h4 class="panel-title">
+											<%= user_skill.skill.name %>
+					    		</h4>
+				        </a>
+			    		</div>
+		    		  <div id="collapse_user_skill<%= user_skill.id %>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="user_skill<%= user_skill.id %>">
+					      <div class="panel-body">
+      		    		<%= user_skill.description %>
+					      </div>
+					    </div>
+						</div>
+    				<% end %>
+					</div>
+		    </div>
+		    <!-- ABOUT ME TAB CONTENT -->
+		    <div role="tabpanel" class="tab-pane fade" id="about-me">
+		    	<%= @user.description %>
+		    </div>
+		    <!-- REVIEWS TAB CONTENT-->
+		    <div role="tabpanel" class="tab-pane fade" id="reviews">
+		    	This feature has yet to be implemented.
+		    </div>
+		  </div>
+		</div>
+		<div class="col-md-1"></div>
+	</div>
+</main>
