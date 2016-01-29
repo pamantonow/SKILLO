@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 	has_many :skills, through: :collections #w
 	has_many :messages #w
 
-	
+
 	validates :first_name, :last_name, :email, :password_digest, :city, :state, :zip, :st_num, :st_name, {presence: true}
 	validates :email, uniqueness: true
 	validates :password,  length: {

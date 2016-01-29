@@ -65,6 +65,8 @@ ActiveRecord::Schema.define(version: 20160129031304) do
     t.string   "education"
     t.string   "description"
     t.string   "avatar"
+    t.float    "longitude"
+    t.float    "latitude"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end

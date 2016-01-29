@@ -15,6 +15,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string :education
       t.string :description
       t.string :avatar
+      t.float :longitude
+      t.float :latitude
 
       t.timestamps null: false
     end

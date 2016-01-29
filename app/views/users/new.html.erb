@@ -1,0 +1,34 @@
+<%=form_for(:users, url: users_path) do |f| %>
+	<div id="form">
+	<%=f.label :first_name, "First name" %>
+	<%=f.text_field :username %>
+	<br>
+	<%=f.label :last_name, "Last name" %>
+	<%=f.text_field :last_name %>
+	<br>
+	<%=f.label :email, "Email" %>
+	<%=f.text_field :email %>
+	<br>
+	<%=f.label :password, "Password" %>
+	<%=f.password_field :password %>
+	<br>
+	<%=f.label :city, "city" %>
+	<%=f.text_field :city %>
+	<br>
+	<%=f.label :state, "state" %>
+	<%=f.text_field :state %>
+	<br>
+	<%=f.label :zip, "zip code" %>
+	<%=f.text_field :zip %>
+	<br>
+	<%=f.label :st_num, "Street number" %>
+	<%=f.text_field :st_num %>
+	<br>
+	<%=f.label :st_name, "Street name" %>
+	<%=f.text_field :st_name %>
+
+	<br>
+	<%=f.submit "Register" %>
+
+	<% end %> 
+</div>
