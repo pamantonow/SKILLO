@@ -2151,3 +2151,4 @@ Processing by SessionsController#new as HTML
 Completed 200 OK in 17ms (Views: 16.4ms | ActiveRecord: 0.0ms)
 =======
 >>>>>>> master
+DEPRECATION WARNING: Defining a route where `to` is a controller without an action is deprecated. Please change `to: '/'` to `controller: '/'`. (called from block in <top (required)> at /Users/aleksandranowak/Desktop/SKILLO/config/routes.rb:62)
