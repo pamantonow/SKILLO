@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(version: 20160129031304) do
   create_table "collections", force: :cascade do |t|
     t.integer  "teacher_id"
     t.integer  "skill_id"
-    t.string   "years_of_expirience"
-    t.string   "hourly_rate"
+    t.integer  "years_of_expirience"
+    t.integer  "hourly_rate"
     t.string   "description"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
@@ -57,14 +57,16 @@ ActiveRecord::Schema.define(version: 20160129031304) do
     t.string   "password_digest"
     t.string   "city"
     t.string   "state"
-    t.string   "zip"
-    t.string   "st_num"
+    t.integer  "zip"
+    t.integer  "st_num"
     t.string   "st_name"
     t.string   "phone"
     t.string   "occupation"
     t.string   "education"
     t.string   "description"
     t.string   "avatar"
+    t.float    "longitude"
+    t.float    "latitude"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end

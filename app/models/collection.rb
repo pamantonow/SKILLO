@@ -1,4 +1,4 @@
 class Collection < ActiveRecord::Base
-	belongs_to :teacher, class_name: "User" #w
-	belongs_to :skill #w
+	belongs_to :teacher, class_name: "User" 
+	belongs_to :skill 
 end
