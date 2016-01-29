@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>SKILLO</title>
+	<!-- INCLUDE ALL STYLESHEETS IN THE ASSETS FOLDER -->
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
@@ -9,5 +10,8 @@
 <div class="container">
 	<%= yield %>
 </div>
+
+<!-- INCLUDE ALL JAVASCRIPTS IN THE ASSETS FOLDER -->
+<%= javascript_include_tag "application" %>
 </body>
 </html>
