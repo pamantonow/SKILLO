@@ -5,7 +5,6 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
 
-
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
@@ -59,6 +58,6 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-  root "/"
+  root "sessions#new"
 
 end

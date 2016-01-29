@@ -1,7 +1,7 @@
 <%=form_for(:users, url: users_path) do |f| %>
 	<div id="form">
 	<%=f.label :first_name, "First name" %>
-	<%=f.text_field :username %>
+	<%=f.text_field :first_name %>
 	<br>
 	<%=f.label :last_name, "Last name" %>
 	<%=f.text_field :last_name %>
@@ -29,6 +29,11 @@
 
 	<br>
 	<%=f.submit "Register" %>
+
+	<%if @errors %>
+		<%@errors %>
+	<% end %> 
+
 
 	<% end %> 
 </div>
