@@ -1,5 +1,8 @@
 class Request < ActiveRecord::Base
-	belongs_to :sender, class_name: "User" #w
-	belongs_to :reciever, class_name: "User" #w 
-	belongs_to :skill #w
+	belongs_to :sender, class_name: "User" 
+	belongs_to :reciever, class_name: "User"  
+	belongs_to :skill 
+	has_many :messages, dependent: :destroy
+
+	valisates  :sender_id, :reciever_id, :skill_id, :content, presence: true
 end
