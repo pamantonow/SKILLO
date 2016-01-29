@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
     too_short: "must have at least %{count} words",
     too_long: "must have at most %{count} words"
     }
-    validates :zip, :length => { :is => 6 }, 
+    validates :zip, :length => { :is => 5 }, 
     validates :zip, :st_num, :numericality => { :only_integer => true }
 	validates :first_name, :last_name, :city, :state, :st_name, :format => { :with => /\A[a-zA-Z]+\z/,
     :message => "Only letters allowed" }
