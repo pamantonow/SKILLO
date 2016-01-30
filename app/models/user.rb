@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 	has_many :collections, foreign_key: :teacher_id  
 	has_many :skills, through: :collections 
 	has_many :messages 
+	has_many :categories, through: :skills
 
 
 	validates :first_name, :last_name, :email, :password_digest, :city, :state, :zip, :st_num, :st_name, presence: true
