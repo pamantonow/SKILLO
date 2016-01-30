@@ -6,11 +6,13 @@ class UsersController < ApplicationController
 		else
 			@users = User.all 
 		end
-		@hash = Gmaps4rails.build_markers(@users) do |user, marker| 
-		marker.lat user.latitude
-		marker.lng user.longitude
+			@hash = Gmaps4rails.build_markers(@users) do |user, marker| 
+				marker.lat user.latitude
+				marker.lng user.longitude
+				marker.infowindow render_to_string(:partial => "/users/tag", :locals => { :user => user})
+			
+			end
 		end
-	end
 
 	def new
 		@user = User.new 

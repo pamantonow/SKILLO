@@ -9,21 +9,21 @@
 
 
 
-user = User.create(
+user = User.create!(
 
-       :first_name => "Aleksandra",
+       :first_name => "Karol",
        :last_name => "Nowak",
-       :email => "anowak@icstars.org",
+       :email => "qwfw@icstars.org",
        :password => "olaolaola",
        :city => "Chicago",
        :state => "IL",
        :zip => "60654",
-       :st_num => "351",
-       :st_name => "Hubbard St",
+       :st_num => "5500",
+       :st_name => "Michigan Ave",
        :phone => "7736009632",
        :occupation => "Developer",
        :education => "High-School",
-       :description => "I just like to teach.",
+       :description => "Intelligentsia blog fap waistcoat, biodiesel viral disrupt. Next level schlitz vinyl, thundercats shabby chic freegan roof party affogato plaid. Farm-to-table readymade bitters, literally lo-fi drinking vinegar raw denim marfa pour-over shabby chic umami hella bushwick PBR&B austin. Single-origin coffee microdosing shabby chic, fingerstache meditation listicle freegan retro affogato church-key. ",
        :avatar => "https://scontent.ford1-1.fna.fbcdn.net/hphotos-xfa1/v/t1.0-9/12193604_985555058171660_8392627846667778134_n.jpg?oh=fb6abe3148f2e200440885280f135e22&oe=5730A300"
    )
 

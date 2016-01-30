@@ -8,15 +8,24 @@
 </p>
 <%end%> 
 
-<div style='width: 800px;'>
-  <div id="map" style='width: 800px; height: 400px;'></div>
-</div>
+<div class="clear">
+	<div class="left">
+	<% if @users[0] %>
+		<%= render 'map' %>
+	<% else %>
+		<%= render 'error' %>
+	<% end %>
+	</div>
 
-<script type="text/javascript">
-handler = Gmaps.build('Google');
-handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-  markers = handler.addMarkers(<%= raw @hash.to_json %>);
-  handler.bounds.extendWith(markers);
-  handler.fitMapToBounds();
-});
-</script>
+	<div class="right mini">
+	<% @users.each do |user| %>
+		<div id="profile">
+			<%= link_to user.first_name, user %>
+			<br>
+			<p>Why I want to teach?</p>
+			<br>
+			<%= user.description %>
+		</div>
+	<% end %>
+	</div>
+</div>
