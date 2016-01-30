@@ -2,18 +2,21 @@ class SessionsController < ApplicationController
 	
 
 
-
 	def new
 		render :'sessions/new'
 	end
 
 	def create
-		@user = User.find_by_email(params[:email])
-		if @user && @user.authenticate(params[:password])
-			session[:user_id] = @user.id
-			redirect_to user_path
+		@user = User.authenticate(params[:email], params[:password])
+		if @user
+			 session[:user_id] = @user.id
+			 redirect_to user_path
+			 puts "----------"
+			p @user
+			puts "+++=+++++++++"
 		else
-			redirect_to '/login'
+			flash[:notice] = "Credentials don't match"
+			render :'sessions/new'
 		end
 	end
 

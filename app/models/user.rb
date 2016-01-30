@@ -25,4 +25,13 @@ class User < ActiveRecord::Base
 		"#{self.city}, #{self.state}"
 	end
 
+	def self.authenticate(entered_email,input_password)
+		@user = User.find_by(email: entered_email)
+		if @user && @user.password == input_password
+			return @user
+		else
+			return nil
+		end
+	end
+
 end
