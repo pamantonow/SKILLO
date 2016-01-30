@@ -1,8 +1,5 @@
 class SessionsController < ApplicationController
 	
-
-
-
 	def new
 		render :'sessions/new'
 	end
@@ -11,7 +8,7 @@ class SessionsController < ApplicationController
 		@user = User.find_by_email(params[:email])
 		if @user && @user.authenticate(params[:password])
 			session[:user_id] = @user.id
-			redirect_to new_user_skill_path
+			redirect_to new_user_skill_path(@user)
 		else
 			redirect_to '/login'
 		end

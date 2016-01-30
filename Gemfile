@@ -12,7 +12,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'gmaps4rails'
 gem 'geocoder'
-
+gem 'bootstrap_form'
+gem 'font-awesome-rails'
 
 group :development, :test do
   gem 'byebug'

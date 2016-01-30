@@ -1,0 +1,15 @@
+<% if current_user != nil %>
+	<div class="">
+	<p>Hello </p>
+	<%= current_user.first_name %>
+	<%= link_to "Home", users_path %>
+	<%= link_to "Profile", user_path(user_id) %>
+	<%= link_to "Account", new_user_skill_path(user_id) %>
+	</div>
+	<div class="">
+	<%= link_to "Logout", logout_path %>
+	</div>
+<% else %>
+	<%= link_to "Login", login_path %>
+	<%= link_to "Register", new_user_path %>
+<% end %>
