@@ -12,7 +12,7 @@ module ApplicationHelper
 		categories = Category.all
 		category_index = []
 		categories.each_with_index do |cat, index|
-			category_index << [cat.name, index]
+			category_index << [cat.name, index+1]
 		end
 		category_index
 	end

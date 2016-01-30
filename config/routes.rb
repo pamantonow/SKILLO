@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :users do
-  	resources :skills
+    resources :skills
   end
 
 	resources :categories	 
