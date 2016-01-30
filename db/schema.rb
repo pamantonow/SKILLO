@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20160130054113) do
 
   create_table "requests", force: :cascade do |t|
     t.integer  "sender_id"
-    t.integer  "reciever_id"
+    t.integer  "receiver_id"
     t.integer  "skill_id"
     t.boolean  "accepted"
     t.string   "content"
