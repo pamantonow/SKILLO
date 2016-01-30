@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-	has_secure_password
 
 	has_many :sent_requests, class_name: "Request", foreign_key: :sender_id #w
 	has_many :recieved_requests, class_name: "Request", foreign_key: :reciever_id #w
@@ -15,7 +14,8 @@ class User < ActiveRecord::Base
 	#validates :first_name, :last_name, :city, :state, :st_name, presence: true
 
 
-
+	has_secure_password
+	
 
 	def full_name
 		"#{self.first_name} #{self.last_name}"
@@ -25,13 +25,13 @@ class User < ActiveRecord::Base
 		"#{self.city}, #{self.state}"
 	end
 
-	def self.authenticate(entered_email,input_password)
-		@user = User.find_by(email: entered_email)
-		if @user && @user.password == input_password
-			return @user
-		else
-			return nil
-		end
-	end
+	# def self.authenticate(entered_email,input_password)
+	# 	@user = User.find_by(email: entered_email)
+	# 	if @user && @user.password == input_password
+	# 		return @user
+	# 	else
+	# 		return nil
+	# 	end
+	# end
 
 end
