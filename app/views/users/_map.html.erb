@@ -4,6 +4,7 @@
 </div>
 <%= @users[0].first_name %>
 <script type="text/javascript">
+console.log(ka);
 handler = Gmaps.build('Google');
 handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
   markers = handler.addMarkers(<%= raw @hash.to_json %>);

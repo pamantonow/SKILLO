@@ -11,14 +11,14 @@
 
 user = User.create!(
 
-       :first_name => "Karol",
+       :first_name => "Ana",
        :last_name => "Nowak",
-       :email => "qwfw@icstars.org",
+       :email => "qwff@icstars.org",
        :password => "olaolaola",
        :city => "Chicago",
        :state => "IL",
        :zip => "60654",
-       :st_num => "5500",
+       :st_num => "900",
        :st_name => "Michigan Ave",
        :phone => "7736009632",
        :occupation => "Developer",
@@ -28,8 +28,11 @@ user = User.create!(
    )
 
 
+categories = ["IT", "Languages", "Cooking", "Sport", "Art","Manufacturing" ,"Communication" ,"Music","Science","Business" ,"Others"]
+categories.each do |category|
+ Category.create(name: category)     
+end
 
-user.skills.create(name: "Spanish") 
 
- Request.create(sender_id: 1, reciever_id: 2 , skill_id: 1, accepted: true , content: "I will like to tutor with you, if you are available?")
+Request.create(sender_id: 1, reciever_id: 2 , skill_id: 1, accepted: true , content: "I will like to tutor with you, if you are available?")
 
