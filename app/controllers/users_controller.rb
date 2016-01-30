@@ -1,27 +1,44 @@
 class UsersController < ApplicationController
 
+
 	def index
-	end
-
-	def new 
-		render :'users/new'
-	end
-
-	def create
-		@user = User.new(users_params)
-		if @user.save
-			session[:user_id] = @user.id
-			redirect_to login_path
+		if params[:search].present?
+			@users = User.near(params[:search], 50)
 		else
-			render :'users/new'
-			@errors = @user.errors.full_messages
+			@users = User.all 
+		end
+		@hash = Gmaps4rails.build_markers(@users) do |user, marker| 
+		marker.lat user.latitude
+		marker.lng user.longitude
 		end
 	end
+
+	def new
+		@user = User.new 
+	end
+
+
+	def create
+	   @user = User.new(users_params)
+
+	   respond_to do |format|
+	     if @user.save
+	       format.html { redirect_to @user, notice: 'user was successfully created.' }
+	       format.json { render :show, status: :created, user: @user }
+	     else
+	       format.html { render :new }
+	       format.json { render json: @user.errors, status: :unprocessable_entity }
+	     end
+	   end
+ 	end
+
+ 	def show
+ 	end
 
 	private
 
 	def users_params
-		params.require(:users).permit(:first_name,:last_name,:email, :password,:city, :state, :zip,:st_num, :st_name )
+		params.require(:user).permit(:first_name,:last_name,:email, :password,:city, :state, :zip,:st_num, :st_name, :latitude, :longitude )
 	end
 
 end
