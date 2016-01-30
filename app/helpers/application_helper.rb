@@ -10,10 +10,10 @@ module ApplicationHelper
 
 	def add_category
 		categories = Category.all
-		cat_index = []
+		category_index = []
 		categories.each_with_index do |cat, index|
-			cat_index << [cat.name, index]
+			category_index << [cat.name, index]
 		end
-		cat_index
+		category_index
 	end
 end
