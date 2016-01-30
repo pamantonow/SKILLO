@@ -1,0 +1,15 @@
+<br>
+<p>Add new skillsset for user based on category. For example skillset for IT can be: RUby, Java. Skillset for Cooking can be Thai CUisine, Polish Cuisine  </p>
+
+
+
+<%= bootstrap_nested_form_for [ current_user, @skill ] do |f|	%>
+
+<%= f.text_field :name %>
+<%= f.select :category_id, options_for_select(add_category), class: "form-control" %>
+ 
+
+      <%= f.submit "Add Skill" %>
+<% end %>
+
+  

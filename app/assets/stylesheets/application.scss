@@ -1,3 +1,22 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *= require rails_bootstrap_forms
+ *= require font-awesome
+ *= require_tree .
+ *= require_self
+ */
+
+
+
 #profile-pic-box {
 	max-width: 300px;
 	max-height: 300px;
@@ -111,3 +130,30 @@ body {
 	border-color: #1CA347;
 }
 
+#error {
+	background-color: #E9E5DC;
+	border: solid black 1px;
+}
+
+#profile {
+	background-color: #E9E5DC;
+	border: solid black 1px;
+}
+
+.left{
+	float: left;
+}
+.right{
+	float: right;
+}
+.clear{
+	clear:both;
+}
+
+.mini {
+	width: 15em;
+}
+
+.m-mini{
+	marign:4em;	
+}
