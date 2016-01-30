@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
 
-  resources :users do
-   resources :requests
-  end
+  resources :users 
+   resources :request
 
   resources :skills
   resources :categories  

@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
 	def index
 		@categories = Category.all
-		current_user = User.find(1)
+		current_user = session[:user_id]
 		if params[:search].present?
 			@users = User.near(params[:search], 50)
 		else
