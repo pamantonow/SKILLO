@@ -1,4 +1,4 @@
-<%=form_for(:users, url: users_path) do |f| %>
+<%=form_for(@user) do |f| %>
 	<div id="form">
 	<%=f.label :first_name, "First name" %>
 	<%=f.text_field :first_name %>
@@ -28,6 +28,17 @@
 	<%=f.text_field :st_name %>
 
 	<br>
+		<br>
+	<%=f.label :longitude, "Street name" %>
+	<%=f.hidden_field :longitude %>
+
+	<br>
+		<br>
+	<%=f.label :latitude, "Street name" %>
+	<%=f.hidden_field :latitude %>
+
+	<br>
+
 	<%=f.submit "Register" %>
 
 	<%if @errors %>
