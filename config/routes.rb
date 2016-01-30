@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
   resources :users do
-   resources :requests
+    resources :skills
   end
-
+  resources :requests
   resources :skills
   resources :categories  
 
