@@ -9,13 +9,10 @@ class User < ActiveRecord::Base
 
 	validates :first_name, :last_name, :email, :password_digest, :city, :state, :zip, :st_num, :st_name, presence: true
 	validates :email, uniqueness: true
-	
-    validates :zip, :length => { :is => 5 } 
-    validates :zip, :st_num, :numericality => { :only_integer => true }
+
+  validates :zip, :length => { :is => 5 }
+  validates :zip, :st_num, :numericality => { :only_integer => true }
 	#validates :first_name, :last_name, :city, :state, :st_name, presence: true
-
-
-
 
 	def full_name
 		"#{self.first_name} #{self.last_name}"
