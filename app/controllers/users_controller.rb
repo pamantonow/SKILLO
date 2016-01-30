@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
 
-
 	def index
 		if params[:search].present?
 			@users = User.near(params[:search], 50)
@@ -33,12 +32,13 @@ class UsersController < ApplicationController
  	end
 
  	def show
+ 		@user = User.find(params[:id])
  	end
+
 
 	private
 
 	def users_params
 		params.require(:user).permit(:first_name,:last_name,:email, :password,:city, :state, :zip,:st_num, :st_name, :latitude, :longitude )
 	end
-
 end
