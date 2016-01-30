@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
 
-  resources :users
+  resources :users do
+   resources :requests
+  end
+
+  resources :skills
+  resources :categories  
+
+
  
   root "users#index"
 
@@ -11,8 +18,8 @@ Rails.application.routes.draw do
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-    get '/login' => 'sessions#new', as: 'login'
-    post '/login' => 'sessions#create'
+    get 'login' => 'sessions#new', as: 'login'
+    post 'login' => 'sessions#create'
     get '/logout' => 'sessions#destroy'
     get '/signup' => 'users#new'
     post '/users' => 'users#create'
@@ -55,6 +62,5 @@ Rails.application.routes.draw do
   # Example resource route within a namespace:
   #   namespace :admin do
   #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
 
 end
