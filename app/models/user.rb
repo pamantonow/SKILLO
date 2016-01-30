@@ -13,9 +13,6 @@ class User < ActiveRecord::Base
 	
     validates :zip, :length => { :is => 5 } 
     validates :zip, :st_num, :numericality => { :only_integer => true }
-	validates :first_name, :last_name, :city, :state, :st_name, :format => { :with => /\A[a-zA-Z]+\z/,
-    :message => "Only letters allowed" }
-
-
+	#validates :first_name, :last_name, :city, :state, :st_name, presence: true
 
 end
