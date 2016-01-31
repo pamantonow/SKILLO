@@ -1,7 +1,9 @@
-<div id= "request">
-	<p><%=@request.content %></p>
-</div>
 
-	<button id="message">Send a message</button>
+	<div id= "request">
+		<p><%=@request.content %></p>
+	</div>
+	<%=@request.receiver.first_name %>
+	<a id="new-message" href="/requests/<%=@request.id%>/messages/new"><button >Send a message</button></a>
+	<%=link_to "Create message", new_request_message_path(@request), :remote => true, :id => "new-message" %>
 
 	

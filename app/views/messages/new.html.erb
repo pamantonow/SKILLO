@@ -1,7 +1,8 @@
-<%=form_for @messages do |f| %>
+<%=form_for(@message,url: {action: "create"}, remote: true, :id => "new-form-message")do |f| %>
 <p>
 	<%=f.label :content %>
 	<%=f.text_field :content %>
 	<p>
 		<%=f.submit "Submit" %>
+	 <% end %> 
 	</p>

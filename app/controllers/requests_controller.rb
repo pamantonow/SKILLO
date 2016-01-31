@@ -14,15 +14,15 @@ class RequestsController < ApplicationController
 
  	def show
  		if current_user
- 			@skill = Skill.find(params[:id])
- 			@request = @skill.requests.find(params[:id])
+ 			@request = Request.find(params[:id])
+ 			# @skill = Skill.find(params[:skill_id])
+ 			# @request = @skill.requests.find(params[:id])
  			render :'requests/show'
  		else
  			redirect_to login_path
  		end
  	end
 
- 	Request.create(sender_id: 2, skill_id: 1, content: "Hi , I will like to see if you are available next week for tutoring? I need to learn spanish for my finals")
  	private
 
  	def request_params
