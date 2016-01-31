@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20160130054113) do
   create_table "collections", force: :cascade do |t|
     t.integer  "teacher_id"
     t.integer  "skill_id"
-    t.integer  "years_of_expirience"
+    t.integer  "years_of_experience"
     t.integer  "hourly_rate"
     t.string   "description"
     t.datetime "created_at",          null: false
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20160130054113) do
 
   create_table "requests", force: :cascade do |t|
     t.integer  "sender_id"
-    t.integer  "reciever_id"
+    t.integer  "receiver_id"
     t.integer  "skill_id"
     t.boolean  "accepted"
     t.string   "content"

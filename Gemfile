@@ -14,8 +14,8 @@ gem 'gmaps4rails'
 gem 'geocoder'
 gem 'bootstrap_form'
 gem 'font-awesome-rails'
-gem "nested_form"
-
+gem 'nested_form'
+gem 'faker'
 
 group :development, :test do
   gem 'byebug'
