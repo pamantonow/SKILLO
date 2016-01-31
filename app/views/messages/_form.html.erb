@@ -1,8 +1,8 @@
-<%=form_for(@message,url: {action: "create"}, remote: true)do |f| %>
-	<p>
+<%= form_for(:message, url: request_messages_path, remote: true, id: "new-form-message")do |f| %>
+<p>
 	<%=f.label :content %>
 	<%=f.text_field :content %>
 	<p>
 		<%=f.submit "Submit" %>
+	 <% end %> 
 	</p>
-<% end %> 

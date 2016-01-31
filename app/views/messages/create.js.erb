@@ -1,1 +1,4 @@
-create.js.erb
+$('#new_message').remove();
+$("new-form-message").show();
+ $('#messages').append('<%= j render("message", :message => @new_message) %>');
+ $('#messages').hide();
