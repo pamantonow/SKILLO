@@ -1,0 +1,7 @@
+<%=form_for @messages do |f| %>
+<p>
+	<%=f.label :content %>
+	<%=f.text_field :content %>
+	<p>
+		<%=f.submit "Submit" %>
+	</p>

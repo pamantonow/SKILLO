@@ -9,11 +9,14 @@ class SessionsController < ApplicationController
 
 	def create
 		@user = User.find_by(email: session_params[:email])
+		puts "========================"
+		p @user.authenticate(session_params[:password])
+		puts "========================"
     if @user && @user.authenticate(session_params[:password])
 	    session[:user_id] = @user.id
 	    redirect_to user_path(@user)
     else
-    	put "Yoour Credentials don't match"
+    	puts "Yoour Credentials don't match"
     	p @user
     	flash[:notice] = "Yoour Credentials don't match"
       render :'sessions/new'
