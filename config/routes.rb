@@ -9,6 +9,9 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :skills
+    resources :skills do
+      resources :requests
+    end
   end
   resources :requests
   resources :skills
