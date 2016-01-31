@@ -6,18 +6,20 @@ class UsersController < ApplicationController
 		if params[:search].present?
 			@users = User.near(params[:search], 50)
 		else
-			@users = User.all 
+			@users = User.all
 		end
 			@hash = Gmaps4rails.build_markers(@users) do |user, marker|
-				if user.id == current_user.id
-					marker.lat user.latitude
-					marker.lng user.longitude
-					marker.picture({
-		       "url" => "http://people.mozilla.com/~faaborg/files/shiretoko/firefoxIcon/firefox-32.png",
-		       "width" =>  32,
-		       "height" => 32})
-					marker.json({:first_name => user.first_name })
-					marker.infowindow render_to_string(:partial => "/users/tag", :locals => { :user => user})
+				if current_user
+					if user.id == current_user.id
+						marker.lat user.latitude
+						marker.lng user.longitude
+						marker.picture({
+			       "url" => "http://people.mozilla.com/~faaborg/files/shiretoko/firefoxIcon/firefox-32.png",
+			       "width" =>  32,
+			       "height" => 32})
+						marker.json({:first_name => user.first_name })
+						marker.infowindow render_to_string(:partial => "/users/tag", :locals => { :user => user})
+					end
 				else
 					marker.lat user.latitude
 					marker.lng user.longitude
@@ -27,7 +29,7 @@ class UsersController < ApplicationController
 		end
 
 	def new
-		@user = User.new 
+		@user = User.new
 	end
 
 
