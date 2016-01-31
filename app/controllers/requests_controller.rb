@@ -1,23 +1,25 @@
 class RequestsController < ApplicationController
 
 	def new
-		@user =
 		@request = Request.new
-    respond_to do |format|
-      format.html
-      format.json { render json: @request }
-      format.js
-    end
 	end
 
+	# POST /requests
+	# POST /users/:user_id/skills/:skill_id/reqeusts
  	def create
  		@request = Request.new(request_params)
- 		if @request.save
- 			redirect_to request_path
- 		else
- 			render :'request/new'
- 			flash[:notice] = "Something went wrong"
- 		end
+ 		@request.sender_id = user_id
+ 		@request.receiver_id = params[:user_id]
+ 		@request.skill_id = params[:skill_id]
+		respond_to do |format|
+	 		if @request.save
+ 				format.html { redirect_to request_path(@request) }
+ 				format.js
+	 		else
+	 			flash[:error] = @request.errors
+	 			render user_path
+	 		end
+	 	end
  	end
 
  	def show
@@ -33,7 +35,7 @@ class RequestsController < ApplicationController
  	private
 
  	def request_params
- 		params.require(:request).permit(:sender_id,:receiver_id,:skill_id,:content)
+ 		params.require(:request).permit(:receiver_id, :skill_id, :content)
  	end
 
 end

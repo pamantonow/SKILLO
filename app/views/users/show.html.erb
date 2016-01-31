@@ -1,11 +1,13 @@
 <main>
 	<div class="row">
 		<div class="col-md-1"></div>
+		<!-- SIDEBAR -->
 		<div class="col-md-3">
 			<div id="profile-pic-box">
 				<img src="<%= @user.avatar %>" alt="profile-picture">
 			</div>
 		</div>
+		<!-- MAIN CONTENT -->
 		<div class="col-md-6">
 			<header>
 				<h1><%= @user.full_name %></h1>
@@ -30,9 +32,15 @@
 
 			<!-- TABS CONTENT -->
 		  <div class="tab-content">
+		  	<!-- REQUESTS TAB CONTENT-->
+		  	<% if current_user && current_user.id == @user.id %>
+		    <div role="tabpanel" class="tab-pane fade" id="reviews">
+		    	This feature has yet to be implemented.
+		    </div>
+		    <% end %>
 		    <!-- SKILLS TAB CONTENT -->
 		    <div role="tabpanel" class="tab-pane fade in active" id="skills">
-		    	<!-- COLLAPSIBLE GROUP -->
+		    	<!-- COLLAPSIBLE GROUP OF SKILLS -->
 					<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 			    	<% @user.collections.each do |user_skill| %>
 					  <div class="panel panel-default">
@@ -43,24 +51,21 @@
 					    		</h4>
 				        </a>
 			    		</div>
-		    		  <div id="collapse_user_skill<%= user_skill.id %>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="user_skill<%= user_skill.id %>">
+		    		  <div id="collapse_user_skill<%= user_skill.id %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="user_skill<%= user_skill.id %>">
 					      <div class="panel-body">
       		    		<%= user_skill.description %>
       		    		<br>
       		    		<br>
       		    		<% if current_user %>
-										<%= link_to 'New Request', new_request_path, :remote => true, :id => "new_request_link" %>
+										<a href="#" class="new-request-link">Request a lesson!</a>
 									<% end %>
-									<div id="new-request-form" style="display: none;">
-										<%= form_for @request do |f| %>
-											<%= hidden_field_tag :sender_id, current_user.id %>
-										  <%= hidden_field_tag :receiver_id, @user.id %>
-										  <%= hidden_field_tag :skill_id, user_skill.skill.id %>
-									    <%= f.label :content %><br>
+									<div style="display: none;">
+					 					<%= form_for @request , as: :request, url: user_skill_requests_path(@user, user_skill) do |f| %>
+									    <%= f.label :content, "Write a message" %><br>
 									    <%= f.text_field :content %>
 									    <%= f.submit %>
 										<% end %>
-									</div>
+							    </div>
 					      </div>
 					    </div>
 						</div>
@@ -80,21 +85,3 @@
 		<div class="col-md-1"></div>
 	</div>
 </main>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
