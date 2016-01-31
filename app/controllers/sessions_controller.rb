@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
 
 
 	def new
-		render :'sessions/new'
+		@session = User.new
 	end
 
 	def create
