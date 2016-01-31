@@ -32,6 +32,7 @@
 		  <div class="tab-content">
 		    <!-- SKILLS TAB CONTENT -->
 		    <div role="tabpanel" class="tab-pane fade in active" id="skills">
+		    	<!-- COLLAPSIBLE GROUP -->
 					<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 			    	<% @user.collections.each do |user_skill| %>
 					  <div class="panel panel-default">
@@ -45,6 +46,21 @@
 		    		  <div id="collapse_user_skill<%= user_skill.id %>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="user_skill<%= user_skill.id %>">
 					      <div class="panel-body">
       		    		<%= user_skill.description %>
+      		    		<br>
+      		    		<br>
+      		    		<% if current_user %>
+										<%= link_to 'New Request', new_request_path, :remote => true, :id => "new_request_link" %>
+									<% end %>
+									<div id="new-request-form" style="display: none;">
+										<%= form_for @request do |f| %>
+											<%= hidden_field_tag :sender_id, current_user.id %>
+										  <%= hidden_field_tag :receiver_id, @user.id %>
+										  <%= hidden_field_tag :skill_id, user_skill.skill.id %>
+									    <%= f.label :content %><br>
+									    <%= f.text_field :content %>
+									    <%= f.submit %>
+										<% end %>
+									</div>
 					      </div>
 					    </div>
 						</div>
@@ -64,3 +80,21 @@
 		<div class="col-md-1"></div>
 	</div>
 </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
