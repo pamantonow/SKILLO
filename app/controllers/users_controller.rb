@@ -30,25 +30,23 @@ class UsersController < ApplicationController
 		@user = User.new
 	end
 
-
 	def create
-	   @user = User.new(users_params)
-	   session[:user_id] = @user.id
-	   respond_to do |format|
-	     if @user.save
-	       format.html { redirect_to @user, notice: 'user was successfully created.' }
-	       format.json { render :show, status: :created, user: @user }
-	     else
-	       format.html { render :new }
-	       format.json { render json: @user.errors, status: :unprocessable_entity }
-	     end
-	   end
+		@user = User.new(users_params)
+		respond_to do |format|
+			if @user.save
+				session[:user_id] = @user.id
+				format.html { redirect_to @user, notice: 'user was successfully created.' }
+				format.json { render :show, status: :created, user: @user }
+			else
+				format.html { render :new }
+				format.json { render json: @user.errors, status: :unprocessable_entity }
+			end
+		end
  	end
 
  	def show
  		@user = User.find(params[:id])
  	end
-
 
 	private
 
