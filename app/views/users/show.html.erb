@@ -76,7 +76,7 @@
 		  	<% if current_user && user_id == @user.id %>
 			    <div role="tabpanel" class="tab-pane fade" id="requests">
 						<div id="sent-requets">
-				    	<h4>Sent requests</h4>
+				    	<h2>Sent requests</h2>
 							<% if @user.sent_requests != nil %>
 					    	<% @user.sent_requests.each do |r| %>
 					    	<div class="request">
@@ -96,14 +96,14 @@
 				    		<p>You have yet to make any requests.</p>
 			    		<% end %>
 			    	</div>
-			    	<h4>Received requests</h4>
+			    	<h2>Received requests</h2>
 						<% if @user.sent_requests != nil %>
 				    	<% @user.received_requests.each do |r| %>
 				    		<div class="request">
 					    		<p><%= r.sender.full_name %> wants to learn <%= r.skill.name %> from you!</p>
 					    		<p>Sent <%= time_ago_in_words(r.created_at) %> ago</p>
-					    		<%= button_to "Accept", edit_path(r), method: "patch" %>
-					    		<%= button_to "Decline", edit_path(r), method: "patch" %>
+					    		<%= button_to "Accept", edit_request_path(r), method: "patch" %>
+					    		<%= button_to "Decline", edit_request_path(r), method: "patch" %>
 					    		<%= link_to "Manage this request and chat with #{r.sender.first_name}", request_path(r) %>
 				    		</div>
 			    		<% end %>
