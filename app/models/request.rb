@@ -4,5 +4,7 @@ class Request < ActiveRecord::Base
 	belongs_to :skill
 	has_many :messages, dependent: :destroy
 
+
 	validates  :sender_id, :receiver_id, :skill_id, :content, presence: true
+
 end

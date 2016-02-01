@@ -13,7 +13,13 @@ Rails.application.routes.draw do
       resources :requests
     end
   end
-  resources :requests
+
+  resources :requests do
+    resources :messages
+  end
+
   resources :skills
   resources :categories
+  resources :collections
+
 end

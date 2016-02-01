@@ -2,5 +2,5 @@ class Message < ActiveRecord::Base
 	belongs_to :user 
 	belongs_to :request 
 
-	validates :content, :user, :request, {presence: true}
+	# validates :user, :request, :content, {presence: true}
 end
