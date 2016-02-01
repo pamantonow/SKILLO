@@ -31,4 +31,18 @@ class User < ActiveRecord::Base
 	geocoded_by :address
 	after_validation :geocode
 
+	# Return a valid gravatar URL
+	# default image rating is set to "g"
+	# default image size is set to 200x200 px
+	# if user does not have gravatar account, return a random "retro" gravatar
+	def create_gravatar_url
+		"http://www.gravatar.com/avatar/#{md5_hash_email(self.email)}?r=g&s=200&d=retro"
+	end
+
+	private
+	# Return an md5 hash for a given email
+	def md5_hash_email(email)
+		Digest::MD5.hexdigest(email.strip.downcase)
+	end
+
 end
