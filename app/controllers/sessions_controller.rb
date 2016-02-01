@@ -1,15 +1,17 @@
 class SessionsController < ApplicationController
 	
 	def new
-		render :'sessions/new'
 	end
 
 	def create
 	@user = User.find_by(email: params[:email])
     if @user && @user.authenticate(params[:password])
+
 	    session[:user_id] = @user.id
 	    redirect_to user_path(@user)
     else
+    	puts "Yoour Credentials don't match"
+    	p @user
     	flash[:notice] = "Yoour Credentials don't match"
       render :'sessions/new'
     	end
@@ -24,4 +26,3 @@ class SessionsController < ApplicationController
 	
 
 
-end

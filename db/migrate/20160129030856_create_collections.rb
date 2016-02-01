@@ -3,7 +3,7 @@ class CreateCollections < ActiveRecord::Migration
     create_table :collections do |t|
       t.integer :teacher_id
       t.integer :skill_id
-      t.integer :years_of_expirience
+      t.integer :years_of_experience
       t.integer :hourly_rate
       t.string :description
 

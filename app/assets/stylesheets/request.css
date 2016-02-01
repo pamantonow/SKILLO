@@ -1,0 +1,17 @@
+#request{
+	text-align: center;
+	border: solid black 1px;
+	max-width: 800px;	
+	min-height: 300px;
+	margin: 0 auto;
+	padding: 50px;
+
+}
+
+p{
+	font-size: 150%
+}
+
+button{
+	left: 40%;
+}
