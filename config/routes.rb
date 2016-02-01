@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :skills
+     resources :reviews
     resources :skills do
       resources :requests
     end
@@ -20,10 +21,13 @@ Rails.application.routes.draw do
     resources :messages
   end
 
+  
+
   resources :skills
   resources :categories
   resources :collections
   resources :requests 
+
 
  
 

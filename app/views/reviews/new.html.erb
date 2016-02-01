@@ -1,0 +1,7 @@
+<%=bootstrap_form_for [@user,@review] do |f|%>
+  <p>
+  <%=f.label :content %>
+  <%=f.text_field :content %>
+
+  <%=f.submit "Submit" %>
+<% end %> 

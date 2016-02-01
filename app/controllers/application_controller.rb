@@ -19,6 +19,11 @@ class ApplicationController < ActionController::Base
 		end
 	end
 
+	def not_found
+		render :status => 422
+		# raise ActionController::RoutingError.new()
+	end
+
 	# def authenticate_action
 	# 	if current_user && user_id != params[:id]
 	# 		redirect_to login_path

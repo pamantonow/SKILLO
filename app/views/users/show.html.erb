@@ -116,7 +116,15 @@
 		    <% end %>
 		    <!-- REVIEWS TAB CONTENT-->
 		    <div role="tabpanel" class="tab-pane fade" id="reviews">
-		    	This feature has yet to be implemented.
+		     <%if @user != current_user %>
+		    	<%=link_to "Create review", new_user_review_path(@user) %>
+		     <% end %> 
+			     <%@user.received_reviews.each do |review| %>
+				     <p><%=review.content %></p>
+				     <p><%=review.sender.first_name %></p>
+				     <p><%=time_ago_in_words(review.created_at) %></p>
+				     <hr>
+		     	<% end %> 
 		    </div>
 		    <!-- ABOUT ME TAB CONTENT -->
 		    <div role="tabpanel" class="tab-pane fade" id="about-me">
