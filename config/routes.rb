@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   resources :users do
     resources :skills
   end
-  resources :requests
+  resources :requests do
+    resources :messages
+  end
+
 
   resources :skills
   resources :categories  

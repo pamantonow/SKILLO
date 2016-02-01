@@ -1,4 +1,4 @@
-class RequestController < ApplicationController
+class RequestsController < ApplicationController
 
 	
 
@@ -7,16 +7,19 @@ class RequestController < ApplicationController
  		if @request.save
  			redirect_to request_path
  		else
- 			render :'request/new'
+ 			render :'requests/new'
  			flash[:notice] = "Something went wrong"
  		end
  	end
 
  	def show
+
  		if current_user
- 			@skill = Skill.find(params[:id])
- 			@request = @skill.requests.find(params[:id])
- 			render :'request/show'
+ 			@request = Request.find(params[:id])
+ 			@messages = @request.messages
+ 			@message = Message.new
+
+ 			render :'requests/show'
  		else
  			redirect_to login_path
  		end
