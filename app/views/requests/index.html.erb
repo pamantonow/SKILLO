@@ -1,62 +1,70 @@
 <h1 class="fancy">Your offers: </h1>
-	<% @requested.each do |request| %>
+<% @requested.each do |request| %>
 	<% if current_user %>
+		
+			
+			
+			<div class="boxes b-width">
+			<div class="left ">
+				<img src="<%= request.sender.avatar %>" class="avatar">
+				<br>
 
-	<div class="boxes b-width">
-		<div class="left ">
-			<img src="<%= request.sender.avatar %>" class="avatar">
-			<br>
 			<%= link_to request.sender.first_name, request.sender  %>
-		</div>
-		<br>
-		
-		<center>
-
-			<%= request.content %>
+			</div>
 			<br>
-		<br>
+			<center>
+				<%= request.content %>
+				<br>
+				<br>
+				<% if request.accepted == nil %>
+				<%= button_to "Accept", request_path(request), method: "patch", class:"btn btn-success" %>
+				<br>
+				<%= button_to "Decline", edit_request_path(request), method: "patch", class:"btn btn-danger" %>
+				<% elsif request.accepted == true %>
+					<p class="btn btn-success dis ">You accepted the request from <%=  request.sender.first_name %></p>
+					<% else %>
+					<p class="btn btn-danger dis ">You declined the request form <%=  request.sender.first_name %></p>
+				<% end %>
+			</center>
+				<div class="right">			    		
+				<%= link_to 'Go to the chat', request  %>
+			</div>
+		</div>
+			
+			
 		
-		<% if request.accepted == nil %>
-		<br>
-					    			<p class="btn btn-primary dis ">Pending</p>
-									<% elsif request.accepted == false %>
-					    			<p class="btn btn-danger  dis">Denied</p>
-									<% else %>
-					    			<p class="btn btn-success dis ">Accepted</p>
-					    		<% end %>
-					    		</center>
-		<div class="right">			    		
-			<%= link_to 'Go to the chat', request  %>
-		</div>
-		</div>
-		</a>
 	<% end %>
 <% end %>
-<h1 class="fancy">Your requests</h1>
+<h1 class="fancy">Your requests: </h1>
 	<% @requests.each do |request| %>
-	<% if current_user && request.accepted == nil %>
-
-	<div class="boxes b-width">
-		<div class="left">
-			<img src="<%= request.sender.avatar %>" class="avatar">
+		<% if current_user && request.accepted == nil %>
+		<div class="boxes b-width">
+			<div class="left">
+				<img src="<%= request.receiver.avatar %>" class="avatar">
+				<br>
+				<%= link_to request.sender.first_name, request.sender  %>
+			</div>
 			<br>
-			<%= link_to request.sender.first_name, request.sender  %>
+			<div float="right">
+				<%= request.content %>
+			</div>
+			<br>
+			<% if request.accepted == nil %>
+					<br>
+					<p class="btn btn-primary dis ">Pending</p>
+				<% elsif request.accepted == false %>
+					<p class="btn btn-danger  dis">Denied</p>
+				<% else %>
+					<p class="btn btn-success dis ">Accepted</p>
+				<% end %>
+
+
+
+			<div class="right">				    		
+				<br>
+				<%= link_to 'Go to the chat', request  %>
+			</div>
 		</div>
-		<br>
-		<div float="right">
-			<%= request.content %>
-		</div>
-		<br>
-		<% if request.accepted == nil %>
-					    			<%= button_to "Accept", request_path(request), method: "patch", class:"btn btn-success" %>
-					    		<br>
-					    		<%= button_to "Decline", edit_request_path(request), method: "patch", class:"btn btn-danger" %>
-					    		<% end %>
-		<div class="right">				    		<br>
-		<%= link_to 'Go to the chat', request  %>
-		</div>
-		</div>
-		</a>
 	<% end %>
 <% end %>
 
