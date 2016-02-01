@@ -21,11 +21,11 @@
 			    	<a href="#skills" aria-controls="skills" role="tab" data-toggle="tab">Skills</a>
 		    	</li>
 					<!-- REQUESTS TAB -->
-  		  	<% if current_user && user_id == @user.id %>
+  		 <!--  	<% "if current_user && user_id == @user.id" %>
 				    <li role="presentation">
 				    	<a href="#requests" aria-controls="requests" role="tab" data-toggle="tab">Requests</a>
 			    	</li>
-		    	<% end %>
+		    	<% "end" %> -->
 		    	<!-- REVIEWS TAB -->
 			    <li role="presentation">
 			    	<a href="#reviews" aria-controls="reviews" role="tab" data-toggle="tab">Reviews</a>
@@ -56,9 +56,9 @@
       		    		<%= collection.description %>
       		    		<br>
       		    		<br>
-      		    		<% if current_user %>
+      		    		<% if current_user && user_id != @user.id  %>
 										<a href="#" class="new-request-link">Request a lesson!</a>
-									<% end %>
+									
 									<div style="display: block;">
 					 					<%= form_for @request, as: :request, url: user_skill_requests_path(@user, collection.skill_id), method: "post" do |f| %>
 									    <%= f.label :content, "Write a message" %><br>
@@ -66,6 +66,7 @@
 									    <%= f.submit %>
 										<% end %>
 							    </div>
+							    <% end %>
 					      </div>
 					    </div>
 						</div>
@@ -79,13 +80,13 @@
 				    	<h2>Sent requests</h2>
 							<% if @user.sent_requests != nil %>
 					    	<% @user.sent_requests.each do |r| %>
-					    	<div class="request">
+					    	<div class="request boxes">
 					    		<% if r.accepted == nil %>
-					    			<p>Pending</p>
+					    			<p class="btn btn-primary">Pending</p>
 									<% elsif r.accepted == false %>
-					    			<p>Denied</p>
+					    			<p class="btn btn-danger">Denied</p>
 									<% else %>
-					    			<p>Accepted</p>
+					    			<p class="btn btn-success">Accepted</p>
 					    		<% end %>
 					    		<p>You want to learn <%= r.skill.name %> from <%= r.receiver.full_name %>.</p>
 					    		<p>Sent <%= time_ago_in_words(r.created_at) %> ago</p>
@@ -99,11 +100,12 @@
 			    	<h2>Received requests</h2>
 						<% if @user.sent_requests != nil %>
 				    	<% @user.received_requests.each do |r| %>
-				    		<div class="request">
+				    		<div class="request boxes">
 					    		<p><%= r.sender.full_name %> wants to learn <%= r.skill.name %> from you!</p>
 					    		<p>Sent <%= time_ago_in_words(r.created_at) %> ago</p>
-					    		<%= button_to "Accept", edit_request_path(r), method: "patch" %>
-					    		<%= button_to "Decline", edit_request_path(r), method: "patch" %>
+					    		<%= button_to "Accept", request_path(r), method: "patch", class:"btn btn-success" %>
+					    		<br>
+					    		<%= button_to "Decline", edit_request_path(r), method: "patch", class:"btn btn-danger" %>
 					    		<%= link_to "Manage this request and chat with #{r.sender.first_name}", request_path(r) %>
 				    		</div>
 			    		<% end %>
@@ -118,7 +120,10 @@
 		    </div>
 		    <!-- ABOUT ME TAB CONTENT -->
 		    <div role="tabpanel" class="tab-pane fade" id="about-me">
-		    	<%= @user.description %>
+		    	<br>
+		    	<div class="boxes">
+		    		<%= @user.description %>
+		    	</div>
 		    </div>
 		  </div>
 		</div>

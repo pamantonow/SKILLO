@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  root "users#index"
+  root "sessions#new"
+
+
   get 'login' => 'sessions#new', as: 'login'
   post 'login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
@@ -21,5 +23,8 @@ Rails.application.routes.draw do
   resources :skills
   resources :categories
   resources :collections
+  resources :requests 
+
+ 
 
 end

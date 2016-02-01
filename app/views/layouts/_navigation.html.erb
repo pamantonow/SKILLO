@@ -2,19 +2,26 @@
       <a class="navbar-brand" href="#">
         <img id="brain" alt="Brand" src="http://wp7gs1l1day3sgcl942s77fx.wpengine.netdna-cdn.com/wp-content/uploads/2014/05/brain_2_no_text.jpg">
       </a>
+      <span class="skillo left">Skillo</span>
+      
+      <span class="subskillo left aq">Share your skills locally.</span>
       <% if current_user != nil %>
-				<ul class="nav nav-pills right">
-				  <li role="presentation" class=" yellow"><%= link_to "Home", users_path %></li>
-				  <li role="presentation" class=" yellow"><%= link_to "Profile", user_path(user_id) %></li>
-				  <li role="presentation" class=" yellow"><%= link_to "Account", new_user_skill_path(user_id) %></li>
-				  <li role="presentation" class=" yellow"><%= link_to "Logout", logout_path %></li>
+				<ul class="nav-pills right">
+				  <li  class="yellow"><%= link_to "Home", users_path %></li>
+				  <% if !unread_messages %>
+				  <li  class="yellow"><a href="<%= requests_path%>"><i class="fa fa-envelope-o"></i></a></li>
+				  <% else %>
+				  <li  ><a href="<%= requests_path%>" class="yellow"><i class="fa fa-envelope-o"><%= count_messages %></i></a></li>
+				  <% end %>
+				  <li  class="yellow"><%= link_to "Profile", user_path(user_id) %></li>
+				  <li  class="yellow"><%= link_to "Account", new_user_skill_path(user_id) %></li>
+				  <li  class="yellow"><%= link_to "Logout", logout_path %></li>
 				  </ul>
 			<% else %>
 			<ul class="nav nav-pills right">	
-					<li role="presentation" class=" yellow"><%= link_to "Login", login_path %></li>
-					<li role="presentation" class=" yellow"><%= link_to "Register", new_user_path %></li>
+					<li  class="yellow"><%= link_to "Login", login_path %></li>
+					<li  class="yellow"><%= link_to "Register", new_user_path %></li>
 				</ul>
 			<% end %>
 
 </nav>
-

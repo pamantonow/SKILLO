@@ -4,6 +4,11 @@ class RequestsController < ApplicationController
 		@request = Request.new
 	end
 
+	def index
+		@requested = current_user.received_requests
+		@requests = current_user.sent_requests
+	end
+
 	# POST /requests
 	# POST /users/:user_id/skills/:skill_id/reqeusts
  	def create
@@ -33,8 +38,11 @@ class RequestsController < ApplicationController
  		end
  	end
 
- 	def edit
-
+ 	def update
+ 		@request = Request.find(params[:id])
+ 		@request.accepted = true
+ 		@request.save
+ 		redirect_to @request
  	end
 
  	private
