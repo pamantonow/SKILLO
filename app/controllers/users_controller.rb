@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
-	before_action :authenticate_user!, except: [:new]
-	
+	before_action :authenticate_user!, except: [:new, :create]
+
 
 	def index
 		@categories = Category.all
@@ -25,6 +25,7 @@ class UsersController < ApplicationController
 
 	def create
 		@user = User.new(users_params)
+		@user.avatar = @user.create_gravatar_url
 		respond_to do |format|
 			if @user.save
 				session[:user_id] = @user.id
