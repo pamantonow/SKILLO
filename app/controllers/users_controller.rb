@@ -2,32 +2,33 @@ class UsersController < ApplicationController
 
 	def index
 		@categories = Category.all
-		current_user = session[:user_id]
 		if params[:search].present?
 			@users = User.near(params[:search], 50)
 		else
 			@users = User.all
 		end
-			@hash = Gmaps4rails.build_markers(@users) do |user, marker|
-				if user.id == current_user.id
-					marker.lat user.latitude
-					marker.lng user.longitude
-					marker.json({:id => user.id })
-					marker.picture({
-		       "url" => "http://people.mozilla.com/~faaborg/files/shiretoko/firefoxIcon/firefox-32.png",
-		       "width" =>  32,
-		       "height" => 32})
-					marker.json({:first_name => user.first_name })
-					marker.infowindow render_to_string(:partial => "/users/tag", :locals => { :user => user})
-				else
-					marker.lat user.latitude
-					marker.lng user.longitude
-					marker.json({:id => user.id })
-					marker.infowindow render_to_string(:partial => "/users/tag", :locals => { :user => user})
-				end
+
+		@hash = Gmaps4rails.build_markers(@users) do |user, marker|
+			p "#{user}************************" 
+			if user.id == current_user.id
+				marker.lat user.latitude
+				marker.lng user.longitude
+				marker.json({:id => user.id.to_s })
+				marker.picture({
+	       "url" => "http://people.mozilla.com/~faaborg/files/shiretoko/firefoxIcon/firefox-32.png",
+	       "width" =>  32,
+	       "height" => 32})
+				marker.json({:first_name => user.first_name })
+				marker.infowindow render_to_string(:partial => "/users/tag", :locals => { :user => user})
+			else
+				marker.lat user.latitude
+				marker.lng user.longitude
+				marker.json({:id => user.id })
+				marker.infowindow render_to_string(:partial => "/users/tag", :locals => { :user => user})
 			end
-			@home = {lat: current_user.latitude,  lng:  current_user.longitude}
 		end
+		@home = {lat: current_user.latitude,  lng:  current_user.longitude}
+	end
 
 	def new
 		@user = User.new
