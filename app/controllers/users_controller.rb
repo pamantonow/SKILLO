@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
-	before_action :authenticate_user!, except: [:new]
-	
+	before_action :authenticate_user!, except: [:new, :create]
+
 
 	def index
 		@categories = Category.all
