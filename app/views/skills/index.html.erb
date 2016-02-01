@@ -1,0 +1,11 @@
+<% @skills.each do |skill| %>
+	<div id="profile">
+		<%= skill.category.name %>
+		<span>:::</span>
+		<%= link_to skill.name, skill %>
+		<br>
+
+		<% @collection = Collection.find_by(skill_id: skill.id, teacher_id: user_id) %>
+		<%= link_to "Edit", edit_collection_path(@collection)  %>
+	</div>
+<% end %>

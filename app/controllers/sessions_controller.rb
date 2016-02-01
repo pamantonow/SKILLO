@@ -1,18 +1,12 @@
 class SessionsController < ApplicationController
 	
-
-
-
-
 	def new
 	end
 
 	def create
-		@user = User.find_by(email: session_params[:email])
-		puts "========================"
-		p @user.authenticate(session_params[:password])
-		puts "========================"
-    if @user && @user.authenticate(session_params[:password])
+	@user = User.find_by(email: params[:email])
+    if @user && @user.authenticate(params[:password])
+
 	    session[:user_id] = @user.id
 	    redirect_to user_path(@user)
     else
@@ -28,10 +22,7 @@ class SessionsController < ApplicationController
 		session[:user_id] = nil
 		redirect_to '/login'
 	end
-
-	private
-
-  def session_params
-    params.permit(:email, :password)
-  end
 end
+	
+
+

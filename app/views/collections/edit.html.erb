@@ -1,0 +1,7 @@
+<%= bootstrap_form_for  Collection.first do |f|	%>
+
+	<%= f.text_area :description %>
+	<%= f.number_field :years_of_expirience %>
+	<%= f.number_field :hourly_rate %>
+	<%= f.submit "Add information to skill" %>
+<% end %>
