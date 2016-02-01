@@ -1,5 +1,7 @@
 class MessagesController < ApplicationController
 
+	before_action :authenticate_user!
+
 	def new
 		@message = Message.new
 		respond_to  do |format|

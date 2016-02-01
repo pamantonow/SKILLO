@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
 
+	before_action :authenticate_user!, except: [:new]
+	
+
 	def index
 		@categories = Category.all
 		if params[:search].present?

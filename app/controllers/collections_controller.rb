@@ -1,4 +1,7 @@
 class CollectionsController < ApplicationController
+	
+	before_action :authenticate_user!
+
 	def edit
 		@collection = Collection.find_by(id: params[:id])
 	end
