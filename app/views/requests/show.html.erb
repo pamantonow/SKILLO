@@ -1,3 +1,30 @@
 <div class= "container">
-	<p><%=@request.content %></p>
+	<div class="left">
+		<p>Request from :</p><%= link_to @request.sender.first_name %>
+		<img src="<%= @request.sender.avatar %>" class="avatar">
+	</div>
+
+	<p class="aq"><%=@request.content %></p>
 </div>
+<br>
+
+<%= form_for([@request, @message], class:"form-control white-pink") do |f| %>
+<p>
+	<%=f.text_area :content %>
+	<p>
+		<%=f.submit "Send Message", class:"btn btn-default" %>
+	 <% end %> 
+	</p>
+
+<% @request.messages.each do |message| %>
+<div class="boxes">
+	<div class="left">
+		<%= link_to @request.sender.first_name %>
+		<img src="<%= message.user.avatar %>" class="avatar">
+	</div>
+	<%= message.content %>
+	<br>
+	<br>
+	<div class="right grey"><em><%= time_ago_in_words(@request.sender.created_at) %><em></div>
+</div>
+<% end %>

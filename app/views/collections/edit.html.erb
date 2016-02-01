@@ -1,7 +1,11 @@
-<%= bootstrap_form_for  Collection.first do |f|	%>
+<h1 class="fancy">Edit skill info</h1>
+<br>
+<center>
+	<%= bootstrap_form_for  Collection.first do |f|	%>
 
-	<%= f.text_area :description %>
-	<%= f.number_field :years_of_expirience %>
-	<%= f.number_field :hourly_rate %>
-	<%= f.submit "Add information to skill" %>
-<% end %>
+		<%= f.text_area :description, class:'white-pink' %>
+		<%= f.number_field :years_of_experience, class:'form' %>
+		<%= f.number_field :hourly_rate, class:'form' %>
+		<%= f.submit "Add information to skill" %>
+	<% end %>
+</center>

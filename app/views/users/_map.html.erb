@@ -3,15 +3,40 @@
 </div>
 
 <script type="text/javascript">
+var initialLocation;
 var info = <%= raw @hash.to_json %>
 var current = <%= raw @home.to_json %>
 var map;
 function initMap() {
 	console.log(current)
   	map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 12,
-    center: {lat: current.lat, lng: current.lng}
+    zoom: 12
   });
+  if(navigator.geolocation) {
+    browserSupportFlag = true;
+    navigator.geolocation.getCurrentPosition(function(position) {
+      initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+      map.setCenter(initialLocation);
+    }, function() {
+      handleNoGeolocation(browserSupportFlag);
+    });
+  }
+  // Browser doesn't support Geolocation
+  else {
+    browserSupportFlag = false;
+    handleNoGeolocation(browserSupportFlag);
+  }
+
+  function handleNoGeolocation(errorFlag) {
+    if (errorFlag == true) {
+      alert("Geolocation service failed.");
+      initialLocation = newyork;
+    } else {
+      alert("Your browser doesn't support geolocation. We've placed you in Siberia.");
+      initialLocation = siberia;
+    }
+    map.setCenter(initialLocation);
+  }  
 
   setMarkers();
 }
@@ -37,12 +62,16 @@ function setMarkers() {
       position: {lat: teacher.lat, lng: teacher.lng},
       map: map,
       customInfo: id
-      // shape: shape,
-      // title: teacher[0],
-      // zIndex: teacher[3]
     });
     attachSecretMessage(marker, marker['customInfo']);
   }
+  var image = '/home.png';
+  var markerHome = new google.maps.Marker({
+      position: {lat: current.lat, lng: current.lng},
+      map: map,
+      icon: image, 
+      customInfo: id
+    });
     
   function attachSecretMessage(marker, secretMessage) {
 	  var infowindow = new google.maps.InfoWindow({

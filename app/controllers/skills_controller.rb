@@ -1,5 +1,6 @@
 class SkillsController < ApplicationController
   def new
+    @skills = current_user.skills
   	@skill = Skill.new
   	@categories = Category.all
   

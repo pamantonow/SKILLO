@@ -16,4 +16,24 @@ module ApplicationHelper
 		end
 		category_index
 	end
+
+	def unread_messages
+		current_user.received_requests.each do |m|
+			if m.accepted == nil
+				return true
+			end
+		end
+		false
+	end
+
+	def count_messages
+		counter = 0 
+		current_user.received_requests.each do |m|
+			if m.accepted == nil
+				counter += 1
+			end
+		end
+		counter.to_s
+	end
+		
 end
