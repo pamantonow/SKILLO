@@ -32,6 +32,10 @@ class RequestsController < ApplicationController
  		end
  	end
 
+ 	def edit
+
+ 	end
+
  	private
 
  	def request_params
