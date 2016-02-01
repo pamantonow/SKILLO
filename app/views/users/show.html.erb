@@ -20,24 +20,24 @@
 			    <li role="presentation" class="active">
 			    	<a href="#skills" aria-controls="skills" role="tab" data-toggle="tab">Skills</a>
 		    	</li>
-		    	<!-- ABOUT ME TAB -->
-			    <li role="presentation">
-		    	<a href="#about-me" aria-controls="About-me" role="tab" data-toggle="tab">About me</a></li>
+					<!-- REQUESTS TAB -->
+  		  	<% if current_user && user_id == @user.id %>
+				    <li role="presentation">
+				    	<a href="#requests" aria-controls="requests" role="tab" data-toggle="tab">Requests</a>
+			    	</li>
+		    	<% end %>
 		    	<!-- REVIEWS TAB -->
 			    <li role="presentation">
 			    	<a href="#reviews" aria-controls="reviews" role="tab" data-toggle="tab">Reviews</a>
 		    	</li>
+		    	<!-- ABOUT ME TAB -->
+			    <li role="presentation">
+		    	<a href="#about-me" aria-controls="About-me" role="tab" data-toggle="tab">About me</a></li>
 	  		</ul>
 			</nav>
 
 			<!-- TABS CONTENT -->
 		  <div class="tab-content">
-		  	<!-- REQUESTS TAB CONTENT-->
-		  	<% if current_user && current_user.id == @user.id %>
-		    <div role="tabpanel" class="tab-pane fade" id="reviews">
-		    	This feature has yet to be implemented.
-		    </div>
-		    <% end %>
 		    <!-- SKILLS TAB CONTENT -->
 		    <div role="tabpanel" class="tab-pane fade in active" id="skills">
 		    	<!-- COLLAPSIBLE GROUP OF SKILLS -->
@@ -59,7 +59,7 @@
       		    		<% if current_user %>
 										<a href="#" class="new-request-link">Request a lesson!</a>
 									<% end %>
-									<div style="display: none;">
+									<div style="display: block;">
 					 					<%= form_for @request , as: :request, url: user_skill_requests_path(@user, user_skill) do |f| %>
 									    <%= f.label :content, "Write a message" %><br>
 									    <%= f.text_field :content %>
@@ -72,13 +72,34 @@
     				<% end %>
 					</div>
 		    </div>
-		    <!-- ABOUT ME TAB CONTENT -->
-		    <div role="tabpanel" class="tab-pane fade" id="about-me">
-		    	<%= @user.description %>
-		    </div>
+		    <!-- REQUESTS TAB CONTENT-->
+		  	<% if current_user && user_id == @user.id %>
+			    <div role="tabpanel" class="tab-pane fade" id="requests">
+			    	<h4>Sent requests</h4>
+						<% if @user.sent_requests != nil %>
+				    	<ul>
+					    	<% @user.sent_requests.each do |r| %>
+					    		<li><%= r %></li>
+					    	<% end %>
+				    	</ul>
+			    	<% else %>
+			    		<p>You have yet to make any requests.</p>
+		    		<% end %>
+			    	<h4>Received requests</h4>
+			    	<ul>
+			    	<% @user.received_requests.each do |r| %>
+			    		<li><%= r %></li>
+			    	<% end %>
+			    	</ul>
+			    </div>
+		    <% end %>
 		    <!-- REVIEWS TAB CONTENT-->
 		    <div role="tabpanel" class="tab-pane fade" id="reviews">
 		    	This feature has yet to be implemented.
+		    </div>
+		    <!-- ABOUT ME TAB CONTENT -->
+		    <div role="tabpanel" class="tab-pane fade" id="about-me">
+		    	<%= @user.description %>
 		    </div>
 		  </div>
 		</div>
