@@ -25,6 +25,7 @@ class UsersController < ApplicationController
 
 	def create
 		@user = User.new(users_params)
+		@user.avatar = @user.create_gravatar_url
 		respond_to do |format|
 			if @user.save
 				session[:user_id] = @user.id
