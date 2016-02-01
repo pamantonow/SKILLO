@@ -49,6 +49,7 @@ class UsersController < ApplicationController
  	end
 
  	def show
+ 		@request = Request.new
  		@user = User.find(params[:id])
  	end
 

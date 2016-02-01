@@ -1,16 +1,3 @@
-
-	<div id= "request">
-		<p><%=@request.content %></p>
-	</div>
-	<%=@request.receiver.first_name %>
-	
-	<div id="messages">
-	 	<%=@messages.each do |message| %>
-	 	<hr>
-	<%= render "messages/message.html.erb", :message => message %>
-	<% end %> 
-
-
-	<%=link_to "Create message", new_request_message_path(@request), :remote => true, :id => "new-message" %>
+<div class= "container">
+	<p><%=@request.content %></p>
 </div>
-	
