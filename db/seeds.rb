@@ -180,25 +180,25 @@ r1 = Request.create!(
 	sender_id: first_user.id,
   receiver_id: second_user.id,
   skill_id: 8,
-  accepted: false,
+  accepted: nil,
   content: "Hey, I'd love to learn piano. I can meet any weeknight after 6:00 pm.")
 r2 = Request.create!(
 	sender_id: second_user.id,
   receiver_id: third_user.id,
   skill_id: 3,
-  accepted: false,
+  accepted: nil,
   content: "I am building my own website and need help with JavaScript. I can meet in the mornings on weekends.")
 r3 = Request.create!(
 	sender_id: fifth_user.id,
   receiver_id: first_user.id,
   skill_id: 1,
-  accepted: false,
+  accepted: nil,
   content: "I really want to learn Ruby. I hear it's the hotness. Send me an email so we can coordinate. #{fifth_user.email}")
 r4 = Request.create!(
 	sender_id: fourth_user.id,
   receiver_id: first_user.id,
   skill_id: 1,
-  accepted: false,
+  accepted: nil,
   content: "Let's do this!")
 #^^^^^^^^^^^^^^^^^end^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -206,12 +206,12 @@ r4 = Request.create!(
 # CREATE MESSAGES
 
 # Messages for Request 1
-Message.create!(user_id: second_user.id, request_id: r2.id, content: "I'd love to connect. I am free on Tuesdays. Does that work?")
-Message.create!(user_id: first_user.id, request_id: r2.id, content:  "Oh shoot! I forgot I have practice on Tuesdays. How about Thursdays?")
-Message.create!(user_id: second_user.id, request_id: r2.id, content: "Yup. Thursday works. Let's start this week.")
-Message.create!(user_id: first_user.id, request_id: r2.id, content:  "Ok! Where should we meet?")
-Message.create!(user_id: second_user.id, request_id: r2.id, content: "There is a piano studio below my home. We can meet there at 6:00 p.m.")
-Message.create!(user_id: first_user.id, request_id: r2.id, content:  "YAY! See you soon!")
+Message.create!(user_id: second_user.id, request_id: r1.id, content: "I'd love to connect. I am free on Tuesdays. Does that work?")
+Message.create!(user_id: first_user.id, request_id: r1.id, content:  "Oh shoot! I forgot I have practice on Tuesdays. How about Thursdays?")
+Message.create!(user_id: second_user.id, request_id: r1.id, content: "Yup. Thursday works. Let's start this week.")
+Message.create!(user_id: first_user.id, request_id: r1.id, content:  "Ok! Where should we meet?")
+Message.create!(user_id: second_user.id, request_id: r1.id, content: "There is a piano studio below my home. We can meet there at 6:00 p.m.")
+Message.create!(user_id: first_user.id, request_id: r1.id, content:  "YAY! See you soon!")
 
 # Messages for Request 2
 Message.create!(user_id: third_user.id, request_id: r2.id, content: "Hi! I'm happy to help you with JS. When can we meet?")
