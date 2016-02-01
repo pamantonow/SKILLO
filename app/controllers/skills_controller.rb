@@ -2,6 +2,7 @@ class SkillsController < ApplicationController
   def new
   	@skill = Skill.new
   	@categories = Category.all
+  
   end
 
   def create
@@ -14,6 +15,10 @@ class SkillsController < ApplicationController
     else
       redirect_to new_user_skill_path(user_id)
     end
+  end
+
+  def index
+    @skills = current_user.skills
   end
 
   private

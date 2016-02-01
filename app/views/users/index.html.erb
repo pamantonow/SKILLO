@@ -15,7 +15,7 @@
 
 <div class="clear">
 	<div class="left">
-	<% if @users[0] %>
+	<% if @users != nil && @users %>
 		<%= render 'map' %>
 	<% else %>
 		<%= render 'error' %>
@@ -24,7 +24,7 @@
 
 	<div class="right mini">
 	<% @users.each do |user| %>
-		<div id="profile">
+		<div class="profile" id="profile<%= user.id %>">
 			<%= link_to user.first_name, user %>
 			<br>
 			<p>Why I want to teach?</p>

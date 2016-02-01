@@ -29,10 +29,11 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+ html, body { height: 100%; margin: 0; padding: 0; 
+ }
+ #map { height: 100%; 
+ }
 
-body {
-    padding-top: 90px;
-}
 .panel-login {
 	border-color: #ccc;
 	-webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
@@ -157,3 +158,30 @@ body {
 .m-mini{
 	marign:4em;	
 }
+
+#brain {
+	width: 5em;
+
+}
+
+.border{
+	background-color: white;
+	border: grey solid 0.1em;
+	border-radius: 4px;
+	padding: 1.9em;
+    margin: 3em;
+}
+
+.b-mar{margin: 26px;}
+
+.yellow{
+	margin: 1em;
+	background-color: rgb(60, 20, 59) !important;
+	border-radius: 4px;
+	color: #fff !important;
+	position: relative;
+    display: block;
+   	text-decoration: none;
+}
+
+

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :requests
   resources :skills
   resources :categories  
-
+  resources :collections
 
  
   root "users#index"
