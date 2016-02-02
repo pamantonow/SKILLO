@@ -19,11 +19,13 @@
 				<% if request.accepted == nil %>
 				<%= button_to "Accept", request_path(request), method: "patch", class:"btn btn-success" %>
 				<br>
-				<%= button_to "Decline", edit_request_path(request), method: "patch", class:"btn btn-danger" %>
+				<%= button_to "Decline", request_path(request), method: "delete", class:"btn btn-danger" %>
 				<% elsif request.accepted == true %>
 					<p class="green">You accepted the request from <%=  request.sender.first_name %></p>
 					<% else %>
 					<p class="red">You declined the request form <%=  request.sender.first_name %></p>
+					<p>Changed your mind?</p>
+					<%= button_to "Accept", request_path(request), method: "patch", class:"btn btn-success" %>
 				<% end %>
 			</center>
 				<div class="right">			    		
