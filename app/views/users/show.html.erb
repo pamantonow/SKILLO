@@ -123,6 +123,7 @@
 				     <p><%=review.content %></p>
 				     <p><%=review.sender.first_name %></p>
 				     <p><%=time_ago_in_words(review.created_at) %></p>
+				     <img src="<%=review.sender.avatar %>">
 				     <hr>
 		     	<% end %> 
 		    </div>
