@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
 
 	has_many :sent_requests, class_name: "Request", foreign_key: :sender_id
 	has_many :received_requests, class_name: "Request", foreign_key: :receiver_id
+	has_many :written_reviews, class_name: "Review", foreign_key: :sender_id
+	has_many :received_reviews, class_name: "Review", foreign_key: :receiver_id
 	has_many :collections, foreign_key: :teacher_id
 	has_many :skills, through: :collections
 	has_many :messages
@@ -30,5 +32,19 @@ class User < ActiveRecord::Base
 
 	geocoded_by :address
 	after_validation :geocode
+
+	# Return a valid gravatar URL
+	# default image rating is set to "g"
+	# default image size is set to 200x200 px
+	# if user does not have gravatar account, return a random "retro" gravatar
+	def create_gravatar_url
+		"http://www.gravatar.com/avatar/#{md5_hash_email(self.email)}?r=g&s=200&d=retro"
+	end
+
+	private
+	# Return an md5 hash for a given email
+	def md5_hash_email(email)
+		Digest::MD5.hexdigest(email.strip.downcase)
+	end
 
 end

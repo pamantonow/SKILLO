@@ -1,50 +1,57 @@
-<%=form_for(@user) do |f| %>
-	<div id="form">
-	<%=f.label :first_name, "First name" %>
-	<%=f.text_field :first_name %>
-	<br>
-	<%=f.label :last_name, "Last name" %>
-	<%=f.text_field :last_name %>
-	<br>
-	<%=f.label :email, "Email" %>
-	<%=f.text_field :email %>
-	<br>
-	<%=f.label :password, "Password" %>
-	<%=f.password_field :password %>
-	<br>
-	<%=f.label :city, "city" %>
-	<%=f.text_field :city %>
-	<br>
-	<%=f.label :state, "state" %>
-	<%=f.text_field :state %>
-	<br>
-	<%=f.label :zip, "zip code" %>
-	<%=f.text_field :zip %>
-	<br>
-	<%=f.label :st_num, "Street number" %>
-	<%=f.text_field :st_num %>
-	<br>
-	<%=f.label :st_name, "Street name" %>
-	<%=f.text_field :st_name %>
 
-	<br>
-		<br>
-	<%=f.label :longitude, "Street name" %>
-	<%=f.hidden_field :longitude %>
-
-	<br>
-		<br>
-	<%=f.label :latitude, "Street name" %>
+<%=bootstrap_form_for(@user) do |f| %>
+  <div class="col-2">
+    <label>
+      <%=f.text_field :first_name %>
+    </label>
+  </div>
+  <div class="col-2">
+    <label>
+      <%=f.text_field :last_name %>
+    </label>
+  </div>
+  <div class="col-3">
+    <label>
+     <%=f.text_field :email %>
+    </label>
+  </div>
+  <div class="col-3">
+    <label>
+	    <%=f.password_field :password %>
+    </label>
+  </div>
+  <div class="col-3">
+  	<label>
+     	<%=f.text_field :st_num %>
+    </label>
+  </div>
+   <div class="col-2">
+    <label>
+      <%=f.text_field :st_name %>
+    </label>
+  </div>
+   <div class="col-2">
+    <label>
+  		<%=f.text_field :city %>
+    </label>
+  </div>
+   <div class="col-2">
+    <label>
+      <%=f.text_field :state %>
+    </label>
+  </div> <div class="col-2">
+    <label>
+     <%=f.text_field :zip %>
+    </label>
+  </div>
+  <div>
+  	<%=f.hidden_field :longitude %>
 	<%=f.hidden_field :latitude %>
-
-	<br>
-
-	<%=f.submit "Register" %>
-
-	<%if @errors %>
+  </div>
+  <%if @errors %>
 		<%@errors %>
-	<% end %> 
-
-
-	<% end %> 
-</div>
+	<% end %>
+  <div class="col-submit">
+    <%=f.submit "Register"%>
+  </div>
+  <% end %>
