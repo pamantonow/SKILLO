@@ -15,7 +15,7 @@ $( document ).ready(function() {
 
  
   function onSuccess(response){
-    console.log(response);
+    
     for(var i = 0; i < response.length; i++){
     skills.push(response[i].name)
     }
@@ -28,8 +28,7 @@ $( document ).ready(function() {
   name: 'skills',
   source: substringMatcher(skills)
 });
-    console.log(skills);
-  }
+}
   //onSuccess();
 
 });

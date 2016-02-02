@@ -1,18 +1,18 @@
 <div class="categories">
-<% @categories.each do |category| %>
-	<%= link_to category.name, category, class: "cat" %>
-<% end %>
+	<% @categories.each do |category| %>
+		<%= link_to category.name, category, class: "cat" %>
+	<% end %>
 </div>
-	<div class="categories">
-      <%= form_tag search_index_path, class: 'search', id: 'search-form', :method => :get do %>
-      			<div id="city">
-					<%= text_field_tag :city, params[:city], class: "form-control medium typeahead"%>
-				</div>
-				<div id="the-basics">
-					<%= text_field_tag :search, params[:search], class: "form-control medium typeahead"%>
-				</div>
-        	<%= submit_tag "Search Bar", :name => nil, class: "btn btn-default " %>
-     <% end %>
+<div class="categories">
+	<%= form_tag search_index_path, class: 'search', id: 'search-form', :method => :get do %>
+		<div id="city">
+			<%= text_field_tag :city, params[:city], class: "form-control medium typeahead"%>
+		</div>
+		<div id="the-basics">
+			<%= text_field_tag :search, params[:search], class: "form-control medium typeahead"%>
+		</div>
+    		<%= submit_tag "Search Bar", :name => nil, class: "btn btn-default " %>
+ 	<% end %>
 
 
 

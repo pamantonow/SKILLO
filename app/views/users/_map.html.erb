@@ -8,7 +8,6 @@ var info = <%= raw @hash.to_json %>
 var current = <%= raw @home.to_json %>
 var map;
 function initMap() {
-	console.log(current)
   	map = new google.maps.Map(document.getElementById('map'), {
     zoom: 12
   });
@@ -87,6 +86,37 @@ function setMarkers() {
 }
 
 
+
+$(function() {
+
+  $(document).on("submit", "#search_form", function(event)
+  {
+    event.preventDefault();
+    var token = $('meta[name=csrf-token]').attr('content');
+    var form_data = $(this).serialize();
+    // var pin_data = {};
+    // $.each($(this).serializeArray(), function(i, field)
+    // {
+    //   pin_data[field.name] = field.value;
+    // });
+    // var data = { song_artist: pin_data["song_artist"], song_title: pin_data["song_title"], lat: pin_data["lat"], lng: pin_data["lng"], authenticity_token: token, song_id: pin_data["song_id"], comment: pin_data['comment'], address: pin_data['address'] };
+    $.get("/get", data);
+    closeWindows();
+    deleteMarkers();
+    getPins();
+  });
+});
+
+
+var getAjax = $.get('/users.json', "json");
+    getAjax.done(function(response)
+    {
+      for (var i = 0; i < response.length; i ++)
+      {
+        placeDBMarker(response[i]);
+      }
+    });
+}
 
 
 </script>
