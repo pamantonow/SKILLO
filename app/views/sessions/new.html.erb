@@ -1,7 +1,17 @@
-<%= bootstrap_form_tag(url:"/login",method: "post") do |f| %>
-      <%= f.email_field :email %>
-      <%= f.password_field :password %>
-      <%= f.submit "Login" %>
-<% end %>
+<a href="/login" data-toggle="modal" data-target="#login-modal">Login</a>
 
-
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    	  <div class="modal-dialog">
+				<div class="loginmodal-container">
+					<h1>Login to Your Account</h1><br> 
+				  	<%= bootstrap_form_tag(url:"/login",method: "post") do |f| %>
+					<%= f.email_field :email %>
+					<%= f.password_field :password %>
+					<%= f.submit "Login" %>
+					<% end %>	
+				  <div class="login-help">
+					<a href="/signup">Register</a> 
+				  </div>
+				</div>
+			</div>
+</div>
