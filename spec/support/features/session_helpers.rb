@@ -18,11 +18,19 @@ module Features
       click_button 'Register'
     end
 
+    def create_bob
+      User.create!(email: 'bob@gmail.com', password: 'password', first_name: 'bob', last_name: 'bob', city: 'Chicago', state: 'IL', zip: 60658, st_num: 213, st_name: 'W Hubbard', phone: '555-555-5555', occupation: 'Doctor', education: 'Masters', description: 'I like cows.', longitude: 14.43, latitude: 24.5355)
+    end
+
+    def find_bob
+      User.find_by(email: 'bob@gmail.com')
+    end
+
     def login
-      bob = User.create!(email: 'bob@gmail.com', password: 'password', first_name: 'bob', last_name: 'bob', city: 'Chicago', state: 'IL', zip: 60658, st_num: 213, st_name: 'W Hubbard', phone: '555-555-5555', occupation: 'Doctor', education: 'Masters', description: 'I like cows.', longitude: 14.43, latitude: 24.5355)
+      create_bob
       visit login_path
-      fill_in 'Email', with: bob.email
-      fill_in 'Password', with: bob.password
+      fill_in 'Email', with: find_bob.email
+      fill_in 'Password', with: "password"
       click_button 'Login'
     end
   end
