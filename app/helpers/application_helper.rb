@@ -35,5 +35,15 @@ module ApplicationHelper
 		end
 		counter.to_s
 	end
+
+	def accepted_requests?(user)
+		# yes = false
+		user.received_requests.where(sender_id: user_id).each do |request|
+		 if request.accepted == true
+		 	return true
+		 end
+		end
+		return false
+	end
 		
 end

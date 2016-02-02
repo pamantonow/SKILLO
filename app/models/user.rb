@@ -33,4 +33,9 @@ class User < ActiveRecord::Base
 	geocoded_by :address
 	after_validation :geocode
 
+	# def accepted_requests?
+	# 	self.received_requests.where(sender_id: user_id).each do |request|
+	# 		p "=============#{request.accepted}"
+	# 	end
+	# end
 end
