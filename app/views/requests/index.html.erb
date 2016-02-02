@@ -21,9 +21,9 @@
 				<br>
 				<%= button_to "Decline", edit_request_path(request), method: "patch", class:"btn btn-danger" %>
 				<% elsif request.accepted == true %>
-					<p class="btn btn-success dis ">You accepted the request from <%=  request.sender.first_name %></p>
+					<p class="green">You accepted the request from <%=  request.sender.first_name %></p>
 					<% else %>
-					<p class="btn btn-danger dis ">You declined the request form <%=  request.sender.first_name %></p>
+					<p class="red">You declined the request form <%=  request.sender.first_name %></p>
 				<% end %>
 			</center>
 				<div class="right">			    		
@@ -42,7 +42,7 @@
 			<div class="left">
 				<img src="<%= request.receiver.avatar %>" class="avatar">
 				<br>
-				<%= link_to request.sender.first_name, request.sender  %>
+				<%= link_to request.receiver.first_name, request.sender  %>
 			</div>
 			<br>
 			<div float="right">
