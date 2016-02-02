@@ -8,7 +8,7 @@
 </div>
 <br>
 
-<%= form_for([@request, @message], class:"form-control white-pink") do |f| %>
+<%= bootstrap_form_for([@request, @message], class:"form-control white-pink") do |f| %>
 <p>
 	<%=f.text_area :content %>
 	<p>
