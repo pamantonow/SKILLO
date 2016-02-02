@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
 
 	has_many :sent_requests, class_name: "Request", foreign_key: :sender_id
 	has_many :received_requests, class_name: "Request", foreign_key: :receiver_id
+	has_many :written_reviews, class_name: "Review", foreign_key: :sender_id
+	has_many :received_reviews, class_name: "Review", foreign_key: :receiver_id
 	has_many :collections, foreign_key: :teacher_id
 	has_many :skills, through: :collections
 	has_many :messages

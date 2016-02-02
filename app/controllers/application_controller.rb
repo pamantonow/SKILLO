@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
 		end
 	end
 
+
 	# def authenticate_action
 	# 	if current_user && user_id != params[:id]
 	# 		redirect_to login_path
