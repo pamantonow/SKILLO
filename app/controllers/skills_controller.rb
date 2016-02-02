@@ -6,7 +6,7 @@ class SkillsController < ApplicationController
     @skills = current_user.skills
   	@skill = Skill.new
   	@categories = Category.all
-  
+    
   end
 
   def create
@@ -23,6 +23,12 @@ class SkillsController < ApplicationController
 
   def index
     @skills = current_user.skills
+    @all_skills = Skill.all
+    if request.xhr?
+      respond_to do |format|
+        format.json { render json: @all_skills }
+      end
+    end
   end
 
   private
