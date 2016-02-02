@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
+//= require twitter/typeahead
 //= require jquery_nested_form
 //= require underscore
 //= require gmaps/google
