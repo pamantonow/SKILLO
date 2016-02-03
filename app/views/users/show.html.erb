@@ -131,6 +131,10 @@
 		    <div role="tabpanel" class="tab-pane fade" id="about-me">
 		    	<br>
 		    	<div class="boxes">
+		    		<%if current_user == User.find(params[:id]) %>
+		    		<%=link_to "Edit your profile", edit_user_path %>
+		    		<% end %> 
+		    		<br>
 		    		<%= @user.description %>
 		    	</div>
 		    </div>
