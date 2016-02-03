@@ -1,28 +1,81 @@
-<nav class="nav border">
-      <a class="navbar-brand" href="#">
-        <img id="brain" alt="Brand" src="app/assets/images/skillologo.png">
-      </a>
-      <span class="skillo left">Skillo</span>
-      
-      <span class="subskillo left aq">Share your skills locally.</span>
-      <% if current_user != nil %>
-				<ul class="nav-pills right">
-				  <li  class="yellow"><%= link_to "Home", users_path, id:'home' %></li>
-				  <% if !unread_messages %>
-				  <li  class="yellow"><a href="<%= requests_path%>"><i class="fa fa-envelope-o"></i></a></li>
-				  <% else %>
-				  <li  ><a href="<%= requests_path%>" class="yellow"><i class="fa fa-envelope-o"><%= count_messages %></i></a></li>
-				  <% end %>
-				  <li  class="yellow"><%= link_to "Profile", user_path(user_id) %></li>
-				  <li  class="yellow"><%= link_to "Account", new_user_skill_path(user_id) %></li>
-				  <li  class="yellow"><%= link_to "Logout", logout_path %></li>
-				  </ul>
-			<% else %>
-			<ul class=" nav-pills right">
-						
-					<li  class="yellow"><%= link_to "Login", login_path %></li>
-					<li  class="yellow"><%= link_to "Register", new_user_path %></li>
-				</ul>
-			<% end %>
 
-</nav>
+
+<!-- Navigation -->
+    <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
+    <nav id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
+            <li class="sidebar-brand">
+                <%= link_to "Skillo", root_path %>
+            </li>
+            <li>
+                <%= link_to "Home", users_path %>
+            </li>
+            <li>
+                <a href="#about" onclick = $("#menu-close").click(); >About</a>
+            </li>
+            <% if current_user %> 
+            
+            <li><%= link_to "Profile", current_user %></li>
+            <% if !unread_messages %>
+                  <li><a href="<%= requests_path%>"><i class="fa fa-envelope-o"></i></a></li>
+                  <% else %>
+                  <li  ><a href="<%= requests_path%>"><i class="fa fa-envelope-o"><%= count_messages %></i></a></li>
+                  <% end %>
+           
+            
+            <li><%= link_to "Account", new_user_skill_path(user_id) %></li>
+            <%else%>
+            <li>
+                <%= link_to "Login", login_path %>
+            </li>
+            <li>
+                <%= link_to "Register", new_user_path %>
+            </li>
+            <%end%>
+            <li>
+               
+                <a href="#contact" onclick = $("#menu-close").click(); >Contact</a>
+            </li>
+        </ul>
+        </ul>
+        </ul>
+    </nav>
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script>
+    // Closes the sidebar menu
+    $("#menu-close").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+
+    // Opens the sidebar menu
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+
+    // Scrolls to the selected menu item on the page
+    $(function() {
+        $('a[href*=#]:not([href=#])').click(function() {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                if (target.length) {
+                    $('html,body').animate({
+                        scrollTop: target.offset().top
+                    }, 1000);
+                    return false;
+                }
+            }
+        });
+    });
+    </script>
+</body>
