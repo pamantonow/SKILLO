@@ -1,5 +1,5 @@
-
-
+<br>
+<br> 
 <!-- Navigation -->
     <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
     <nav id="sidebar-wrapper">
@@ -25,6 +25,8 @@
            
             
             <li><%= link_to "Account", new_user_skill_path(user_id) %></li>
+
+            <li><%= link_to "Logout", logout_path %></li>
             <%else%>
             <li>
                 <%= link_to "Login", login_path %>
