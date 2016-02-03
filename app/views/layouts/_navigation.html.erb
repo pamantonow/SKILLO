@@ -7,7 +7,7 @@
       <span class="subskillo left aq">Share your skills locally.</span>
       <% if current_user != nil %>
 				<ul class="nav-pills right">
-				  <li  class="yellow"><%= link_to "Home", users_path %></li>
+				  <li  class="yellow"><%= link_to "Home", users_path, id:'home' %></li>
 				  <% if !unread_messages %>
 				  <li  class="yellow"><a href="<%= requests_path%>"><i class="fa fa-envelope-o"></i></a></li>
 				  <% else %>

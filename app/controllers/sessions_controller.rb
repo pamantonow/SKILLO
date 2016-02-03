@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
 	
-	before_action :authenticate_user!, except: [:create, :new]
+	# before_action :authenticate_user!, except: [:create, :new]
 	
 	def new
 	end
@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
     else
     	puts "Yoour Credentials don't match"
     	p @user
-    	flash[:notice] = "Yoour Credentials don't match"
+    	@error = "Your Credentials don't match"
       render :'sessions/new'
     	end
     end
