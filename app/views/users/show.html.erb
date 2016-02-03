@@ -55,12 +55,13 @@
 					    <div class="panel-heading" role="tab" id="collection-<%= collection.id %>">
 								<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse_collection-<%= collection.id %>" aria-expanded="true" aria-controls="collapse_collection-<%= collection.id %>">
 					    		<h4 class="panel-title">
-											<%= collection.skill.name %> <em>(click to show or hide details)</em>
+										<%= collection.skill.name %>
 					    		</h4>
-					    		<% if current_user == @user %>
-										<%= link_to "Edit", edit_collection_path(collection), method: "get", class: "btn btn-warning" %>
-		    						<%= link_to "Delete", collection_path(collection), method: "delete", class: "btn btn-danger",  data: { confirm: "Click OK to delete this skill." } %>
-	    						<% end %>
+	      		    		<% if current_user == @user %>
+											<%= link_to "Edit Skill", edit_collection_path(collection), method: "get" %> |
+			    						<%= link_to "Delete", collection_path(collection), method: "delete", data: { confirm: "Click OK to delete this skill." } %>
+		    						<% end %>
+
 				        </a>
 			    		</div>
 			    		<!-- ========== END SKILL NAME ================ -->
