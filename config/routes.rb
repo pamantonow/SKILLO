@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root "sessions#new"
+  root "welcome#index"
 
 
   get 'login' => 'sessions#new', as: 'login'
@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy'
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
+  get 'users/current' => 'users#current'
 
  
 

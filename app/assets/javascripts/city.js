@@ -14,7 +14,7 @@ $( document ).ready(function() {
 
  
   function onSuccess(response){
-    console.log(response);
+   
     for(var i = 0; i < response.length; i++){
     cities.push(response[i].city)
     }
@@ -28,7 +28,6 @@ $( document ).ready(function() {
   name: 'cities',
   source: substringMatcher(cities)
 });
-    console.log(cities);
   }
   //onSuccess();
 

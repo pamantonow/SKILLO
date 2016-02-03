@@ -1,11 +1,11 @@
 class SearchController < ApplicationController
 	
-	def index
+	def create
 		searched_skill = params[:search].strip.downcase
 		searched_city =  params[:city].strip.downcase
 		@users = []	
 		if searched_city == ""
-			@results = User.all
+			@usersByCity = User.all
 		else
 			@results = []
 			User.all.each do |user|
@@ -14,35 +14,35 @@ class SearchController < ApplicationController
 					@results << user
 				end
 			end
+			@usersByCity = @results
 		end
 		if searched_skill != ""
-			@results.each do |user|
+			@usersByCity.each do |user|
+				p '******************'
+				# p user.first_name
 				next if user == current_user 
 				user.skills.each do |skill|
-					if (skill.name.downcase == searched_skill)
+					p skill.name.downcase.strip
+					if (skill.name.downcase.strip == searched_skill)
+						p skill.name.downcase.strip
+						p user.skills
 						@users << user
 					end
 				end
 			end
 		else
-			@users = @results
+			@users = @usersByCity
 		end
-		@search = @users
-		# type of request 
+		p '##########565657#####'
+		p @users 
 		if request.xhr?
       		respond_to do |format|
-        	format.json { render json: @search }
+        		format.json { render 'search/index' }
       		end
-    	else
-			@hash = Gmaps4rails.build_markers(@users) do |user, marker|
-				marker.lat user.latitude
-				marker.lng user.longitude
-				marker.json({:id => user.id.to_s })
-			end
-			@home = {lat: current_user.latitude,  lng:  current_user.longitude}
-			@categories = Category.all
-			render 'users/index'
-		end
+      	end
+ 
+	                   
+		
 	end
 
 
