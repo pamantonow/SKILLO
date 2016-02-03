@@ -151,6 +151,11 @@
 		    		<p>Occupation: <%= @user.occupation %></p>
 						<p>Education: <%= @user.education.capitalize %></p>
 		    		<p>Bio: <%= @user.description %></p>
+		    		<%if current_user == @user %>
+		    		<%=link_to "Edit your profile", edit_user_path %>
+		    		<% end %>
+		    		<br>
+		    		<%= @user.description %>
 		    	</div>
 		    </div>
 	  		<!-- ========== END ABOUT ME TAB CONTENT ================ -->

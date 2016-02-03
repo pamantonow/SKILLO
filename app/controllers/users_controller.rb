@@ -45,15 +45,36 @@ class UsersController < ApplicationController
  	end
 
  	def show
- 		# @request = Request.new
+ 	 @request = Request.new
  		puts "params[:id]: #{params[:id]}"
  		@user = User.find(params[:id])
  		"test"
  	end
 
+ 	def edit
+ 		@user = User.find(params[:id])
+ 		if current_user == @user
+ 			render :'users/edit'
+ 		end
+ 	end
+
+ 	def update
+ 		@user = User.find(params[:id])
+ 		if current_user == @user
+	 		@user.assign_attributes(users_params)
+	 		if @user.save
+	 			redirect_to user_path(@user)
+	 		else
+	 			@errors = @user.errors.full_messages
+ 			end
+ 		else
+ 			render text: "Couldn't find what you were looking for", status: 404
+ 		end
+ 	end
+
 	private
 
 	def users_params
-		params.require(:user).permit(:first_name,:last_name,:email, :password,:city, :state, :zip,:st_num, :st_name, :latitude, :longitude )
+		params.require(:user).permit(:first_name,:last_name,:email, :password,:city, :state, :zip,:st_num, :st_name, :occupation, :education,:description )
 	end
 end
