@@ -1,19 +1,20 @@
 
+
 <div class="categories">
-<% @categories.each do |category| %>
-	<%= link_to category.name, category, class: "cat" %>
-<% end %>
+	<% @categories.each do |category| %>
+		<%= link_to category.name, category, class: "cat", id:"#{category.id}" %>
+	<% end %>
 </div>
-	<div class="categories">
-      <%= form_tag search_index_path, class: 'search', id: 'search-form', :method => :get do %>
-      			<div id="city">
-					<%= text_field_tag :city, params[:city], class: "form-control medium typeahead"%>
-				</div>
-				<div id="the-basics">
-					<%= text_field_tag :search, params[:search], class: "form-control medium typeahead"%>
-				</div>
-        	<%= submit_tag "Search Bar", :name => nil, class: "btn btn-default " %>
-     <% end %>
+<div class="categories">
+	<%= form_tag search_index_path, class: 'search', id: 'search-form', :method => :get do %>
+		<div id="city">
+			<%= text_field_tag :city, params[:city], class: "form-control medium typeahead"%>
+		</div>
+		<div id="the-basics">
+			<%= text_field_tag :search, params[:search], class: "form-control medium typeahead"%>
+		</div>
+    		<%= submit_tag "Search Bar", :name => nil, class: "btn btn-default " %>
+ 	<% end %>
 
 
 
@@ -34,14 +35,23 @@
 	<% next if user.id == user_id %>
 		<div class="profile boxes" id="profile<%= user.id %>">
 			<img class="avatar" src="<%= user.avatar %>" alt="profile-picture">
-			<%= link_to user.first_name, user, class:"yellow" %>
+			<p class="green">
+			<%= link_to user.first_name, user, class:"yellow" %> lives 
+			 <%= user.distance(current_user) %> miles from you</p>
+			 <p>Has 
+			 <%= user.received_reviews.count %>
+			 recieved reviews </p>
 			<br>
 			<% user.categories.uniq.each do |category| %>
 					<ul class="skill-show"><p class="aq"><%= category.name %></p>
 					<% category.skills.each do |skill| %>
-					<li><%= skill.name %></li>
-					<%end%>
+						<% user.skills.each do |userskill| %>
+							<% if skill == userskill %>
+								<li><%= skill.name %></li>
+							<% end %>
+						<%end%>
 					</ul>
+					<% end %>
 			<% end %>
 			<br>
 			<p class="aq">Why do I want to teach?</p>

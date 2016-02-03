@@ -25,6 +25,16 @@ class User < ActiveRecord::Base
 		"#{self.city}, #{self.state}"
 	end
 
+	def distance(current_user)
+		distance = Geocoder::Calculations.distance_between([current_user.latitude, current_user.longitude], [self.latitude, self.longitude])
+		distance.round(1)
+	end
+
+
+	#  def current_user
+	# 	@current_user ||= User.find_by(id: 1 )
+	# end
+
 
  	def address
 		[st_num, st_name, city, state, zip].compact.join(' ')
