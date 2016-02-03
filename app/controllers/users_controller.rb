@@ -5,18 +5,24 @@ class UsersController < ApplicationController
 
 	def index
 		@categories = Category.all
-		if params[:search].present?
-			@users = User.near(params[:search], 50)
-		else
-			@users = User.all
-		end
-
+		@users = User.all
+		p "#{session[:user_id]}************"
 		@hash = Gmaps4rails.build_markers(@users) do |user, marker|
+			next if user == current_user
+
 			marker.lat user.latitude
 			marker.lng user.longitude
-			marker.json({:id => user.id.to_s })
+			marker.json({:id => user.id })
+			# p "#{marker.lat}"
+			# p "#{user.first_name}"
 		end
+		@hash = @hash.select {|marker| marker[:lat] != nil}
 		@home = {lat: current_user.latitude,  lng:  current_user.longitude}
+		if request.xhr?
+      		respond_to do |format|
+        		format.json { render json: @users }
+      		end
+    	end
 	end
 
 	def new
@@ -30,7 +36,7 @@ class UsersController < ApplicationController
 			if @user.save
 				session[:user_id] = @user.id
 				format.html { redirect_to @user, notice: 'user was successfully created.' }
-				format.json { render :show, status: :created, user: @user }
+				# format.json { render :show, status: :created, user: @user }
 			else
 				format.html { render :new }
 				format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -39,8 +45,10 @@ class UsersController < ApplicationController
  	end
 
  	def show
- 		@request = Request.new
+ 		# @request = Request.new
+ 		puts "params[:id]: #{params[:id]}"
  		@user = User.find(params[:id])
+ 		"test"
  	end
 
 	private

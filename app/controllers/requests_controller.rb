@@ -47,6 +47,13 @@ class RequestsController < ApplicationController
  		redirect_to @request
  	end
 
+ 	def destroy
+ 		@request = Request.find(params[:id])
+ 		@request.accepted = false
+ 		@request.save
+ 		redirect_to requests_path
+ 	end
+
  	private
 
  	def request_params

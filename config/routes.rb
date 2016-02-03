@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
 
+ 
+
   resources :users do
     resources :skills
      resources :reviews
@@ -27,6 +29,7 @@ Rails.application.routes.draw do
   resources :categories
   resources :collections
   resources :requests 
+  resources :search
 
 
  

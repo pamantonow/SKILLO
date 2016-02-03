@@ -16,6 +16,7 @@ gem 'bootstrap_form'
 gem 'font-awesome-rails'
 gem 'nested_form'
 gem 'faker'
+gem 'twitter-typeahead-rails'
 
 group :development, :test do
   gem 'byebug'
