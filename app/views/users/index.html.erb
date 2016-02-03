@@ -1,7 +1,7 @@
 
 <div class="categories">
 	<% @categories.each do |category| %>
-		<%= link_to category.name, category, class: "cat" %>
+		<%= link_to category.name, category, class: "cat", id:"#{category.id}" %>
 	<% end %>
 </div>
 <div class="categories">
@@ -39,9 +39,13 @@
 			<% user.categories.uniq.each do |category| %>
 					<ul class="skill-show"><p class="aq"><%= category.name %></p>
 					<% category.skills.each do |skill| %>
-					<li><%= skill.name %></li>
-					<%end%>
+						<% user.skills.each do |userskill| %>
+							<% if skill == userskill %>
+								<li><%= skill.name %></li>
+							<% end %>
+						<%end%>
 					</ul>
+					<% end %>
 			<% end %>
 			<br>
 			<p class="aq">Why do I want to teach?</p>

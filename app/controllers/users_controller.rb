@@ -5,23 +5,11 @@ class UsersController < ApplicationController
 
 	def index
 		@categories = Category.all
-		@users = User.all
-		p "#{session[:user_id]}************"
-		@hash = Gmaps4rails.build_markers(@users) do |user, marker|
-			next if user == current_user
-
-			marker.lat user.latitude
-			marker.lng user.longitude
-			marker.json({:id => user.id })
-			# p "#{marker.lat}"
-			# p "#{user.first_name}"
-		end
-		@hash = @hash.select {|marker| marker[:lat] != nil}
-		@home = {lat: current_user.latitude,  lng:  current_user.longitude}
+		@users = User.all.select { |num|  num != current_user  } 	
 		if request.xhr?
-      		respond_to do |format|
+			respond_to do |format|
         		format.json { render json: @users }
-      		end
+        	end
     	end
 	end
 
@@ -47,6 +35,15 @@ class UsersController < ApplicationController
  	def show
  		@request = Request.new
  		@user = User.find(params[:id])
+ 	end
+
+ 	def current
+ 		@current = current_user 
+ 		if request.xhr?
+      		respond_to do |format|
+        		format.json { render "users/current.json" }
+      		end
+    	end
  	end
 
 	private

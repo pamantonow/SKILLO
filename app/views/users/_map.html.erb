@@ -1,8 +1,16 @@
+<br>
+<br>
+<br>
+
 <div id="map-canvas" style="width: 600px; height: 600px">
   <div id="map"></div>
 </div>
-
+<br>
+<br>
+<br>
+<%= current_user.id %>
 <script type="text/javascript">
+var myMarkers = [];
 var initialLocation;
 var info = <%= raw @hash.to_json %>
 var current = <%= raw @home.to_json %>
@@ -37,86 +45,190 @@ function initMap() {
     map.setCenter(initialLocation);
   }  
 
-  setMarkers();
+  //setMarkers();
 }
 
 
-function setMarkers() {
-  var image = {
-    url: 'p.png',
-    size: new google.maps.Size(40, 60),
-    origin: new google.maps.Point(0, 0),
-    anchor: new google.maps.Point(0, 32)
-  };
-  var shape = {
-    coords: [1, 1, 1, 20, 18, 20, 18, 1],
-    type: 'poly'
-  };
+// function setMarkers() {
+//   var image = {
+//     url: 'p.png',
+//     size: new google.maps.Size(40, 60),
+//     origin: new google.maps.Point(0, 0),
+//     anchor: new google.maps.Point(0, 32)
+//   };
+//   var shape = {
+//     coords: [1, 1, 1, 20, 18, 20, 18, 1],
+//     type: 'poly'
+//   };
 
 
-  for (var i = 0; i < info.length; i++) {
-    var teacher = info[i];
-    var id = teacher.id.toString();
-    var marker = new google.maps.Marker({
-      position: {lat: teacher.lat, lng: teacher.lng},
-      map: map,
-      customInfo: id
-    });
-    attachSecretMessage(marker, marker['customInfo']);
-  }
-  var image = '/home.png';
-  var markerHome = new google.maps.Marker({
-      position: {lat: current.lat, lng: current.lng},
-      map: map,
-      icon: image, 
-      customInfo: id
-    });
+//   for (var i = 0; i < info.length; i++) {
+//     var teacher = info[i];
+//     var id = teacher.id.toString();
+//     var marker = new google.maps.Marker({
+//       position: {lat: teacher.lat, lng: teacher.lng},
+//       map: map,
+//       customInfo: id
+//     });
+//     attachSecretMessage(marker, marker['customInfo']);
+//   }
+//   var image = '/home.png';
+//   var markerHome = new google.maps.Marker({
+//       position: {lat: current.lat, lng: current.lng},
+//       map: map,
+//       icon: image, 
+//       customInfo: id
+//     });
     
-  function attachSecretMessage(marker, secretMessage) {
-	  var infowindow = new google.maps.InfoWindow({
-	    content: secretMessage
-	  });
+//   function attachSecretMessage(marker, secretMessage) {
+// 	  var infowindow = new google.maps.InfoWindow({
+// 	    content: secretMessage
+// 	  });
 
-	  marker.addListener('click', function() {
-	  	console.log(infowindow.content)
-	    $('.profile').hide();
-  		$('#profile'+infowindow.content).show();
-	  });
-	}
+// 	  marker.addListener('click', function() {
+// 	  	console.log(infowindow.content)
+// 	    $('.profile').hide();
+//   		$('#profile'+infowindow.content).show();
+// 	  });
+// 	}
+// }
+
+
+function placeDBMarker(pinData, avatar) {
+  var infowindow;
+  function attachSecretMessage(marker, secretMessage) {
+    infowindow = new google.maps.InfoWindow({
+    content: secretMessage
+    });
+  }
+  var id = pinData.id.toString();
+  var pinLatlng = new google.maps.LatLng(pinData.latitude, pinData.longitude);
+  var marker = new google.maps.Marker({
+    position: pinLatlng, 
+    customInfo: id, 
+    icon: avatar,
+    map: map});
+ 
+  
+  
+  
+  attachSecretMessage(marker, marker['customInfo']);
+  myMarkers.push(marker);
+  console.log(myMarkers)
+
+  google.maps.event.addListener(marker, 'click', function() {
+    
+    // alert('who!');
+    $('.profile').hide();
+    $('#profile'+infowindow.content).show();
+    console.log(infowindow.content)
+  });
+
+
 }
 
 
 
 $(function() {
 
-  $(document).on("submit", "#search_form", function(event)
+  var getAjax = $.get('/users.json', "json");
+  getAjax.done(function(response)
+    {
+      console.log(response)
+      for (var i = 0; i < response.length; i ++){
+       placeDBMarker(response[i]);
+      }
+  });
+  var getUser = $.get('/users/current.json', "json");
+  getUser.done(function(response){  
+    var image = '/home.png';
+    placeDBMarker(response, image);
+  });
+
+  $(document).on("click", "#home", function(event)
   {
     event.preventDefault();
-    var token = $('meta[name=csrf-token]').attr('content');
-    var form_data = $(this).serialize();
-    // var pin_data = {};
-    // $.each($(this).serializeArray(), function(i, field)
-    // {
-    //   pin_data[field.name] = field.value;
-    // });
-    // var data = { song_artist: pin_data["song_artist"], song_title: pin_data["song_title"], lat: pin_data["lat"], lng: pin_data["lng"], authenticity_token: token, song_id: pin_data["song_id"], comment: pin_data['comment'], address: pin_data['address'] };
-    $.get("/get", data);
-    closeWindows();
-    deleteMarkers();
-    getPins();
+    // var token = $('meta[name=csrf-token]').attr('content');
+    // var form_data = $(this).serialize();
+    
+    var getAjax = $.get('/users.json', "json");
+      getAjax.done(function(response)
+      {
+        console.log(response)
+        for (var i = 0; i < response.length; i ++){
+         placeDBMarker(response[i]);
+        }
+    });
+    var getUser = $.get('/users/current.json', "json");
+    getUser.done(function(response){  
+      var image = '/home.png';
+      placeDBMarker(response, image);
+    });
   });
+
+  $(document).on("click", ".cat", function(event)
+  {
+    event.preventDefault();
+    deleteMarkers();
+    console.log($(this).attr('id'))
+    var id = $(this).attr('id');
+    var url = '/categories/'+ id +'.json'
+    console.log(url)
+    var getUsersByCategory = $.get(url, "json");
+    getUsersByCategory.done(function(response){  
+      var image = '/home.png';
+      console.log(response)
+      for (var i = 0; i < response.length; i ++){
+         placeDBMarker(response[i]);
+      }
+    });
+    var getUser = $.get('/users/current.json', "json");
+    getUser.done(function(response){  
+      var image = '/home.png';
+      placeDBMarker(response, image);
+    });
+  });
+   $(document).on("submit", "#search-form", function(event)
+  {
+    event.preventDefault();
+    deleteMarkers();
+    // console.log(this);
+    var getUser = $.get('/users/current.json', "json");
+    getUser.done(function(response){  
+      var image = '/home.png';
+      placeDBMarker(response, image);
+    });
+
+    var data = $(this).serialize();
+    // console.log(data)
+    var request = $.ajax({
+      url: '/search',
+      method: "post",
+      data: data
+    }).done(function(response){  
+      // console.log(response)
+      for (var i = 0; i < response.length; i ++){
+         placeDBMarker(response[i]);
+      }
+    });
+  });
+  function setMapOnAll(map) {
+    for (var i = 0; i < myMarkers.length; i++) {
+      myMarkers[i].setMap(map);
+    }
+  }
+  function clearMarkers() {
+    setMapOnAll(null);
+  }
+  function deleteMarkers() {
+    clearMarkers();
+    myMarkers = [];
+  }
 });
 
 
-var getAjax = $.get('/users.json', "json");
-    getAjax.done(function(response)
-    {
-      for (var i = 0; i < response.length; i ++)
-      {
-        placeDBMarker(response[i]);
-      }
-    });
-}
+
+
 
 
 </script>
