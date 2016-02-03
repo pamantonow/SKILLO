@@ -86,7 +86,7 @@ end
 # CREATE CATEGORIES AND SKILLS
 
 # Create 11 categories
-categories = ["Art","Business","Communication","Cooking","IT","Languages","Manufacturing","Music","Science","Sport","Others"]
+categories = ["Art","Business","Communication","Cooking","IT","Languages","Manufacturing","Music","Science","Sport","Math and Logic", "Others"]
 categories.each do |category|
  Category.create!(name: category)
 end
@@ -111,6 +111,61 @@ music_skills =["Guitar", "Music theory", "Piano"]
 music_skills.each do |skill|
       Category.where(name: "Music").first.skills.create!(name: skill)
 end
+
+#Create three skills for business category
+business_skills = ["Marketing","Management", "Economic"]
+
+business_skills.each do |skill|
+	Category.where(name: "Business").first.skills.create!(name: skill)
+end
+
+#Create three skills for the art category
+art_skills = ["Graphic Design", "Photography", "Painting"]
+
+art_skills.each do |skill|
+	Category.where(name: "Art").first.skills.create!(name: skill)
+end
+
+#Create two skills for the cooking category
+cooking_skills = ["Gastronomy", "Food and health"]
+cooking_skills.each do |skill|
+	Category.where(name: "Cooking").first.skills.create!(name: skill)
+end
+
+#Create three skill for the math category
+math_skills = ["Algebra", "Calculus", "Geometry"]
+math_skills.each do |skill|
+	Category.where(name: "Math and Logic").first.skills.create!(name: skill)
+end
+
+#Create three skill for sports category
+sport_skills = ["Soccer", "Baseball", "Hockey"]
+
+sport_skills.each do |skill|
+	Category.where(name: "Sport").first.skills.create!(name: skill)
+end
+
+communication_skills = ["Social media","Writing", "Presentation"]
+
+communication_skills.each do |skill|
+	Category.where(name: "Communication").first.skills.create!(name: skill)
+end
+
+#Create two skills for the manufacturing category
+manufacturing_skills = ["Electrical","Mechanic"]
+
+manufacturing_skills.each do |skill|
+	Category.where(name: "Manufacturing").first.skills.create!(name: skill)
+end 
+
+#Create two skills for the manufacturing category
+
+science_skills = ["Biology","Chemistry", "Cardiology"]
+
+science_skills.each do |skill|
+ Category.where(name: "Science").first.skills.create!(name: skill)
+end
+
 #^^^^^^^^^^^^^^^^^end^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 #=====================begin==============================
