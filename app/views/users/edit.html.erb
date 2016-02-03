@@ -1,0 +1,48 @@
+<%=bootstrap_form_for @user,method: :put do |f| %>
+  <div class="col-3">
+    <label>
+      <%=f.text_field :st_num %>
+    </label>
+  </div>
+   <div class="col-2">
+    <label>
+      <%=f.text_field :st_name %>
+    </label>
+  </div>
+   <div class="col-2">
+    <label>
+      <%=f.text_field :city %>
+    </label>
+  </div>
+   <div class="col-2">
+    <label>
+      <%=f.text_field :state %>
+    </label>
+  </div> 
+  <div class="col-2">
+    <label>
+     <%=f.text_field :zip %>
+    </label>
+  </div>
+   <div class="col-2">
+    <label>
+     <%=f.text_field :description %>
+    </label>
+  </div>
+   <div class="col-2">
+    <label>
+     <%=f.text_field :occupation %>
+    </label>
+    <div class="col-2">
+    <label>
+     <%=f.text_field :education %>
+    </label>
+  </div>
+     <%if @errors %>
+      <%@errors %>
+    <% end %>
+    <div class="col-submit">
+      <%=f.submit "Update"%>
+    </div>
+  <% end %> 
+  <div>
