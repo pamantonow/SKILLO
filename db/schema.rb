@@ -32,6 +32,9 @@ ActiveRecord::Schema.define(version: 20160201171152) do
     t.datetime "updated_at",          null: false
   end
 
+  add_index "collections", ["skill_id"], name: "index_collections_on_skill_id", using: :btree
+  add_index "collections", ["teacher_id"], name: "index_collections_on_teacher_id", using: :btree
+
   create_table "messages", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "request_id"
@@ -39,6 +42,9 @@ ActiveRecord::Schema.define(version: 20160201171152) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "messages", ["request_id"], name: "index_messages_on_request_id", using: :btree
+  add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
 
   create_table "requests", force: :cascade do |t|
     t.integer  "sender_id"
@@ -50,6 +56,10 @@ ActiveRecord::Schema.define(version: 20160201171152) do
     t.datetime "updated_at",  null: false
   end
 
+  add_index "requests", ["receiver_id"], name: "index_requests_on_receiver_id", using: :btree
+  add_index "requests", ["sender_id"], name: "index_requests_on_sender_id", using: :btree
+  add_index "requests", ["skill_id"], name: "index_requests_on_skill_id", using: :btree
+
   create_table "reviews", force: :cascade do |t|
     t.integer  "sender_id"
     t.integer  "receiver_id"
@@ -58,6 +68,9 @@ ActiveRecord::Schema.define(version: 20160201171152) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  add_index "reviews", ["receiver_id"], name: "index_reviews_on_receiver_id", using: :btree
+  add_index "reviews", ["sender_id"], name: "index_reviews_on_sender_id", using: :btree
 
   create_table "skills", force: :cascade do |t|
     t.string   "name"
