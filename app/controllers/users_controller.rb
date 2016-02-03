@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 			if @user.save
 				session[:user_id] = @user.id
 				format.html { redirect_to @user, notice: 'user was successfully created.' }
-				format.json { render :show, status: :created, user: @user }
+				# format.json { render :show, status: :created, user: @user }
 			else
 				format.html { render :new }
 				format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -39,8 +39,10 @@ class UsersController < ApplicationController
  	end
 
  	def show
- 		@request = Request.new
+ 		# @request = Request.new
+ 		puts "params[:id]: #{params[:id]}"
  		@user = User.find(params[:id])
+ 		"test"
  	end
 
 	private
