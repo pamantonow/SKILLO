@@ -55,6 +55,8 @@ class UsersController < ApplicationController
  		@user = User.find(params[:id])
  		if current_user == @user
  			render :'users/edit'
+ 		else
+ 			render text: "Couldn't find what you were looking for", status: 404
  		end
  	end
 
