@@ -1,19 +1,21 @@
 <main>
 	<div class="row">
 		<div class="col-md-1"></div>
-		<!-- SIDEBAR -->
+		<!-- PROFILE SIDEBAR -->
 		<div class="col-md-3">
+			<!-- USER AVATAR, NAME & LOCATION -->
 			<div id="profile-pic-box">
+				<header>
 				<img src="<%= @user.avatar %>" alt="profile-picture">
+					<h1><%= @user.full_name %></h1>
+					<p><%= @user.city_state %></p>
+				</header>
 			</div>
+			<!-- ======= END USER NAME & LOCATION ========= -->
 		</div>
 		<!-- MAIN CONTENT -->
 		<div class="col-md-6">
-			<header>
-				<h1><%= @user.full_name %></h1>
-				<p><%= @user.city_state %></p>
-			</header>
-			<!-- TABS -->
+			<!-- BOOTSTRAP TOGGEABLE TABS -->
 			<nav>
 				<ul class="nav nav-tabs" role="tablist">
 					<!-- SKILLS TAB -->
@@ -35,6 +37,7 @@
 		    	<a href="#about-me" aria-controls="About-me" role="tab" data-toggle="tab">About me</a></li>
 	  		</ul>
 			</nav>
+			<!-- ========== END BOOTSTRAP TOGGEABLE TABS ========== -->
 
 			<!-- TABS CONTENT -->
 		  <div class="tab-content">
@@ -44,6 +47,8 @@
 					<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 			    	<% @user.collections.each do |collection| %>
 					  <div class="panel panel-default">
+		    			<!-- THE SKILL NAME FOR THIS COLLECTION
+		    					 IS CLICKABLE AND EXPANDS TO REVEAL THE SKILL DETAILS -->
 					    <div class="panel-heading" role="tab" id="collection-<%= collection.id %>">
 								<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse_collection-<%= collection.id %>" aria-expanded="true" aria-controls="collapse_collection-<%= collection.id %>">
 					    		<h4 class="panel-title">
@@ -51,16 +56,20 @@
 					    		</h4>
 				        </a>
 			    		</div>
+			    		<!-- ========== END SKILL NAME ================ -->
+
+			    		<!-- THIS CONTENT IS DISPLAYED WHEN THE SKILL NAME IS CLICKED -->
 		    		  <div id="collapse_collection-<%= collection.id %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="collection-<%= collection.id %>">
 					      <div class="panel-body">
-      		    		<%= collection.description %>
+					      	<% @collection = collection %>
+					      	<%= render 'collections/details', locals: { collection: @collection }  %>
       		    		<br>
       		    		<br>
       		    		<% if current_user && user_id != @user.id  %>
 										<a href="#" class="new-request-link">Request a lesson!</a>
-									
+
 									<div style="display: block;">
-					 					<%= bootstrap_form_for @request, as: :request, url: user_skill_requests_path(@user, collection.skill_id), method: "post" do |f| %>
+					 					<%= form_for @request, as: :request, url: user_skill_requests_path(@user, collection.skill_id), method: "post" do |f| %>
 									    <%= f.label :content, "Write a message" %><br>
 									    <%= f.text_field :content %>
 									    <%= f.submit %>
@@ -69,11 +78,15 @@
 							    <% end %>
 					      </div>
 					    </div>
+			    		<!-- ========== END SKILL CONTENT DISPLAY ================ -->
 						</div>
     				<% end %>
 					</div>
+    			<!-- ========== END COLLAPSIBLE GROUP LOOP ================ -->
 		    </div>
-		    <!-- REQUESTS TAB CONTENT-->
+  			<!-- ========== END SKILLS TAB CONTENT ================ -->
+
+		    <!-- REQUESTS TAB CONTENT -->
 		  	<% if current_user && user_id == @user.id %>
 			    <div role="tabpanel" class="tab-pane fade" id="requests">
 						<div id="sent-requets">
@@ -114,26 +127,33 @@
 			    	<% end %>
 			    </div>
 		    <% end %>
+	  		<!-- ========== END REQUESTS TAB CONTENT ================ -->
+
 		    <!-- REVIEWS TAB CONTENT-->
 		    <div role="tabpanel" class="tab-pane fade" id="reviews">
 		     <%if @user != current_user && accepted_requests?(@user) %>
 		    	<%=link_to "Create review", new_user_review_path(@user) %>
-		     <% end %> 
+		     <% end %>
 			     <%@user.received_reviews.each do |review| %>
 				     <p><%=review.content %></p>
 				     <p><%=review.sender.first_name %></p>
 				     <p><%=time_ago_in_words(review.created_at) %></p>
 				     <img src="<%=review.sender.avatar %>">
 				     <hr>
-		     	<% end %> 
+		     	<% end %>
 		    </div>
+	  		<!-- ========== END REIVEWS TAB CONTENT ================ -->
+
 		    <!-- ABOUT ME TAB CONTENT -->
 		    <div role="tabpanel" class="tab-pane fade" id="about-me">
 		    	<br>
 		    	<div class="boxes">
-		    		<%= @user.description %>
+		    		<p>Occupation: <%= @user.occupation %></p>
+						<p>Education: <%= @user.education.capitalize %></p>
+		    		<p>Bio: <%= @user.description %></p>
 		    	</div>
 		    </div>
+	  		<!-- ========== END ABOUT ME TAB CONTENT ================ -->
 		  </div>
 		</div>
 		<div class="col-md-1"></div>
