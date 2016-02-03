@@ -8,15 +8,17 @@ class ReviewsController < ApplicationController
 
   def new
     @user = User.find(params[:user_id])
-    if @user != current_user
+    if !current_user?(@user)
       @review = Review.new
       render :'reviews/new'
+    else
+      redirect_to :back
     end
   end
 
   def create
     @user = User.find(params[:user_id])
-    if current_user != @user
+    if !current_user?(@user)
       @new_review =  current_user.written_reviews.new(review_params)
       @new_review.receiver_id = params[:user_id]
       if @new_review.save
@@ -24,10 +26,10 @@ class ReviewsController < ApplicationController
       else
        @errors = @new_review.errors.full_messages
        render :'reviews/new'
-      end  
+      end
     else
       render text: "Go away",status:422
-    end  
+    end
   end
 
   private
