@@ -341,3 +341,20 @@ Message.create!(user_id: third_user.id, request_id: r2.id, content: "There's a S
 Message.create!(user_id: second_user.id, request_id: r2.id, content: "Great! See you then.")
 
 #^^^^^^^^^^^^^^^^^end^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+#=================Begin===================
+#CREATE REVIEWS
+#Review for first user
+Review.create!(sender_id: first_user.id,receiver_id: fourth_user.id, content: "Really recommend this teacher, the lesson was great! I feel like I know way more than I just to.", rating: 5 )
+Review.create!(sender_id: second_user.id,receiver_id: fourth_user.id, content: "It was a good session, but the teacher was a little late , other than that I really recommend it!", rating: 4)
+Review.create!(sender_id: sixth_user.id,receiver_id: fourth_user.id, content: "The teacher cancelled on me an hour before meeting, and didn't give a reason why. I honestly don't recommend this teacher",rating: 2 )
+Review.create!(sender_id: fifth_user.id,receiver_id: fourth_user.id, content: "I had a test and was really worried that I wasn't going to know enough before the test, but thanks to the tutoring that I had I was able to pass it!", rating: 5 )
+#Review for third user
+Review.create!(sender_id: third_user.id,receiver_id: first_user.id, content: "Really recommend this teacher, the lesson was great! I feel like I know way more than I just to." )
+Review.create!(sender_id: seventh_user.id,receiver_id: first_user.id, content: "Really recommend this teacher, the lesson was great! I feel like I know way more than I just to." )
+Review.create!(sender_id: ninth_user.id,receiver_id: first_user.id, content: "Really recommend this teacher, the lesson was great! I feel like I know way more than I just to." )
+
+#Review for the fifth user
+Review.create!(sender_id: third_user.id,receiver_id: fifth_user.id, content: "Really recommend this teacher, the lesson was great! I feel like I know way more than I just to." )
+Review.create!(sender_id: first_user.id,receiver_id: fifth_user.id, content: "Really recommend this teacher, the lesson was great! I feel like I know way more than I just to." )
+Review.create!(sender_id: fourth_user.id,receiver_id: fifth_user.id, content: "Really recommend this teacher, the lesson was great! I feel like I know way more than I just to." )
