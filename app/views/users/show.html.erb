@@ -73,10 +73,10 @@
       		    		<br>
       		    		<br>
       		    		<% if current_user && user_id != @user.id  %>
-					 					<%= bootstrap_form_for @request, as: :request, url: user_skill_requests_path(@user, collection.skill_id), method: "post" do |f| %>
-									    <%= f.label :content, "Write a message" %><br>
-									    <%= f.text_field :content %>
-									    <%= f.submit %>
+      		    			<em>Want to learn this skill from <%= @user.first_name %>? Send a message to start coordinating!</em>
+					 					<%= bootstrap_form_for @request, layout: :inline, as: :request, url: user_skill_requests_path(@user, collection.skill_id), method: "post" do |f| %>
+									    <%= f.text_field :content, hide_label: true, placeholder: "Write a message here" %>
+								    	<%= f.submit "Request a lesson!", class: "btn btn-success" %>
 										<% end %>
 							    <% end %>
 					      </div>
