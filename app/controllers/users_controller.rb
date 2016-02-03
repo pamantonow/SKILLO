@@ -53,17 +53,15 @@ class UsersController < ApplicationController
 
  	def edit
  		@user = User.find(params[:id])
- 		render :'users/edit'
+ 		if current_user == @user
+ 			render :'users/edit'
+ 		end
  	end
 
  	def update
  		@user = User.find(params[:id])
  		if current_user == @user
- 			puts "======="
- 			p @user
-	 		@user = @user.assign_attributes(users_params)
-	 		p @user
-	 		puts "+++++++++"
+	 		@user.assign_attributes(users_params)
 	 		if @user.save
 	 			redirect_to user_path(@user)
 	 		else
@@ -77,6 +75,6 @@ class UsersController < ApplicationController
 	private
 
 	def users_params
-		params.require(:user).permit(:first_name,:last_name,:email, :password,:city, :state, :zip,:st_num, :st_name, :latitude, :longitude,:occupation, :education,:description )
+		params.require(:user).permit(:first_name,:last_name,:email, :password,:city, :state, :zip,:st_num, :st_name, :occupation, :education,:description )
 	end
 end
