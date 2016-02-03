@@ -49,59 +49,18 @@ function initMap() {
 }
 
 
-// function setMarkers() {
-//   var image = {
-//     url: 'p.png',
-//     size: new google.maps.Size(40, 60),
-//     origin: new google.maps.Point(0, 0),
-//     anchor: new google.maps.Point(0, 32)
-//   };
-//   var shape = {
-//     coords: [1, 1, 1, 20, 18, 20, 18, 1],
-//     type: 'poly'
-//   };
-
-
-//   for (var i = 0; i < info.length; i++) {
-//     var teacher = info[i];
-//     var id = teacher.id.toString();
-//     var marker = new google.maps.Marker({
-//       position: {lat: teacher.lat, lng: teacher.lng},
-//       map: map,
-//       customInfo: id
-//     });
-//     attachSecretMessage(marker, marker['customInfo']);
-//   }
-//   var image = '/home.png';
-//   var markerHome = new google.maps.Marker({
-//       position: {lat: current.lat, lng: current.lng},
-//       map: map,
-//       icon: image, 
-//       customInfo: id
-//     });
-    
-//   function attachSecretMessage(marker, secretMessage) {
-// 	  var infowindow = new google.maps.InfoWindow({
-// 	    content: secretMessage
-// 	  });
-
-// 	  marker.addListener('click', function() {
-// 	  	console.log(infowindow.content)
-// 	    $('.profile').hide();
-//   		$('#profile'+infowindow.content).show();
-// 	  });
-// 	}
-// }
-
-
 function placeDBMarker(pinData, avatar) {
   var infowindow;
+   var id = pinData.id.toString();
+    $('#profile'+id).show();
+
+
   function attachSecretMessage(marker, secretMessage) {
     infowindow = new google.maps.InfoWindow({
     content: secretMessage
     });
   }
-  var id = pinData.id.toString();
+ 
   var pinLatlng = new google.maps.LatLng(pinData.latitude, pinData.longitude);
   var marker = new google.maps.Marker({
     position: pinLatlng, 
@@ -117,8 +76,6 @@ function placeDBMarker(pinData, avatar) {
   console.log(myMarkers)
 
   google.maps.event.addListener(marker, 'click', function() {
-    
-    // alert('who!');
     $('.profile').hide();
     $('#profile'+infowindow.content).show();
     console.log(infowindow.content)
@@ -148,8 +105,6 @@ $(function() {
   $(document).on("click", "#home", function(event)
   {
     event.preventDefault();
-    // var token = $('meta[name=csrf-token]').attr('content');
-    // var form_data = $(this).serialize();
     
     var getAjax = $.get('/users.json', "json");
       getAjax.done(function(response)
@@ -178,8 +133,12 @@ $(function() {
     getUsersByCategory.done(function(response){  
       var image = '/home.png';
       console.log(response)
-      for (var i = 0; i < response.length; i ++){
-         placeDBMarker(response[i]);
+      if(response.length > 0) {
+        for (var i = 0; i < response.length; i ++){
+          placeDBMarker(response[i]);
+        }
+      } else {
+      $('.profile').hide();
       }
     });
     var getUser = $.get('/users/current.json', "json");
