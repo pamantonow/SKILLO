@@ -45,7 +45,7 @@ class UsersController < ApplicationController
  	end
 
  	def show
- 		# @request = Request.new
+ 	 @request = Request.new
  		puts "params[:id]: #{params[:id]}"
  		@user = User.find(params[:id])
  		"test"
