@@ -1,4 +1,4 @@
-<h1 class="fancy">Your offers: </h1>
+<h1 class="fancy">Offers: </h1>
 <% @requested.each do |request| %>
 	<% if current_user %>
 		
@@ -27,7 +27,7 @@
 				<% end %>
 			</center>
 				<div class="right">			    		
-				<%= link_to 'Go to the chat', request  %>
+				<%= link_to 'Respond Back', request  %>
 			</div>
 		</div>
 			
@@ -35,7 +35,7 @@
 		
 	<% end %>
 <% end %>
-<h1 class="fancy">Your requests: </h1>
+<h1 class="fancy">equests: </h1>
 	<% @requests.each do |request| %>
 		<% if current_user && request.accepted == nil %>
 		<div class="boxes b-width">
@@ -62,7 +62,7 @@
 
 			<div class="right">				    		
 				<br>
-				<%= link_to 'Go to the chat', request  %>
+				<%= link_to 'Respond Back', request  %>
 			</div>
 		</div>
 	<% end %>
