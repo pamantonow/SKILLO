@@ -51,9 +51,32 @@ class UsersController < ApplicationController
  		"test"
  	end
 
+ 	def edit
+ 		@user = User.find(params[:id])
+ 		render :'users/edit'
+ 	end
+
+ 	def update
+ 		@user = User.find(params[:id])
+ 		if current_user == @user
+ 			puts "======="
+ 			p @user
+	 		@user = @user.assign_attributes(users_params)
+	 		p @user
+	 		puts "+++++++++"
+	 		if @user.save
+	 			redirect_to user_path(@user)
+	 		else
+	 			@errors = @user.errors.full_messages
+ 			end
+ 		else
+ 			render text: "Couldn't find what you were looking for", status: 404
+ 		end
+ 	end
+
 	private
 
 	def users_params
-		params.require(:user).permit(:first_name,:last_name,:email, :password,:city, :state, :zip,:st_num, :st_name, :latitude, :longitude )
+		params.require(:user).permit(:first_name,:last_name,:email, :password,:city, :state, :zip,:st_num, :st_name, :latitude, :longitude,:occupation, :education,:description )
 	end
 end
