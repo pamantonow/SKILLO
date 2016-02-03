@@ -1,0 +1,59 @@
+
+<div class="categories">
+<% @categories.each do |category| %>
+	<%= link_to category.name, category, class: "cat" %>
+<% end %>
+</div>
+
+
+  <div class="categories">
+      <%= form_tag users_path, class: 'search', :method => :get do %>
+				<%= text_field_tag :search, params[:search], class: "form-control medium"%>
+        	<%= submit_tag "Search Bar", :name => nil, class: "btn btn-default " %>
+     
+      <% end %>
+
+
+
+
+
+ 
+
+<div class="clear">
+	<div class="left">
+	<% if @teacher_by_category[0] %>
+		<%= render 'users/map' %>
+	<% else %>
+		<%= render 'users/error' %>
+	<% end %>
+	</div>
+
+	<div class="right mini">
+	<% @teacher_by_category.each do |user| %>
+	
+	<% next if user.id == user_id %>
+		<div class="profile boxes" id="profile<%= user.id %>">
+			<img class="avatar" src="<%= user.avatar %>" alt="profile-picture">
+			<%= link_to user.first_name, user, class:"yellow" %>
+			<br>
+			<% user.categories.uniq.each do |category| %>
+					<ul class="skill-show"><p class="aq"><%= category.name %></p>
+					<% category.skills.each do |skill| %>
+					<li><%= skill.name %></li>
+					<%end%>
+					</ul>
+			<% end %>
+			<br>
+			<p class="aq">Why do I want to teach?</p>
+			<br>
+			<%= user.description %>
+		</div>
+	<% end %>
+	</div>
+</div>
+
+
+
+
+
+
