@@ -220,7 +220,10 @@ li.yellow{
     padding: 0.5em;
 }
 .categories{
-	margin: 3em
+	margin: 3em;
+	background: rgba(153, 153, 153, 0.4);
+    padding: 43px;
+    border-radius: 26px;
 }
 .medium{
 	width: 15em;
@@ -361,3 +364,20 @@ li{
 	color:red;
 	font-size:1em;
 }
+
+.gr{
+	    color: #5F6764;
+    font-size: x-medium;
+}
+
+input#city{
+	width: 10em;
+}
+input#search{
+	width: 10em;
+}
+
+input.btn.btn-default{
+	z-index: 1;
+}
+
