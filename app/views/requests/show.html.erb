@@ -13,13 +13,13 @@
 	<%=f.text_area :content %>
 	<p>
 		<%=f.submit "Send Message", class:"btn btn-default" %>
-	 <% end %> 
+	 <% end %>
 	</p>
 
 <% @request.messages.each do |message| %>
 <div class="boxes">
 	<div class="left">
-		<%= link_to @request.sender.first_name %>
+		<%= link_to message.user.first_name, message.user %>
 		<img src="<%= message.user.avatar %>" class="avatar">
 	</div>
 	<%= message.content %>
