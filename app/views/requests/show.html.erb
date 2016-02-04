@@ -5,6 +5,7 @@
 	</div>
 
 	<p class="aq"><%=@request.content %></p>
+
 </div>
 <br>
 
@@ -13,7 +14,7 @@
 	<%=f.text_area :content %>
 	<p>
 		<%=f.submit "Send Message", class:"btn btn-default" %>
-	 <% end %> 
+	 <% end %>
 	</p>
 
 <% @request.messages.each do |message| %>

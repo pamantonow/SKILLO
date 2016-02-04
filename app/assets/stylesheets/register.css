@@ -6,7 +6,6 @@ form
   margin: 30px;
   overflow: hidden;
   background: #FFF;
-  border: 1px solid #E4E4E4;
   border-radius: 5px;
   font-size: 0;
 }
@@ -33,12 +32,12 @@ form > div > label
   cursor: pointer;
 }
 
-form > div.col-2, form > div.col-3, form > div.col-4 { 
+form > div.col-2, form > div.col-3, form > div.col-4 {
   border-bottom: 1px solid #E4E4E4;
 }
 
 @media(min-width: 800px){
-  form > div.col-2, form > div.col-3, form > div.col-4 { box-shadow: 1px 1px #E4E4E4; border: none; }  
+  form > div.col-2, form > div.col-3, form > div.col-4 { box-shadow: 1px 1px #E4E4E4; border: none; }
 }
 
 @media(min-width:800px){
