@@ -1,31 +1,73 @@
 <div class= "container">
-	<div class="left">
-		<p>Request from :</p><%= link_to @request.sender.first_name %>
-		<img src="<%= @request.sender.avatar %>" class="avatar">
-	</div>
 
-	<p class="aq"><%=@request.content %></p>
-
+	<header>
+		<div class="row">
+			<div class="col-sm-1">
+			</div>
+			<div class="col-sm-1">
+				<img src="<%= @request.sender.avatar %>" class="avatar">
+			</div>
+			<div class="col-sm-8">
+				<div>
+					<h2>
+					<%= link_to @request.sender.first_name %> wants to learn <%= @request.skill.name %> from <%= link_to @request.receiver.first_name %>
+					</h2>
+				</div>
+				<em>Requested <%= time_ago_in_words(@request.created_at) %> ago</em>
+			</div>
+			<div class="col-sm-1">
+				<img src="<%= @request.receiver.avatar %>" class="avatar">
+			</div>
+			<div class="col-sm-1">
+			</div>
+		</div>
+	</header>
+	<main>
+		<div class="row">
+			<div class="col-sm-3">
+			</div>
+			<div class="col-sm-6">
+				<%= bootstrap_form_for([@request, @message]) do |f| %>
+					<div class="col-1">
+						<% if current_user && (current_user == @request.sender) %>
+							<%= f.label :content, "Send #{@request.receiver.first_name} a message" %>
+						<% else %>
+							<%= f.label :content, "Send #{@request.sender.first_name} a message" %>
+						<% end %>
+						<%= f.text_area :content %>
+					</div>
+				  <div class="col-submit">
+						<%= f.submit "Send Message" %>
+					</div>
+				<% end %>
+			</div>
+			<div class="col-sm-3">
+			</div>
+		</div>
+		<% @messages.each do |message| %>
+			<div class="row">
+				<div class="col-sm-2">
+				</div>
+				<div class="col-sm-8">
+					<div class="boxes">
+						<div class="left">
+							<img src="<%= message.user.avatar %>" class="avatar">
+							<br>
+							<%= link_to message.user.first_name, message.user %>
+						</div>
+						<%= message.content %>
+						<br>
+						<br>
+						<div class="right grey">
+							<em><%= time_ago_in_words(message.user.created_at) %></em>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-2">
+				</div>
+			</div>
+		<% end %>
+	</main>
 </div>
-<br>
 
-<%= form_for([@request, @message], class:"form-control white-pink") do |f| %>
-<p>
-	<%=f.text_area :content %>
-	<p>
-		<%=f.submit "Send Message", class:"btn btn-default" %>
-	 <% end %>
-	</p>
 
-<% @request.messages.each do |message| %>
-<div class="boxes">
-	<div class="left">
-		<%= link_to @request.sender.first_name %>
-		<img src="<%= message.user.avatar %>" class="avatar">
-	</div>
-	<%= message.content %>
-	<br>
-	<br>
-	<div class="right grey"><em><%= time_ago_in_words(@request.sender.created_at) %><em></div>
-</div>
-<% end %>
