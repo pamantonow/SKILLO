@@ -8,6 +8,7 @@
 <br>
 <br>
 <br>
+
 <%= current_user.id %>
 <script type="text/javascript">
 var myMarkers = [];
@@ -48,35 +49,30 @@ function initMap() {
   //setMarkers();
 }
 
-
-
-
 function placeDBMarker(pinData, avatar) {
   var infowindow;
+   var id = pinData.id.toString();
+    $('#profile'+id).show();
+
+
   function attachSecretMessage(marker, secretMessage) {
     infowindow = new google.maps.InfoWindow({
     content: secretMessage
     });
   }
   var id = pinData.id.toString();
-  // console.log(id)
+
   var pinLatlng = new google.maps.LatLng(pinData.latitude, pinData.longitude);
   var marker = new google.maps.Marker({
     position: pinLatlng, 
     customInfo: id, 
     icon: avatar,
     map: map});
-    // console.log(pinData.id)
-  
-  
-  
+
   attachSecretMessage(marker, marker['customInfo']);
   myMarkers.push(marker);
-  // console.log(myMarkers)
 
   google.maps.event.addListener(marker, 'click', function() {
-    // console.log(infowindow.content)
-    // alert('who!');
     $('.profile').hide();
     $('#profile'+infowindow.content).show();
     console.log(infowindow.content)
@@ -106,8 +102,6 @@ $(function() {
   $(document).on("click", "#home", function(event)
   {
     event.preventDefault();
-    // var token = $('meta[name=csrf-token]').attr('content');
-    // var form_data = $(this).serialize();
     
     var getAjax = $.get('/users.json', "json");
       getAjax.done(function(response)
@@ -135,9 +129,13 @@ $(function() {
     var getUsersByCategory = $.get(url, "json");
     getUsersByCategory.done(function(response){  
       var image = '/home.png';
-      // console.log(response)
-      for (var i = 0; i < response.length; i ++){
-         placeDBMarker(response[i]);
+      console.log(response)
+      if(response.length > 0) {
+        for (var i = 0; i < response.length; i ++){
+          placeDBMarker(response[i]);
+        }
+      } else {
+      $('.profile').hide();
       }
     });
     var getUser = $.get('/users/current.json', "json");
@@ -174,8 +172,8 @@ $(function() {
     var divs =  $('.profile');
     $('.profile').remove();
     divs.sort(function (b,a) {
-      aCount = parseInt($(a).attr('data-reviews'));
-      bCount = parseInt($(b).attr('data-reviews'));
+      var aCount = parseInt($(a).attr('data-reviews'));
+      var bCount = parseInt($(b).attr('data-reviews'));
       console.log(aCount)
       if (aCount > bCount) {
         return 1;

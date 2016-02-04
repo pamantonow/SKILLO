@@ -25,15 +25,12 @@ class User < ActiveRecord::Base
 		"#{self.city}, #{self.state}"
 	end
 
-	# def self.sort_distance(users)
-	# 	users.sort! {|a,b| a.distance <=> b.distance }
-	# 	users
-	# end
 
 	def distance(current_user)
 		distance = Geocoder::Calculations.distance_between([current_user.latitude, current_user.longitude], [self.latitude, self.longitude])
 		distance.round(1)
 	end
+
 
 
  	def address
