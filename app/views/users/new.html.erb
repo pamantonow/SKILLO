@@ -43,9 +43,21 @@
     <label>
      <%=f.text_field :zip %>
     </label>
+     </div> <div class="col-3">
+    <label>
+     <%=f.text_field :occupation %>
+    </label>
+     </div> <div class="col-3">
+    <label>
+     <%=f.text_field :education %>
+    </label>
+     </div> <div class="col-3">
+    <label>
+     <%=f.text_field :description %>
+    </label>
   </div>
   <div>
-  	<%=f.hidden_field :longitude %>
+  <%=f.hidden_field :longitude %>
 	<%=f.hidden_field :latitude %>
   </div>
   <%if @errors %>
