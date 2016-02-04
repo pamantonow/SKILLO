@@ -39,28 +39,29 @@
 			<div class="col-sm-3">
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-sm-2">
-			</div>
-			<div class="col-sm-8">
-				<% @request.messages.each do |message| %>
-				<div class="boxes">
-					<div class="left">
-						<%= link_to message.user.first_name, message.user %>
-						<img src="<%= message.user.avatar %>" class="avatar">
-					</div>
-					<%= message.content %>
-					<br>
-					<br>
-					<div class="right grey">
-						<em><%= time_ago_in_words(@request.sender.created_at) %></em>
+		<% @request.messages.each do |message| %>
+			<div class="row">
+				<div class="col-sm-2">
+				</div>
+				<div class="col-sm-8">
+					<div class="boxes">
+						<div class="left">
+							<img src="<%= message.user.avatar %>" class="avatar">
+							<br>
+							<%= link_to message.user.first_name, message.user %>
+						</div>
+						<%= message.content %>
+						<br>
+						<br>
+						<div class="right grey">
+							<em><%= time_ago_in_words(@request.sender.created_at) %></em>
+						</div>
 					</div>
 				</div>
-				<% end %>
+				<div class="col-sm-2">
+				</div>
 			</div>
-			<div class="col-sm-2">
-			</div>
-		</div>
+		<% end %>
 	</main>
 </div>
 
