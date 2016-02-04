@@ -12,7 +12,7 @@
 					<%= link_to @request.sender.first_name %> wants to learn <%= @request.skill.name %> from <%= link_to @request.receiver.first_name %>
 					</h2>
 				</div>
-				<h4>Requested <%= time_ago_in_words(@request.created_at) %> ago</h4>
+				<em>Requested <%= time_ago_in_words(@request.created_at) %> ago</em>
 			</div>
 			<div class="col-sm-1">
 				<img src="<%= @request.receiver.avatar %>" class="avatar">
@@ -28,7 +28,11 @@
 			<div class="col-sm-6">
 				<%= bootstrap_form_for([@request, @message]) do |f| %>
 					<div class="col-1">
-						<%= f.label :content, "Send a message" %>
+						<% if current_user && (current_user == @request.sender) %>
+							<%= f.label :content, "Send #{@request.receiver.first_name} a message" %>
+						<% else %>
+							<%= f.label :content, "Send #{@request.sender.first_name} a message" %>
+						<% end %>
 						<%= f.text_area :content %>
 					</div>
 				  <div class="col-submit">
