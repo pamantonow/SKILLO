@@ -5,7 +5,8 @@ class UsersController < ApplicationController
 
 	def index
 		@categories = Category.all
-		@users = User.all.select { |num|  num != current_user  } 	
+		@users = User.all.select { |num|  num != current_user  } 
+		
 		if request.xhr?
 			respond_to do |format|
         		format.json { render json: @users }
@@ -67,6 +68,26 @@ class UsersController < ApplicationController
  		if request.xhr?
       		respond_to do |format|
         		format.json { render "users/current.json" }
+      		end
+    	end
+ 	end
+
+ 	def distance
+ 		@users = User.all.sort_by {|a| a.distance(current_user)}.select { |num|  num != current_user  } 	
+		@categories = Category.all
+		if request.xhr?
+      		respond_to do |format|
+        		format.json { render "users/distance.json" }
+      		end
+    	end
+ 	end
+
+	def popularity
+		@users = User.all.sort_by {|a| a.received_reviews.count}.select { |num|  num != current_user  }.reverse	
+		@categories = Category.all
+		if request.xhr?
+      		respond_to do |format|
+        		format.json { render "users/popularity.json" }
       		end
     	end
  	end

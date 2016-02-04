@@ -1,3 +1,5 @@
+
+<%=link_to "Create review", new_user_review_path(@user) %>
 <main>
 	<div class="row">
 		<div class="col-md-1"></div>
@@ -135,9 +137,9 @@
 
 		    <!-- REVIEWS TAB CONTENT-->
 		    <div role="tabpanel" class="tab-pane fade" id="reviews">
-		     <%if @user != current_user && accepted_requests?(@user) %>
-		    	<%=link_to "Create review", new_user_review_path(@user) %>
-		     <% end %>
+		    
+		    	
+		     
 			     <%@user.received_reviews.each do |review| %>
 				     <p><%=review.content %></p>
 				     <p><%=review.sender.first_name %></p>
