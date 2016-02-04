@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
   get 'users/current' => 'users#current'
+  get 'users/distance' => 'users#distance', as: 'distance'
+  get 'users/popularity' => 'users#popularity', as: 'popularity'
 
  
 

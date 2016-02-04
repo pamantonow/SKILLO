@@ -49,7 +49,6 @@ function initMap() {
   //setMarkers();
 }
 
-
 function placeDBMarker(pinData, avatar) {
   var infowindow;
    var id = pinData.id.toString();
@@ -61,20 +60,17 @@ function placeDBMarker(pinData, avatar) {
     content: secretMessage
     });
   }
- 
+  var id = pinData.id.toString();
+
   var pinLatlng = new google.maps.LatLng(pinData.latitude, pinData.longitude);
   var marker = new google.maps.Marker({
     position: pinLatlng, 
     customInfo: id, 
     icon: avatar,
     map: map});
- 
-  
-  
-  
+
   attachSecretMessage(marker, marker['customInfo']);
   myMarkers.push(marker);
-  console.log(myMarkers)
 
   google.maps.event.addListener(marker, 'click', function() {
     $('.profile').hide();
@@ -92,7 +88,7 @@ $(function() {
   var getAjax = $.get('/users.json', "json");
   getAjax.done(function(response)
     {
-      console.log(response)
+      // console.log(response)
       for (var i = 0; i < response.length; i ++){
        placeDBMarker(response[i]);
       }
@@ -110,7 +106,7 @@ $(function() {
     var getAjax = $.get('/users.json', "json");
       getAjax.done(function(response)
       {
-        console.log(response)
+        // console.log(response)
         for (var i = 0; i < response.length; i ++){
          placeDBMarker(response[i]);
         }
@@ -126,10 +122,10 @@ $(function() {
   {
     event.preventDefault();
     deleteMarkers();
-    console.log($(this).attr('id'))
+    // console.log($(this).attr('id'))
     var id = $(this).attr('id');
     var url = '/categories/'+ id +'.json'
-    console.log(url)
+    // console.log(url)
     var getUsersByCategory = $.get(url, "json");
     getUsersByCategory.done(function(response){  
       var image = '/home.png';
@@ -148,8 +144,7 @@ $(function() {
       placeDBMarker(response, image);
     });
   });
-   $(document).on("submit", "#search-form", function(event)
-  {
+   $(document).on("submit", "#search-form", function(event){
     event.preventDefault();
     deleteMarkers();
     // console.log(this);
@@ -172,6 +167,51 @@ $(function() {
       }
     });
   });
+   $(document).on("click", "#popularity", function(event) {
+    event.preventDefault();
+    var divs =  $('.profile');
+    $('.profile').remove();
+    divs.sort(function (b,a) {
+      var aCount = parseInt($(a).attr('data-reviews'));
+      var bCount = parseInt($(b).attr('data-reviews'));
+      console.log(aCount)
+      if (aCount > bCount) {
+        return 1;
+      }
+      if (aCount < bCount)  {
+        return -1;
+      };
+      return 0;
+    });
+   $('#mini-profiles').append(divs);
+
+  });
+    var getUser = $.get('/users/current.json', "json");
+    getUser.done(function(response){  
+      var image = '/home.png';
+      placeDBMarker(response, image);
+    });
+
+    $(document).on("click", "#distance", function(event) {
+    event.preventDefault();
+    var divs =  $('.profile');
+    $('.profile').remove();
+    divs.sort(function (a,b) {
+      aCount = parseFloat($(a).attr('data-distance')).toFixed(1);
+      bCount = parseFloat($(b).attr('data-distance')).toFixed(1);
+      console.log(aCount)
+      if (aCount > bCount) {
+        return 1;
+      }
+      if (aCount < bCount)  {
+        return -1;
+      };
+      return 0;
+    });
+   $('#mini-profiles').append(divs);
+ });
+  
+
   function setMapOnAll(map) {
     for (var i = 0; i < myMarkers.length; i++) {
       myMarkers[i].setMap(map);
@@ -184,7 +224,10 @@ $(function() {
     clearMarkers();
     myMarkers = [];
   }
+
+
 });
+  
 
 
 

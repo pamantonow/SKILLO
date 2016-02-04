@@ -11,10 +11,13 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
 //= require bootstrap-sprockets
+//= require jquery_ujs
+//= require masonry/jquery.masonry
 //= require twitter/typeahead
 //= require jquery_nested_form
 //= require underscore
 //= require gmaps/google
 //= require_tree .
+
+

@@ -36,6 +36,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    acts_as_votable (0.10.0)
     arel (6.0.3)
     autoprefixer-rails (6.3.1)
       execjs
@@ -93,6 +94,8 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    masonry-rails (0.2.4)
+      railties
     mime-types (2.99)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
@@ -189,6 +192,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_votable (~> 0.10.0)
   bcrypt
   better_errors
   bootstrap-sass (~> 3.3.6)
@@ -202,6 +206,7 @@ DEPENDENCIES
   gmaps4rails
   jbuilder (~> 2.0)
   jquery-rails
+  masonry-rails (~> 0.2.1)
   nested_form
   pg (~> 0.15)
   rails (= 4.2.5)

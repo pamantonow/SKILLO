@@ -20,8 +20,8 @@
 
 
 
-
- 
+<%= link_to 'Distance', distance_path, id:'distance' %>
+<%= link_to 'Popularity', popularity_path, id:'popularity' %>
 
 <div class="clear">
 	<div class="left">
@@ -31,11 +31,11 @@
 		<%= render 'users/error' %>
 	<% end %>
 	</div>
-	<div class="right mini">
+	<div class="right mini transitions-enabled masonry"  id="mini-profiles">
 	<% @users.each do |user| %>
 	<% next if user.id == user_id %>
-		<div class="profile boxes" id="profile<%= user.id %>">
-			<img class="avatar" src="<%= user.avatar %>" alt="profile-picture">
+		<div class="profile boxes" id="profile<%= user.id %>" data-reviews="<%= user.received_reviews.count %>"  data-distance="<%= user.distance(current_user) %>">
+			<img class="avatar" src="<%= user.avatar %>" alt="profile-picture" >
 			<p class="green">
 			<%= link_to user.first_name, user, class:"yellow" %> lives 
 			 <%= user.distance(current_user) %> miles from you</p>
