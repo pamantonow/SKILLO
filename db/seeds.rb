@@ -56,9 +56,45 @@ addresses["address5"] = { st_num: 1720,
 												 city: "Chicago",
 												 state: "IL",
 												 zip: 60616 }
+addresses["address6"] = {
+													st_num: 830,
+													st_name: "N Michigan Ave",
+													city: "Chicago",
+													state: "IL",
+													zip:  60611}
+addresses["address7"]= { st_num: 5050,
+												 st_name: "N Sheridan Rd",
+												 city: "Chicago",
+												 state: "IL",
+												 zip: 60640 }
+addresses["address8"] = {st_num: 210,
+	                       st_name: "W Kinzie St",
+	                       city: "Chicago",
+	                       state: "IL",
+	                       zip: 60654}
+addresses["address9"] = {st_num: 127,
+												st_name: "W Huron St",
+												city: "Chicago",
+												state: "IL",
+												zip: 60654
+												}	                       
+addresses["address10"] = {
+													st_num: 1471,
+													st_name: "N Milwaukee Ave",
+													city: "Chicago",
+													state: "IL",
+													zip: 60622
+												}                              
+
+
+																						
+
+
+
+
 
 # Create users
-5.times do |t|
+10.times do |t|
 	first_name = Faker::Name.first_name
 	last_name = Faker::Name.last_name
 
@@ -227,6 +263,33 @@ fifth_user.collections.create!(skill_id: 7, # Guitar
 															years_of_experience: 9,
 															hourly_rate: 20,
 															description: "I have a band. Checkout our website and listen to my music. I can work with beginners, intermediates, and experts. Whatever your level, I can help you advance!")
+sixth_user = User.find(6)
+sixth_user.collections.create!(skill_id: 9, #Marketing,
+															 years_of_experience: 6,
+															 hourly_rate: 15,
+															 description: "I worked for 6 years in the field, and I love sharing my knowledge. ")
+seventh_user = User.find(7)
+seventh_user.collections.create!(skill_id: 30,#chemistry
+																years_of_experience: 9,
+																hourly_rate: 30,
+																description: "I have been in the field for 9 years. I have a master in Chimistry as well."
+																)
+eight_user = User.find(8)
+eight_user.collections.create!(skill_id: 14,#photography
+																years_of_experience: 15,
+																hourly_rate:40,
+																description: "Worked with Vogue magazine and other big magazines as well with major fashion Icons.")
+ninth_user = User.find(9)
+ninth_user.collections.create!(skill_id: 20,#Geometry,
+																years_of_experience: 20,
+																hourly_rate: 30,
+																description: "Geometry professor in Harvard , have been teaching Math for 20 years."
+															)		
+tenth_user = User.find(10)
+tenth_user.collections.create!(skill_id:16,#Gastronomy
+															 years_of_experience: 6,
+															 hourly_rate: 10,
+															 description: "Studied Gastronomy in France and was the main chef of Le Jules Verne in Paris")																													
 #^^^^^^^^^^^^^^^^^end^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 #=====================begin==============================
@@ -278,3 +341,20 @@ Message.create!(user_id: third_user.id, request_id: r2.id, content: "There's a S
 Message.create!(user_id: second_user.id, request_id: r2.id, content: "Great! See you then.")
 
 #^^^^^^^^^^^^^^^^^end^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+#=================Begin===================
+#CREATE REVIEWS
+#Review for first user
+Review.create!(sender_id: first_user.id,receiver_id: fourth_user.id, content: "Really recommend this teacher, the lesson was great! I feel like I know way more than I just to.", rating: 5 )
+Review.create!(sender_id: second_user.id,receiver_id: fourth_user.id, content: "It was a good session, but the teacher was a little late , other than that I really recommend it!", rating: 4)
+Review.create!(sender_id: sixth_user.id,receiver_id: fourth_user.id, content: "The teacher cancelled on me an hour before meeting, and didn't give a reason why. I honestly don't recommend this teacher",rating: 2 )
+Review.create!(sender_id: fifth_user.id,receiver_id: fourth_user.id, content: "I had a test and was really worried that I wasn't going to know enough before the test, but thanks to the tutoring that I had I was able to pass it!", rating: 5 )
+#Review for third user
+Review.create!(sender_id: third_user.id,receiver_id: first_user.id, content: "Really recommend this teacher, the lesson was great! I feel like I know way more than I just to." )
+Review.create!(sender_id: seventh_user.id,receiver_id: first_user.id, content: "Really recommend this teacher, the lesson was great! I feel like I know way more than I just to." )
+Review.create!(sender_id: ninth_user.id,receiver_id: first_user.id, content: "Really recommend this teacher, the lesson was great! I feel like I know way more than I just to." )
+
+#Review for the fifth user
+Review.create!(sender_id: third_user.id,receiver_id: fifth_user.id, content: "Really recommend this teacher, the lesson was great! I feel like I know way more than I just to." )
+Review.create!(sender_id: first_user.id,receiver_id: fifth_user.id, content: "Really recommend this teacher, the lesson was great! I feel like I know way more than I just to." )
+Review.create!(sender_id: fourth_user.id,receiver_id: fifth_user.id, content: "Really recommend this teacher, the lesson was great! I feel like I know way more than I just to." )
