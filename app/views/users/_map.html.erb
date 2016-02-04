@@ -99,8 +99,7 @@ $(function() {
     placeDBMarker(response, image);
   });
 
-  $(document).on("click", "#home", function(event)
-  {
+  $(document).on("click", "#home", function(event) {
     event.preventDefault();
     
     var getAjax = $.get('/users.json', "json");
@@ -118,21 +117,21 @@ $(function() {
     });
   });
 
-  $(document).on("click", ".cat", function(event)
-  {
+  $(document).on("click", ".cat", function(event) {
     event.preventDefault();
     deleteMarkers();
-    // console.log($(this).attr('id'))
     var id = $(this).attr('id');
     var url = '/categories/'+ id +'.json'
-    // console.log(url)
     var getUsersByCategory = $.get(url, "json");
     getUsersByCategory.done(function(response){  
       var image = '/home.png';
       console.log(response)
       if(response.length > 0) {
+        $('.profile').hide();
         for (var i = 0; i < response.length; i ++){
           placeDBMarker(response[i]);
+          
+          $('#profile'+response[i].id).show();
         }
       } else {
       $('.profile').hide();
