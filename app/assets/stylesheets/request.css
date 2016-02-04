@@ -1,17 +1,16 @@
-#request{
-	text-align: center;
-	border: solid black 1px;
-	max-width: 800px;	
-	min-height: 300px;
-	margin: 0 auto;
-	padding: 50px;
+#align_right {
+  padding: 100px;
+  box-sizing: border-box;
+  width: 50%;
+  float: left;
 
 }
 
-p{
-	font-size: 150%
+#align_left {
+   padding: 100px;
+    box-sizing: border-box;
+    width: 50%;
+    float: left;
+
 }
 
-button{
-	left: 40%;
-}

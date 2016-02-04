@@ -1,4 +1,5 @@
 <div class= "container">
+
 	<header>
 		<div class="row">
 			<div class="col-sm-1">
@@ -68,17 +69,5 @@
 		<% end %>
 	</main>
 </div>
-<% @request.messages.each do |message| %>
-	<center>
-		<div class="boxes">
-			<div class="left">
-				<%= link_to @request.sender.first_name %>
-				<img src="<%= message.user.avatar %>" class="avatar">
-			</div>
-			<%= message.content %>
-			<br>
-			<br>
-			<div class="right grey"><em><%= time_ago_in_words(@request.sender.created_at) %><em></div>
-		</div>
-	</center>
-<% end %>
+
+
