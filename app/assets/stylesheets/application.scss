@@ -163,7 +163,8 @@ li.yellow{
 
 .mini {
 	display: inline-block;
-    width: 32em;
+    width: 50%;
+    margin-top: 15%;
 }
 
 .m-mini{
@@ -196,6 +197,7 @@ li.yellow{
     display: block;
    	text-decoration: none;
    	padding: 1em;
+   	opacity: 0.7;
 }
 
 .yellow:hover {
@@ -210,20 +212,28 @@ li.yellow{
 }
 
 .cat {
-    /* margin: 1em; */
     background-color: #1766b5;
-    border-radius: 4px;
     color: #fff !important;
     position: relative;
     display: inline;
     text-decoration: none;
-    padding: 0.5em;
+    padding: 2.5px;
+    font-size:24px;
+    margin:1px;
+    
+}
+
+.cat:hover{
+	 background-color: grey;
 }
 .categories{
-	margin: 3em;
+	position:fixed;
+	margin-top: -40px;
 	background: rgba(153, 153, 153, 0.4);
     padding: 43px;
-    border-radius: 26px;
+    top: 0;
+    right: 0;
+    width:750px;
 }
 .medium{
 	width: 15em;
@@ -238,9 +248,8 @@ li.yellow{
   border-radius: 1em;
   padding: 1em;
   margin: 1em;
-  display: block;
   background-color: #F7F7F7;
-  width:600px;
+  overflow: overlay;
  }
 
 .b-width{
@@ -368,7 +377,7 @@ li{
 
 
 .gr{
-	    color: #5F6764;
+	color: #5F6764;
     font-size: x-medium;
 }
 
@@ -382,5 +391,14 @@ input#search{
 input.btn.btn-default{
 	z-index: 1;
 }
+
+.mini-m{
+	margin:6px;
+}
+
+.center{
+	margin-left: 15em;
+}
+        
 
 

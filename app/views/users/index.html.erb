@@ -1,32 +1,28 @@
-<div class="container-fluid categories">
-	<div class=" row">
-		<div class="col-sm-8">
-		<p class="gr">Categories: </p>
-			<% @categories.each do |category| %>
-				<%= link_to category.name, category, class: "cat", id:"#{category.id}" %>
-			<% end %>
-			<div class="left">
-			<br>
-			<p class="gr">Sort by: <%= link_to 'Distance', distance_path, id:'distance' %> |
-				<%= link_to 'Popularity', popularity_path, id:'popularity' %></p>
-		 		
-	 		</div>
-		</div>
-		<div class="col-sm-4">
-			<div class="left">
-				<p class="gr">Search by: </p>
-				<%= form_tag search_index_path,  class: 'search', id: 'search-form', :method => :get do %>
-					<div id="city">
-						<%= text_field_tag :city,  params[:city], :placeholder => 'city', class: "form-control medium typeahead"%>
-					</div>
-					<div id="the-basics">
-						<%= text_field_tag :search, params[:search], :placeholder => 'skill',  class: "form-control medium typeahead"%>
-					</div>
-			    		<%= submit_tag "search", :name => nil, class: "btn btn-default " %>
-			 	<% end %>
-		 	</div>
-			
-	 	</div>
+
+<div class="categories">
+	<p class="gr">Categories: </p>
+	<% @categories.each do |category| %>
+		<%= link_to category.name, category, class: "cat ", id:"#{category.id}" %>
+	<% end %>
+	<br>
+	<div class="left">
+	<br>
+	<p class="gr">Sort by: <%= link_to 'Distance', distance_path, id:'distance' %> |
+		<%= link_to 'Popularity', popularity_path, id:'popularity' %></p>
+ 		</div>
+		<br>
+		<br>
+		<br>
+		<p class="gr  left mini-m">Search by: </p>
+		<%= form_tag search_index_path,  class: 'search', id: 'search-form', :method => :get do %>
+			<div id="city">
+				<%= text_field_tag :city,  params[:city], :placeholder => 'city', class: "form-control medium typeahead"%>
+			</div>
+			<div id="the-basics">
+				<%= text_field_tag :search, params[:search], :placeholder => 'skill',  class: "form-control medium typeahead"%>
+			</div>
+	    		<%= submit_tag "search", :name => nil, class: "btn btn-default " %>
+	 	<% end %>
 	 </div>
 </div>
 
@@ -39,37 +35,33 @@
 		<%= render 'users/error' %>
 	<% end %>
 	</div>
-	<div class="right mini transitions-enabled masonry"  id="mini-profiles">
+	<div class="right mini"  id="mini-profiles">
 	<% @users.each do |user| %>
 	<% next if user.id == user_id %>
 		<div class="profile boxes" id="profile<%= user.id %>" data-reviews="<%= user.received_reviews.count %>"  data-distance="<%= user.distance(current_user) %>">
+			<div class="left">
 			<img class="avatar" src="<%= user.avatar %>" alt="profile-picture" >
-			<p class="green">
-			<%= link_to user.first_name, user, class:"yellow" %> lives 
-			 <%= user.distance(current_user) %> miles from you</p>
-			 <p>Has 
+			<%= link_to user.first_name, user, class:"yellow" %>
+			</div>
+			<div class="right">
+			<p class="green"><i class="fa fa-home"></i>lives 
+			<%= user.distance(current_user) %> miles from you</p>
+			 <p><i class="fa fa-star-o"></i>Has 
 			 <%= user.received_reviews.count %>
 			 recieved reviews </p>
+			 </div>
 			<br>
-			<% user.categories.uniq.each do |category| %>
-					<ul class="skill-show"><p class="aq"><%= category.name %></p>
-					<% category.skills.each do |skill| %>
-						<% user.skills.each do |userskill| %>
-							<% if skill == userskill %>
-								<li><%= skill.name %></li>
-							<% end %>
-						<%end%>
-					</ul>
-					<% end %>
-			<% end %>
-			<br>
-			<p class="aq">Why do I want to teach?</p>
-			<br>
-			<%= user.description %>
+			<i class="fa fa-fort-awesome"></i>
+			<ul class="center">
+				<li><b>SKILLS:</b></li>
+				<% user.skills.uniq.each do |skill| %>
+					<li><%= skill.name %></li>
+				<% end %>
+			</ul>
 		</div>
 	<% end %>
-	</div>
 </div>
+
 
 
 
