@@ -84,9 +84,80 @@ addresses["address10"] = {
 													city: "Chicago",
 													state: "IL",
 													zip: 60622
-												}
+		 											}
+ addresses["address11"] = {		
+ 													st_num: 941,		
+ 													st_name: "N Damen",		
+ 													city: "Chicago",		
+ 													state: "IL",		
+ 													zip: 60622}		
+ 																								      		
+ 		
+ addresses["address12"] = {		
+ 													st_num: 3658,		
+ 													st_name: "W Lawrence Ave",		
+ 													city: "Chicago",		
+ 													state: "IL",		
+ 													zip: 60625	}	
+ 														
+ addresses["address13"] = {		
+ 													st_num: 104,		
+ 													st_name: "E Oak St",		
+ 													city: "Chicago",		
+ 													state: "IL",		
+ 													zip: 60611		
+ 												} 												      		
+ addresses["address14"] = {		
+ 													st_num: 980,		
+ 													st_name: "N Michigan Ave",		
+ 													city: "Chicago",		
+ 													state: "IL",		
+ 													zip: 60611		
+ 												} 		
+ addresses["address15"] = {		
+ 													st_num: 230,		
+ 													st_name: "W Kinzie St",		
+ 													city: "Chicago",		
+ 													state: "IL",		
+ 													zip: 60654		
+ 												} 																						      		
+ addresses["address16"] = {		
+ 													st_num: 8266,		
+ 													st_name: "N Lincoln Ave",		
+ 													city: "Skokie",		
+ 													state: "IL",		
+ 													zip: 60077		
+ 												} 		
+ addresses["address17"] = {		
+ 													st_num: 203,		
+ 													st_name: "N Wabash",		
+ 													city: "Chicago",		
+ 													state: "IL",		
+ 													zip: 60604		
+ 												} 		
+ addresses["address18"] = {		
+ 													st_num: 2010,		
+ 													st_name: "W Fulton St",		
+ 													city: "Chicago",		
+ 													state: "IL",		
+ 													zip: 60612		
+ 												} 		
+ addresses["address19"] = {		
+ 													st_num: 910,		
+ 													st_name: "W Buena Ave",		
+ 													city: "Chicago",		
+ 													state: "IL",		
+ 													zip: 60613		
+ 												} 		
+ addresses["address20"] = {		
+ 													st_num: 18,		
+ 													st_name: "W Hubbard St",		
+ 													city: "Chicago",		
+ 													state: "IL",		
+ 													zip: 60654	}	
+ 																								
 # Create users
-10.times do |t|
+20.times do |t|
 	first_name = Faker::Name.first_name
 	last_name = Faker::Name.last_name
 
@@ -238,7 +309,7 @@ second_user.collections.create!(skill_id: 8, # Piano
 second_user.collections.create!(skill_id: 9,
 															years_of_experience: 15,
 															hourly_rate: 60, # Music theory
-															description: "I play piano semi-professionally. I have practiced it for more than a decade. I can help you learn it really well.")
+															description: "I play piano semiprofessionally. I have practiced it for more than a decade. I can help you learn it really well.")
 
 third_user = User.find(3)
 third_user.collections.create!(skill_id: 3, # JavaScript
@@ -253,7 +324,7 @@ fourth_user.collections.create!(skill_id: 5, # English
 fourth_user.collections.create!(skill_id: 4, # Spanish
 															years_of_experience: 14,
 															hourly_rate: 25,
-															description: "I have a near-native fluency in Spanish. I lived in Spain for 10 years and spoke exclusively in Spanish.")
+															description: "I have a nearnative fluency in Spanish. I lived in Spain for 10 years and spoke exclusively in Spanish.")
 
 fifth_user = User.find(5)
 fifth_user.collections.create!(skill_id: 7, # Guitar
@@ -287,6 +358,59 @@ tenth_user.collections.create!(skill_id:16,#Gastronomy
 															 years_of_experience: 6,
 															 hourly_rate: 10,
 															 description: "Studied Gastronomy in France and was the main chef of Le Jules Verne in Paris")
+															 	
+eleven_user = User.find(11)		
+eleven_user.collections.create!(skill_id:13,#Graphic design		
+ 															 years_of_experience: 7,		
+ 														 hourly_rate: 15,		
+ 															 description: "Worked in graphic design for about 7 years with one of the biggest companies")			
+ twelve_user = User.find(12)		
+ eleven_user.collections.create!(skill_id:18,#Algebra		
+ 															 years_of_experience: 20,		
+ 															 hourly_rate: 25,		
+ 															 description: "Algebra professor in Harvard")			
+ thirten_user = User.find(13)		
+ thirten_user.collections.create!(skill_id:13,
+ 																	years_of_experience: 3,		
+ 															 hourly_rate: 10,		
+ 															 description: "Have a master degree in Food and health`")			
+ fourteen_user = User.find(14)		
+ fourteen_user.collections.create!(skill_id:13,
+ 																	years_of_experience: 7,		
+ 															 hourly_rate: 15,		
+ 															 description: "Worked in graphic design for about 7 years with one of the biggest companies")			
+ fifteen_user = User.find(15)		
+ fifteen_user.collections.create!(skill_id:25,#Writing		
+ 															 years_of_experience: 5,		
+ 															 hourly_rate: 20,		
+ 															 description: "I wrote a whole book.")
+ sixteen_user = User.find(16)		
+ sixteen_user.collections.create!(skill_id:13,#Graphic design		
+ 															 years_of_experience: 7,		
+ 															 hourly_rate: 15,		
+ 															 description: "Worked in graphic design for about 7 years with one of the biggest companies")	
+ seventeen_user = User.find(17)		
+ seventeen_user.collections.create!(skill_id:13,#Graphic design		
+ 															 years_of_experience: 7,		
+ 															 hourly_rate: 15,		
+ 															 description: "Worked in graphic design for about 7 years with one of the biggest companies")			
+ eighteen_user = User.find(18)		
+ eighteen_user.collections.create!(skill_id:12,#Graphic design		
+ 															 years_of_experience: 10,		
+ 															 hourly_rate: 15,		
+ 															 description: "Professor in LMU")			
+ nineteen_user = User.find(19)		
+ nineteen_user.collections.create!(skill_id:11,#Graphic design		
+ 															 years_of_experience: 3,		
+ 															 hourly_rate: 3,		
+ 															  description: "I draw better than picasso")
+ twenty_user = User.find(20)		
+ twenty_user.collections.create!(skill_id:15,		
+ 															 years_of_experience: 50,		
+ 															 hourly_rate: 150,		
+ 															 description: "I draw better than picasso")			
+ 															 															 															 															 															 															 															 															 															 															       		
+ #Graphic design#Food and health		
 #^^^^^^^^^^^^^^^^^end^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 #=====================begin==============================
