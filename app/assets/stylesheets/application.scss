@@ -190,7 +190,7 @@ li.yellow{
 
 .yellow{
 	margin: 1em;
-	background-color: #1766b5 !important;
+	background-color: rgba(15, 224, 70, 0.92) !important;
 	border-radius: 4px;
 	color: #fff !important;
 	position: relative;
@@ -201,10 +201,14 @@ li.yellow{
 }
 
 .yellow:hover {
+	z-index:1;
 	background-color: #102e55 !important;
 	border-radius: 4px;
 	color: #grey !important;
 	text-decoration: none;
+}
+div#outDIV{
+	z-index:3;
 }
 
 .container {
@@ -229,11 +233,12 @@ li.yellow{
 .categories{
 	position:fixed;
 	margin-top: -40px;
-	background: rgba(153, 153, 153, 0.4);
+	background: white;
     padding: 43px;
     top: 0;
     right: 0;
     width:750px;
+    z-index:1;
 }
 .medium{
 	width: 15em;
@@ -245,10 +250,11 @@ li.yellow{
 }
 
 .boxes{
+  z-index:2;
   border-radius: 1em;
   padding: 1em;
   margin: 1em;
-  background-color: #F7F7F7;
+  background-color: rgba(0, 0, 0, 0.01);
   overflow: overlay;
  }
 
