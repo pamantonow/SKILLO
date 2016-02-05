@@ -72,20 +72,19 @@
 		    						<%= link_to "Delete", collection_path(collection), method: "delete", data: { confirm: "Click OK to delete this skill." } %>
 	    						<% end %>
 				        </a>
-			    		</div>
-
-			    		<!-- ========== END SKILL NAME ================ -->
-
-			    		<!-- THIS CONTENT IS DISPLAYED WHEN THE SKILL NAME IS CLICKED -->
-		    		  <div id="collapse_collection-<%= collection.id %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="collection-<%= collection.id %>">
-					      <div class="panel-body">
+				        <div class="panel-body">
 					      	<% @collection = collection %>
 					      	<%= render 'collections/details', locals: { collection: @collection }  %>
       		    		<br>
       		    		<br>
       		    		
 					      </div>
-					    </div>
+			    		</div>
+
+			    		<!-- ========== END SKILL NAME ================ -->
+
+			    		<!-- THIS CONTENT IS DISPLAYED WHEN THE SKILL NAME IS CLICKED -->
+
 			    		<!-- ========== END SKILL CONTENT DISPLAY ================ -->
 						</div>
     				<% end %>
