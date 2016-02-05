@@ -60,6 +60,13 @@
 					    		<h4 class="panel-title">
 										<%= collection.skill.name %>
 					    		</h4>
+					    			<% if current_user && user_id != @user.id  %>
+      		    			<em>Want to learn this skill from <%= @user.first_name %>? Send a message to start coordinating!</em>
+					 					<%= bootstrap_form_for @request, layout: :inline, as: :request, url: user_skill_requests_path(@user, collection.skill_id), method: "post" do |f| %>
+									    <%= f.text_field :content, hide_label: true, placeholder: "Write a message here" %>
+								    	<%= f.submit "Request a lesson!", class: "btn btn-success" %>
+										<% end %>
+							    <% end %>
       		    		<% if current_user == @user %>
 										<%= link_to "Edit Skill", edit_collection_path(collection), method: "get" %> |
 		    						<%= link_to "Delete", collection_path(collection), method: "delete", data: { confirm: "Click OK to delete this skill." } %>
@@ -76,13 +83,7 @@
 					      	<%= render 'collections/details', locals: { collection: @collection }  %>
       		    		<br>
       		    		<br>
-      		    		<% if current_user && user_id != @user.id  %>
-      		    			<em>Want to learn this skill from <%= @user.first_name %>? Send a message to start coordinating!</em>
-					 					<%= bootstrap_form_for @request, layout: :inline, as: :request, url: user_skill_requests_path(@user, collection.skill_id), method: "post" do |f| %>
-									    <%= f.text_field :content, hide_label: true, placeholder: "Write a message here" %>
-								    	<%= f.submit "Request a lesson!", class: "btn btn-success" %>
-										<% end %>
-							    <% end %>
+      		    		
 					      </div>
 					    </div>
 			    		<!-- ========== END SKILL CONTENT DISPLAY ================ -->
