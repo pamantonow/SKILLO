@@ -1,9 +1,8 @@
 
-var skills = [];
-
 $( document ).ready(function() {
   var response;
   var url = '/skills.json'
+  var skills = [];
 
 
   var getAjax = $.ajax({
@@ -17,20 +16,19 @@ $( document ).ready(function() {
   function onSuccess(response){
     
     for(var i = 0; i < response.length; i++){
-    skills.push(response[i].name)
-    }
-    $('#the-basics .typeahead').typeahead({
-  hint: true,
-  highlight: true,
-  minLength: 1
-},
-{
-  name: 'skills',
-  source: substringMatcher(skills)
-});
-}
-  //onSuccess();
-
+      skills.push(response[i].name)
+      }
+      console.log(skills)
+      $('#the-basics .typeahead').typeahead({
+        hint: true,
+        highlight: true,
+        minLength: 1
+    },
+    {
+     name: 'skills',
+      source: substringMatcher(skills)
+    });
+  }
 });
 
   var substringMatcher = function(strs) {

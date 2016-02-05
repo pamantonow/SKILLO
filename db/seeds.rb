@@ -112,7 +112,7 @@ end
 User.find(1).update_attributes(first_name: "Parminder", last_name: "Signh", avatar: "http://i.imgur.com/g3aAJPr.jpg%3F1")
 User.find(2).update_attributes(first_name: "Pamela", last_name: "Antonow", avatar: "http://i.imgur.com/xdt2AAZ.jpg?1")
 User.find(3).update_attributes(first_name: "Alex", last_name: "Nowak", avatar: "http://i.imgur.com/V5G33QO.jpg?1")
-User.find(4).update_attributes(first_name: "Shea", last_name: "Munion", avatar: "i.imgur.com/ZSMJtSN.jpg?1")
+User.find(4).update_attributes(first_name: "Shea", last_name: "Munion", avatar: "http://i.imgur.com/ZSMJtSN.jpg?1")
 #^^^^^^^^^^^^^^^^^end^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 #=====================begin==============================
