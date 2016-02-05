@@ -12,6 +12,8 @@ class RequestsController < ApplicationController
 	end
 	
  	def create
+ 		p "**********************"
+ 		p request_params
  		@request = Request.new(request_params)
  		@request.sender_id = user_id
  		@request.receiver_id = params[:user_id]

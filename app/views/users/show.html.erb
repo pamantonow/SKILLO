@@ -1,9 +1,7 @@
 <main class="mediums">
 	<div class="row">
 		<div class="col-md-1"></div>
-		<!-- PROFILE SIDEBAR -->
 		<div class="col-md-3">
-			<!-- USER AVATAR, NAME & LOCATION -->
 			<div id="profile-pic-box">
 				<header>
 					<br>
@@ -14,53 +12,37 @@
 				<br>
 				<br>
 					<div class="boxes left bl">
-		    		<p><b>Occupation </b> <%= @user.occupation %></p>
+		    			<p><b>Occupation </b> <%= @user.occupation %></p>
 						<p><b>Education </b> <%= @user.education.capitalize %></p>
-		    		<p><b>Bio </b> <%= @user.description %></p>
-		    		<% if current_user == @user %>
-		    			<br>
-		    			<%= link_to 'Edit', edit_user_path(@user), class:'right' %>
-		    		<% end %>
-		    	</div>
+		    			<p><b>Bio </b> <%= @user.description %></p>
+		    			<% if current_user == @user %>
+		    				<br>
+		    				<%= link_to 'Edit', edit_user_path(@user), class:'right' %>
+		    			<% end %>
+		    		</div>
 				</header>
-			</div>
-			<!-- ======= END USER NAME & LOCATION ========= -->
-		</div>
-		<!-- MAIN CONTENT -->
+			</div> 
+		</div> 
 		<div class="col-md-6">
   		<br>
   		<br>
   		<br>
 			<h1><%= @user.full_name %></h1>
 			<h3><%= @user.city_state %></h3>
-
 			<% if current_user == @user %>
-  			<%= link_to "Edit your profile", edit_user_path %>
-  		<% end %>
-  		<br>
-  		<br>
-  		<br>
-
-
-			<!-- BOOTSTRAP TOGGEABLE TABS -->
-			
-
-			<!-- TABS CONTENT -->
+  				<%= link_to "Edit your profile", edit_user_path %>
+  			<% end %>
+	  		<br>
+	  		<br>
+	  		<br>
 		  <div class="tab-content">
-		    <!-- SKILLS TAB CONTENT -->
 		    <div role="tabpanel" class="tab-pane fade in active" id="skills">
-		    	<!-- COLLAPSIBLE GROUP OF SKILLS -->
 					<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 			    	<% @user.collections.each do |collection| %>
-					  <div class="panel panel-default">
-		    			<!-- THE SKILL NAME FOR THIS COLLECTION
-		    					 IS CLICKABLE AND EXPANDS TO REVEAL THE SKILL DETAILS -->
-					    <div class="panel-heading aqq" role="tab" id="collection-<%= collection.id %>">
-								<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse_collection-<%= collection.id %>" aria-expanded="true" aria-controls="collapse_collection-<%= collection.id %>">
-					    		<h4 class="panel-title">
-										<%= collection.skill.name %>
-					    		</h4>
-					    			<% if current_user && user_id != @user.id  %>
+			    		<div class="panel panel-default"> 
+							<div class="panel-heading aqq" role="tab" id="collection-<%= collection.id %>">
+								<h4 class="panel-title"><%= collection.skill.name %></h4>
+					    		<% if current_user && user_id != @user.id  %>
       		    			<em>Want to learn this skill from <%= @user.first_name %>? Send a message to start coordinating!</em>
 					 					<%= bootstrap_form_for @request, layout: :inline, as: :request, url: user_skill_requests_path(@user, collection.skill_id), method: "post" do |f| %>
 									    <%= f.text_field :content, hide_label: true, placeholder: "Write a message here" %>
@@ -71,123 +53,36 @@
 										<%= link_to "Edit Skill", edit_collection_path(collection), method: "get" %> |
 		    						<%= link_to "Delete", collection_path(collection), method: "delete", data: { confirm: "Click OK to delete this skill." } %>
 	    						<% end %>
-				        </a>
-				        <div class="panel-body">
+	    						<div class="panel-body">
 					      	<% @collection = collection %>
 					      	<%= render 'collections/details', locals: { collection: @collection }  %>
       		    		<br>
       		    		<br>
-      		    		
-					      </div>
+      		    	</div>
 			    		</div>
-
-			    		<!-- ========== END SKILL NAME ================ -->
-
-			    		<!-- THIS CONTENT IS DISPLAYED WHEN THE SKILL NAME IS CLICKED -->
-
-			    		<!-- ========== END SKILL CONTENT DISPLAY ================ -->
 						</div>
     				<% end %>
 					</div>
-    			<!-- ========== END COLLAPSIBLE GROUP LOOP ================ -->
 		    </div>
-  			<!-- ========== END SKILLS TAB CONTENT ================ -->
-
-		    <!-- REQUESTS TAB CONTENT -->
-		  	<% if current_user && user_id == @user.id %>
-			    <div role="tabpanel" class="tab-pane fade" id="requests">
-						<div id="sent-requets">
-				    	<h2>Sent requests</h2>
-							<% if @user.sent_requests != nil %>
-					    	<% @user.sent_requests.each do |r| %>
-					    	<div class="request boxes">
-					    		<% if r.accepted == nil %>
-					    			<p class="btn btn-primary">Pending</p>
-									<% elsif r.accepted == false %>
-					    			<p class="btn btn-danger">Denied</p>
-									<% else %>
-					    			<p class="btn btn-success">Accepted</p>
-					    		<% end %>
-					    		<p>You want to learn <%= r.skill.name %> from <%= r.receiver.full_name %>.</p>
-					    		<p>Sent <%= time_ago_in_words(r.created_at) %> ago</p>
-					    		<%= link_to "Manage this request and chat with #{r.receiver.first_name}", request_path(r) %>
-				    		</div>
-					    	<% end %>
-				    	<% else %>
-				    		<p>You have yet to make any requests.</p>
-			    		<% end %>
-			    	</div>
-			    	<h2>Received requests</h2>
-						<% if @user.sent_requests != nil %>
-				    	<% @user.received_requests.each do |r| %>
-				    		<div class="request boxes">
-					    		<p><%= r.sender.full_name %> wants to learn <%= r.skill.name %> from you!</p>
-					    		<p>Sent <%= time_ago_in_words(r.created_at) %> ago</p>
-					    		<%= button_to "Accept", request_path(r), method: "patch", class:"btn btn-success" %>
-					    		<br>
-					    		<%= button_to "Decline", edit_request_path(r), method: "patch", class:"btn btn-danger" %>
-					    		<%= link_to "Manage this request and chat with #{r.sender.first_name}", request_path(r) %>
-				    		</div>
-			    		<% end %>
-				    <% else %>
-			    		<p>You have yet to make any requests.</p>
-			    	<% end %>
-			    </div>
-		    <% end %>
-	  		<!-- ========== END REQUESTS TAB CONTENT ================ -->
 	  		<h3>Reviews:</h3>
-	  			    	<% if  @user.received_reviews[0]  %>
-				     <%@user.received_reviews.each do |review| %>
-				     <div class="boxes cn hon">
+	  			<% if  @user.received_reviews[0]  %>
+				    <%@user.received_reviews.each do |review| %>
+				      <div class="boxes cn hon">
 					    	<img class="right" width="60" height="60" src="<%=review.sender.avatar %>" >
-					    <br>
-					    <p class="left gr"><%=review.sender.first_name %><br><em><%=time_ago_in_words(review.created_at) %><em></p>
-					    <br>
-					     <p class="padd"><%=review.content %></p>
-					     <p class="right"></p>
-					     
-					     					     <hr>
-					     </div>
+					    	<br>
+					    	<p class="left gr"><%=review.sender.first_name %><br><em><%=time_ago_in_words(review.created_at) %><em></p>
+					    	<br>
+					     	<p class="padd"><%=review.content %></p>
+					     	<p class="right"></p>
+					     	<hr>
+					    </div>
 			     	<% end %>
 			    <% else %>
 			    	<br>
 			     	<p><em>No reviews recieved</em></p>
 			    <% end %>
-		    <!-- REVIEWS TAB CONTENT-->
-		    <div role="tabpanel" class="tab-pane fade" id="reviews">
-
-
-		    	<% if  @user.received_reviews[0]  %>
-				     <%@user.received_reviews.each do |review| %>
-				     	<img class="right" width="60" height="60" src="<%=review.sender.avatar %>" >
-
-					     <p><%=review.content %></p>
-					     <p><%=review.sender.first_name %></p>
-					     <p class="right"><%=time_ago_in_words(review.created_at) %></p>
-					     					     <hr>
-			     	<% end %>
-			    <% else %>
-			    	<br>
-			     	<p><em>No reviews recieved</em></p>
-			    <% end %>
-		    </div>
-	  		<!-- ========== END REIVEWS TAB CONTENT ================ -->
-
-		    <!-- ABOUT ME TAB CONTENT -->
-		    <div role="tabpanel" class="tab-pane fade" id="about-me">
-		    	<br>
-		    	<div class="boxes">
-		    		<p><b>Occupation </b> <%= @user.occupation %></p>
-						<p><b>Education </b> <%= @user.education.capitalize %></p>
-		    		<p><b>Bio </b> <%= @user.description %></p>
-		    		<% if current_user == @user %>
-		    			<br>
-		    		<% end %>
-		    	</div>
-		    </div>
-	  		<!-- ========== END ABOUT ME TAB CONTENT ================ -->
-		  </div>
-		</div>
+			  </div>
+			</div>
 		<div class="col-md-1"></div>
 	</div>
 </main>
