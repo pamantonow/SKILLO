@@ -147,14 +147,18 @@
 		    <div role="tabpanel" class="tab-pane fade" id="reviews">
 
 
-
-			     <%@user.received_reviews.each do |review| %>
-				     <p><%=review.content %></p>
-				     <p><%=review.sender.first_name %></p>
-				     <p><%=time_ago_in_words(review.created_at) %></p>
-				     <img width="60" height="60" src="<%=review.sender.avatar %>">
-				     <hr>
-		     	<% end %>
+		    	<% if  @user.received_reviews[0]  %>
+				     <%@user.received_reviews.each do |review| %>
+					     <p><%=review.content %></p>
+					     <p><%=review.sender.first_name %></p>
+					     <p><%=time_ago_in_words(review.created_at) %></p>
+					     <img width="60" height="60" src="<%=review.sender.avatar %>">
+					     <hr>
+			     	<% end %>
+			    <% else %>
+			    	<br>
+			     	<p><em>No reviews recieved</em></p>
+			    <% end %>
 		    </div>
 	  		<!-- ========== END REIVEWS TAB CONTENT ================ -->
 
@@ -162,9 +166,13 @@
 		    <div role="tabpanel" class="tab-pane fade" id="about-me">
 		    	<br>
 		    	<div class="boxes">
-		    		<p>Occupation: <%= @user.occupation %></p>
-						<p>Education: <%= @user.education.capitalize %></p>
-		    		<p>Bio: <%= @user.description %></p>
+		    		<p><b>Occupation </b> <%= @user.occupation %></p>
+						<p><b>Education </b> <%= @user.education.capitalize %></p>
+		    		<p><b>Bio </b> <%= @user.description %></p>
+		    		<% if current_user == @user %>
+		    			<br>
+		    			<%= link_to 'Edit', edit_user_path(@user), class:'right' %>
+		    		<% end %>
 		    	</div>
 		    </div>
 	  		<!-- ========== END ABOUT ME TAB CONTENT ================ -->

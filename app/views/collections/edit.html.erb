@@ -1,5 +1,5 @@
-<h1 class="fancy">Edit your skill: <%= @collection.skill.name %></h1>
 <center>
+<h3 class="fancy">Edit skill <%= @collection.skill.name %></h3>
 	<%= bootstrap_form_for(@collection) do |f|	%>
 		<%= f.text_area :description, label: "Describe your experience:", wrapper: { class: 'col-sm-6 col-sm-offset-3'} %>
 		<%= f.number_field :years_of_experience, wrapper: { class: 'col-sm-2 col-sm-offset-5'} %>

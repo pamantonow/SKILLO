@@ -10,4 +10,3 @@ class CreateMessages < ActiveRecord::Migration
   end
 end
 
-# Message.create(user_id: 1, request_id: 1 , content: "also if you can message me as soon as possible when you get request.")

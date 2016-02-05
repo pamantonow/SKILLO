@@ -10,16 +10,14 @@
             <li>
                 <%= link_to "Home", users_path %>
             </li>
-            <li>
-                <a href="#about" onclick = $("#menu-close").click(); >About</a>
-            </li>
+           
             <% if current_user %> 
             
             <li><%= link_to "Profile", current_user %></li>
             <% if !unread_messages %>
                   <li><a href="<%= requests_path%>"><i class="fa fa-envelope-o"></i></a></li>
                   <% else %>
-                  <li  ><a href="<%= requests_path%>"><i class="fa fa-envelope-o"><%= count_messages %></i></a></li>
+                  <li  ><a href="<%= requests_path%>"> <i class="fa fa-envelope-o"> <%= count_messages %></i></a></li>
                   <% end %>
            
             
@@ -34,10 +32,6 @@
                 <%= link_to "Register", new_user_path %>
             </li>
             <%end%>
-            <li>
-               
-                <a href="#contact" onclick = $("#menu-close").click(); >Contact</a>
-            </li>
         </ul>
         </ul>
         </ul>

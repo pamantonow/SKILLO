@@ -1,24 +1,20 @@
-<h1 class="fancy">Your Skills are</h1>
-  
-
-
-
-
- <% @skills.each do |skill| %>
-	<div class="boxes">
-		<%= skill.category.name %>
-		<span>:::</span>
-		<%= link_to skill.name, skill %>
-		<br>
-
-		<% @collection = Collection.find_by(skill_id: skill.id, teacher_id: user_id) %>
-		<br>
-		<%= link_to "Update skill details", edit_collection_path(@collection)  %>
-	</div>
-<% end %>
-
-<h1 class="fancy">Add new one</h1>
 <center>
+	<h3 class="gr">Your Skills are</h3>
+	<% @skills.each do |skill| %>
+		<div class="boxes width-medium">
+			<p class="green"><%= skill.category.name %>
+			<span>:::::</span>
+			<%= link_to skill.name, skill,  class:'green' %></p>
+			<br>
+
+			<% @collection = Collection.find_by(skill_id: skill.id, teacher_id: user_id) %>
+			<br>
+			<%= link_to "Update skill details", edit_collection_path(@collection)  %>
+		</div>
+	<% end %>
+
+	<h3 class="gr">Add new one</h3>
+
 	<div class="form">
 		<%= bootstrap_nested_form_for [ current_user, @skill ] do |f|	%>
 			<div id="the-basics">

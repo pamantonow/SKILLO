@@ -10,9 +10,7 @@ class RequestsController < ApplicationController
 		@requested = current_user.received_requests
 		@requests = current_user.sent_requests
 	end
-
-	# POST /requests
-	# POST /users/:user_id/skills/:skill_id/reqeusts
+	
  	def create
  		@request = Request.new(request_params)
  		@request.sender_id = user_id

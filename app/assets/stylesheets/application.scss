@@ -163,8 +163,9 @@ li.yellow{
 
 .mini {
 	display: inline-block;
-    width: 50%;
-    margin-top: 15%;
+    width: 40%;
+    margin-top: 20%;
+    margin-right:5%;
 }
 
 .m-mini{
@@ -198,6 +199,8 @@ li.yellow{
    	text-decoration: none;
    	padding: 1em;
    	opacity: 0.7;
+   	width: 10em;
+    text-align: center;
 }
 
 .yellow:hover {
@@ -254,8 +257,12 @@ div#outDIV{
   border-radius: 1em;
   padding: 1em;
   margin: 1em;
-  background-color: rgba(0, 0, 0, 0.01);
+  background-color: #F5F5F5;
   overflow: overlay;
+ }
+
+ .gray{
+  color:#F5F5F5;
  }
 
 .b-width{
@@ -403,8 +410,25 @@ input.btn.btn-default{
 }
 
 .center{
-	margin-left: 15em;
+	margin-left: 13em;
 }
-        
 
+.width-medium{
+	width:40%;
+}
+div#the-basics{
+	z-index:1;
+}       
+.red{
+	color: red;
+}
+
+.ye{
+	color:#D3C12C;
+}
+
+.blue{
+	color:#26A9E0;
+	font-size:2em;
+}
 
