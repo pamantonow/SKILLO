@@ -1,5 +1,4 @@
 
-<%=link_to "Create review", new_user_review_path(@user) %>
 <main>
 	<div class="row">
 		<div class="col-md-1"></div>
@@ -9,17 +8,24 @@
 			<div id="profile-pic-box">
 				<header>
 				<img src="<%= @user.avatar %>" alt="profile-picture">
-					<h1><%= @user.full_name %></h1>
-					<p><%= @user.city_state %></p>
-					<% if current_user == @user %>
-	    			<%= link_to "Edit your profile", edit_user_path %>
-	    		<% end %>
+
 				</header>
 			</div>
 			<!-- ======= END USER NAME & LOCATION ========= -->
 		</div>
 		<!-- MAIN CONTENT -->
 		<div class="col-md-6">
+  		<br>
+  		<br>
+  		<br>
+			<h1><%= @user.full_name %></h1>
+			<h3><%= @user.city_state %></h3>
+			<% if current_user == @user %>
+  			<%= link_to "Edit your profile", edit_user_path %>
+  		<% end %>
+  		<br>
+  		<br>
+  		<br>
 			<!-- BOOTSTRAP TOGGEABLE TABS -->
 			<nav>
 				<ul class="nav nav-tabs" role="tablist">
@@ -59,11 +65,10 @@
 					    		<h4 class="panel-title">
 										<%= collection.skill.name %>
 					    		</h4>
-	      		    		<% if current_user == @user %>
-											<%= link_to "Edit Skill", edit_collection_path(collection), method: "get" %> |
-			    						<%= link_to "Delete", collection_path(collection), method: "delete", data: { confirm: "Click OK to delete this skill." } %>
-		    						<% end %>
-
+      		    		<% if current_user == @user %>
+										<%= link_to "Edit Skill", edit_collection_path(collection), method: "get" %> |
+		    						<%= link_to "Delete", collection_path(collection), method: "delete", data: { confirm: "Click OK to delete this skill." } %>
+	    						<% end %>
 				        </a>
 			    		</div>
 			    		<!-- ========== END SKILL NAME ================ -->
@@ -137,9 +142,9 @@
 
 		    <!-- REVIEWS TAB CONTENT-->
 		    <div role="tabpanel" class="tab-pane fade" id="reviews">
-		    
-		    	
-		     
+
+
+
 			     <%@user.received_reviews.each do |review| %>
 				     <p><%=review.content %></p>
 				     <p><%=review.sender.first_name %></p>
