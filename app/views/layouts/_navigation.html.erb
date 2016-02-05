@@ -16,9 +16,9 @@
             <li><%= link_to "Profile", current_user %></li>
             <% if !unread_messages %>
                   <li><a href="<%= requests_path%>"><i class="fa fa-envelope-o"></i></a></li>
-                  <% else %>
-                  <li  ><a href="<%= requests_path%>"><i class="fa fa-envelope-o"><%= count_messages %></i></a></li>
-                  <% end %>
+            <% else %>
+                  <li  ><a href="<%= requests_path%>"> <i class="fa fa-envelope-o"> <%= count_messages %></i></a></li>
+            <% end %>
            
             
             <li><%= link_to "Edit Skills", new_user_skill_path(user_id) %></li>
@@ -26,20 +26,41 @@
             <li><%= link_to "Logout", logout_path %></li>
             <%else%>
             <li>
-                <%= link_to "Login", login_path %>
+                <a href="/login" data-toggle="modal" data-target="#login-modal">Login</a>
             </li>
             <li>
                 <%= link_to "Register", new_user_path %>
             </li>
             <%end%>
-            <li>
-               
-                <a href="#contact" onclick = $("#menu-close").click(); >Contact</a>
-            </li>
         </ul>
         </ul>
         </ul>
     </nav>
+
+    
+
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+          <div class="modal-dialog">
+                <div class="loginmodal-container">
+                    <h1>Login to Your Account</h1><br> 
+                    <%= bootstrap_form_tag(url:"/login",method: "post") do |f| %>
+                    <center>
+                        <%= f.email_field :email %>
+                        <%= f.password_field :password %>
+                        <%= f.submit "Login" %>
+                    </center>
+                    <% end %>   
+                  <div class="login-help">
+                    <a href="/signup"><h4>Register</h4></a>
+                    </div>
+                </div>
+
+            </div>
+            </div>
+            <br>
+
+            <%= @error %>
+
     
 
     <!-- Custom Theme JavaScript -->

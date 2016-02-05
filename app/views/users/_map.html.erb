@@ -5,7 +5,7 @@
 
 
 <div id="outDIV" style="position:fixed; top:0">
-  <div id="inDIV" style="width:100%; height:100%">
+  <div id="inDIV" style="width:50%; height:100%">
     <div id="map-canvas" style="width: 700px; height: 850px">
   <div id="map"></div>
 </div>
@@ -68,6 +68,15 @@ function placeDBMarker(pinData, avatar) {
     });
   }
   var id = pinData.id.toString();
+  if (avatar==null) {
+    avatar = {
+      url: pinData.avatar,
+      size: new google.maps.Size(71, 71),
+      origin: new google.maps.Point(0, 0),
+      anchor: new google.maps.Point(17, 34),
+      scaledSize: new google.maps.Size(50, 50)
+    }; 
+  } 
 
   var pinLatlng = new google.maps.LatLng(pinData.latitude, pinData.longitude);
   var marker = new google.maps.Marker({
@@ -91,7 +100,7 @@ function placeDBMarker(pinData, avatar) {
 
 
 $(function() {
-
+  $('#message').hide();
   var getAjax = $.get('/users.json', "json");
   getAjax.done(function(response)
     {
@@ -167,9 +176,17 @@ $(function() {
       method: "post",
       data: data
     }).done(function(response){  
-      // console.log(response)
-      for (var i = 0; i < response.length; i ++){
-         placeDBMarker(response[i]);
+      if(response.length > 0) {
+        $('.profile').hide();
+
+        for (var i = 0; i < response.length; i ++){
+          placeDBMarker(response[i]);
+          
+          $('#profile'+response[i].id).show();
+        }
+      } else {
+      $('.profile').hide();
+      $('#message').fadeIn( "slow" ).fadeOut( "slow" );;
       }
     });
   });
@@ -192,19 +209,19 @@ $(function() {
    $('#mini-profiles').append(divs);
 
   });
-    var getUser = $.get('/users/current.json', "json");
-    getUser.done(function(response){  
-      var image = '/home.png';
-      placeDBMarker(response, image);
-    });
+    // var getUser = $.get('/users/current.json', "json");
+    // getUser.done(function(response){  
+    //   var image = '/home.png';
+    //   placeDBMarker(response, image);
+    // });
 
     $(document).on("click", "#distance", function(event) {
     event.preventDefault();
     var divs =  $('.profile');
     $('.profile').remove();
     divs.sort(function (a,b) {
-      aCount = parseFloat($(a).attr('data-distance')).toFixed(1);
-      bCount = parseFloat($(b).attr('data-distance')).toFixed(1);
+      aCount = parseFloat($(a).attr('data-distance'));
+      bCount = parseFloat($(b).attr('data-distance'));
       console.log(aCount)
       if (aCount > bCount) {
         return 1;

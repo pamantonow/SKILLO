@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
 	
-	# before_action :authenticate_user!, except: [:create, :new]
+	before_action :authenticate_user!, except: [:create, :new]
 	
 	def new
 	end
@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:password])
 
 	    session[:user_id] = @user.id
-	    redirect_to user_path(@user)
+	    redirect_to users_path
     else
     	puts "Yoour Credentials don't match"
     	p @user

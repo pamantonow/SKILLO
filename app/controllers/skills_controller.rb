@@ -1,8 +1,14 @@
 class SkillsController < ApplicationController
   
-  # before_action :authenticate_user!
-
+  before_action :authenticate_user!
+  # before_action :authenticate_account
   def new
+    p "*******************"
+    p params[:user_id]
+    p user_id
+    if user_id != params[:user_id].to_i
+      redirect_to user_path(current_user)
+    end
     @skills = current_user.skills
   	@skill = Skill.new
   	@categories = Category.all
@@ -14,7 +20,7 @@ class SkillsController < ApplicationController
     if @skill.save 
       @collection = @skill.collections.create(teacher_id: user_id)
       if @collection.save
-        redirect_to user_path(user_id)
+        redirect_to edit_collection_path(@collection)
       end
     else
       redirect_to new_user_skill_path(user_id)
@@ -39,5 +45,7 @@ class SkillsController < ApplicationController
   def show
   	@skill = Skill.find(params[:id])
   end
+
+  
 
 end

@@ -12,6 +12,10 @@
 					<h2>
 					<%= link_to @request.sender.first_name %> wants to learn <%= @request.skill.name %> from <%= link_to @request.receiver.first_name %>
 					</h2>
+					<hr>
+					<h4>Request content:</h4>
+
+					<p class="blue"><%= @request.content %></p>
 				</div>
 				<em>Requested <%= time_ago_in_words(@request.created_at) %> ago</em>
 			</div>
@@ -59,7 +63,7 @@
 						<br>
 						<br>
 						<div class="right grey">
-							<em><%= time_ago_in_words(message.user.created_at) %></em>
+							<em><%= time_ago_in_words(message.created_at) %></em>
 						</div>
 					</div>
 				</div>

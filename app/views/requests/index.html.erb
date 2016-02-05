@@ -1,47 +1,48 @@
 <div class= "container">
 		<div id= "align_left">
 <h1 class="fancy">Offers: </h1>
-<% @requested.each do |request| %>
-	<% if current_user %>
 
-				<img src="<%= request.sender.avatar %>" class="avatar">
+	<% @requested.each do |request| %>
+		<% if current_user %>
+			<div class="boxes">
+					<img src="<%= request.sender.avatar %>" class="avatar">
+					<br>
+
+				<%= link_to request.sender.first_name, request.sender  %>
+
 				<br>
 
-			<%= link_to request.sender.first_name, request.sender  %>
-
-			<br>
-
-				<%= request.content %>
-				<br>
-				<br>
-				<%=request.skill.name %>
-				<br>
-				<br>
-				<% if request.accepted == nil %>
-				<%= button_to "Accept", request_path(request), method: "patch", class:"btn btn-success" %>
-
-				<%= button_to "Decline", request_path(request), method: "delete", class:"btn btn-danger" %>
-				<% elsif request.accepted == true %>
-					<p class="green">You accepted the request from <%=  request.sender.first_name %></p>
-					<% else %>
-					<p class="red">You declined the request form <%=  request.sender.first_name %></p>
-					<p>Changed your mind?</p>
+					<%= request.content %>
+					<br>
+					<br>
+					<%=request.skill.name %>
+					<br>
+					<br>
+					<% if request.accepted == nil %>
 					<%= button_to "Accept", request_path(request), method: "patch", class:"btn btn-success" %>
-				<% end %>
-				<div class="right">
-				<%= link_to 'Respond Back', request  %>
+
+					<%= button_to "Decline", request_path(request), method: "delete", class:"btn btn-danger" %>
+					<% elsif request.accepted == true %>
+						<p class="green">You accepted the request from <%=  request.sender.first_name %></p>
+						<% else %>
+						<p class="red">You declined the request form <%=  request.sender.first_name %></p>
+						<p>Changed your mind?</p>
+						<%= button_to "Accept", request_path(request), method: "patch", class:"btn btn-success" %>
+					<% end %>
+					<div class="right">
+					<%= link_to 'Respond Back', request  %>
+				</div>
 			</div>
-
-			<br>
+				<br>
+		<% end %>
 	<% end %>
-<% end %>
-
 </div>
 <div id = "align_right" >
 <h1 class="fancy">Requests: </h1>
+
 	<% @requests.each do |request| %>
 		<% if current_user && request.accepted == nil %>
-
+			<div class="boxes">
 				<img src="<%= request.receiver.avatar %>" class="avatar">
 				<br>
 				<%= link_to request.receiver.first_name, request.sender  %>
@@ -67,6 +68,7 @@
 			<div class="right">
 				<br>
 				<%= link_to 'Respond Back', request  %>
+				</div>
 			</div>
 	<% end %>
 <% end %>
