@@ -10,9 +10,7 @@
             <li>
                 <%= link_to "Home", users_path %>
             </li>
-            <li>
-                <a href="#about" onclick = $("#menu-close").click(); >About</a>
-            </li>
+           
             <% if current_user %> 
             
             <li><%= link_to "Profile", current_user %></li>
