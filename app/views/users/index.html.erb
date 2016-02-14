@@ -1,79 +1,20 @@
-
-<div class="categories">
-	<p class="gr">Categories: </p>
-	<% @categories.each do |category| %>
-		<%= link_to category.name, category, class: "cat ", id:"#{category.id}" %>
-	<% end %>
-	<br>
-	<div class="left">
-	<br>
-	<p class="gr">Sort by: <%= link_to 'Distance', distance_path, id:'distance' %> |
-		<%= link_to 'Popularity', popularity_path, id:'popularity' %></p>
- 		</div>
-		<br>
-		<br>
-		<br>
-		<p class="gr  left mini-m">Search by: </p>
-		<%= form_tag search_index_path,  class: 'search', id: 'search-form', :method => :get do %>
-			<div id="city">
-				<%= text_field_tag :city,  params[:city], :placeholder => 'City', class: "form-control medium typeahead"%>
-			</div>
-			<div id="the-basics">
-				<%= text_field_tag :search, params[:search], :placeholder => 'Skill',  class: "form-control medium typeahead"%>
-			</div>
-	    		<%= submit_tag "search", :name => nil, class: "btn btn-default " %>
-	 	<% end %>
-	 	<div id="message"><br><center><p class="red"><em>No results found<em></p><center></div>
-	 </div>
-</div>
-
-
-<div class="clear">
-	<div class="left">
-	<% if @users != nil && @users %>
-		<%= render 'users/map' %>
-	<% else %>
-		<%= render 'users/error' %>
+<div class="row">
+	<div class="col-md-6 main">
+		<% if @users != nil && @users %>
+			<%= render 'users/map' %>
+		<% else %>
+			<%= render 'users/error' %>
 	<% end %>
 	</div>
-	<div class="right mini"  id="mini-profiles">
-	<% @users.each do |user| %>
-	<% next if user.id == user_id %>
-		<div class="profile boxes" id="profile<%= user.id %>" data-reviews="<%= user.received_reviews.count %>"  data-distance="<%= user.distance(current_user) %>">
-			<div class="left">
-			<center>
-				<img class="avatar" src="<%= user.avatar %>" alt="profile-picture" >
-			</center>
-			<%= link_to user.first_name, user, class:"yellow" %>
-			</div>
-			<div class="right">
-			<p class="green"><i class="fa fa-home"></i>lives 
-			<%= user.distance(current_user) %> miles from you </p>
-			 <p> <i class="fa fa-star-o"></i> had 
-			 <%= user.received_reviews.count %>
-			 recieved reviews </p>
-			
-			 
-			  <p class="ye"> <i class="fa fa-usd"> </i>
-			  <% if user.collections[0] != nil %>
-			 <%= user.collections[0].hourly_rate %>
-			 <% else %>
-			  0 
-			 <% end %>
-			  per hour</p>
-			 
-			 </div>
-			<br>
-			<i class="fa fa-fort-awesome"></i>
-			<ul class="center">
-				<li><b>SKILLS:</b></li>
-				<% user.skills.uniq.each do |skill| %>
-					<li><%= skill.name %></li>
-				<% end %>
-			</ul>
-		</div>
-	<% end %>
+	<div class="col-md-6 main">
+		<%= render 'users/categories' %>
+		<%= render 'users/mini_profiles' %>
+	</div>
+
 </div>
+
+
+
 
 
 

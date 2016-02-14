@@ -1,0 +1,38 @@
+<div class="mini"  id="mini-profiles">
+  <% @users.each do |user| %>
+  <% next if user.id == user_id %>
+    <div class="profile boxes" id="profile<%= user.id %>" data-reviews="<%= user.received_reviews.count %>"  data-distance="<%= user.distance(current_user) %>">
+      <div class="left">
+      <center>
+        <img class="avatar" src="<%= user.avatar %>" alt="profile-picture" >
+      </center>
+      <%= link_to user.first_name, user, class:"yellow" %>
+      </div>
+      <div class="right">
+      <p class="green"><i class="fa fa-home"></i>lives 
+      <%= user.distance(current_user) %> miles from you </p>
+       <p> <i class="fa fa-star-o"></i> had 
+       <%= user.received_reviews.count %>
+       recieved reviews </p>
+      
+       
+        <p class="ye"> <i class="fa fa-usd"> </i>
+        <% if user.collections[0] != nil %>
+       <%= user.collections[0].hourly_rate %>
+       <% else %>
+        0 
+       <% end %>
+        per hour</p>
+       
+       </div>
+      <br>
+      <i class="fa fa-fort-awesome"></i>
+      <ul class="center">
+        <li><b>SKILLS:</b></li>
+        <% user.skills.uniq.each do |skill| %>
+          <li><%= skill.name %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>
