@@ -213,17 +213,7 @@ div#outDIV{
 	text-align: center;
 }
 
-.cat {
-    background-color: #1766b5;
-    color: #fff !important;
-    position: relative;
-    display: inline;
-    text-decoration: none;
-    padding: 2.5px;
-    font-size:24px;
-    margin:1px;
-    
-}
+
 
 .cat:hover{
 	 background-color: grey;
@@ -455,4 +445,12 @@ form.button_to{
 }
 .navbar-inverse {
   margin-bottom: -20px;
+}
+.btn-lg{
+  margin: 3px;
+}
+
+.cat {
+ color: white;
+ margin: 3px;
 }
