@@ -161,12 +161,7 @@ li.yellow{
 	clear:both;
 }
 
-.mini {
-	display: inline-block;
-    width: 40%;
-    margin-top: 20%;
-    margin-right:5%;
-}
+
 
 .m-mini{
 	marign:4em;
@@ -218,29 +213,18 @@ div#outDIV{
 	text-align: center;
 }
 
-.cat {
-    background-color: #1766b5;
-    color: #fff !important;
-    position: relative;
-    display: inline;
-    text-decoration: none;
-    padding: 2.5px;
-    font-size:24px;
-    margin:1px;
-    
-}
+
 
 .cat:hover{
 	 background-color: grey;
 }
 .categories{
-	position:fixed;
-	margin-top: -40px;
+
+
 	background: white;
-    padding: 43px;
     top: 0;
     right: 0;
-    width:750px;
+    width:100%;
     z-index:1;
 }
 .medium{
@@ -454,3 +438,19 @@ form.button_to{
 .hon{background: #FFF8F0;}
 
 .aqq{background:white !important;}
+
+.main {
+  height: 100vh;
+  overflow: scroll;
+}
+.navbar-inverse {
+  margin-bottom: -20px;
+}
+.btn-lg{
+  margin: 3px;
+}
+
+.cat {
+ color: white;
+ margin: 3px;
+}

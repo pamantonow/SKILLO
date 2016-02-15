@@ -1,0 +1,35 @@
+<div class="categories">
+  <!-- <div class="btn-group"> -->
+    <% @categories.each do |category| %>
+    <button type="button" class="btn btn-primary btn-lg" aria-haspopup="true" aria-expanded="false">
+    <%= link_to category.name, category, class: "cat ", id:"#{category.id}" %>
+    </button>
+  <% end %>
+<!--    </div> -->
+  <ul>
+<!--  <p class="gr">Categories: </p> -->
+  
+  </ul>
+<!-- </div> -->
+  <br>
+  <div class="left">
+    <br>
+    <p class="gr">Sort by: <%= link_to 'Distance', distance_path, id:'distance' %> |
+    <%= link_to 'Popularity', popularity_path, id:'popularity' %></p>
+  </div>
+    <br>
+    <br>
+    <br>
+    <p class="gr  left mini-m">Search by: </p>
+    <%= form_tag search_index_path,  class: 'search', id: 'search-form', :method => :get do %>
+      <div id="city">
+        <%= text_field_tag :city,  params[:city], :placeholder => 'City', class: "form-control medium typeahead"%>
+      </div>
+      <div id="the-basics">
+        <%= text_field_tag :search, params[:search], :placeholder => 'Skill',  class: "form-control medium typeahead"%>
+      </div>
+          <%= submit_tag "search", :name => nil, class: "btn btn-default " %>
+    <% end %>
+    <div id="message"><br><center><p class="red"><em>No results found</em></p><center></div>
+    </div>
+ 
